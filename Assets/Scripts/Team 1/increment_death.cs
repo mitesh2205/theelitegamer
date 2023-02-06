@@ -13,6 +13,7 @@ public class increment_death : MonoBehaviour
     public int death_by_explosive = 0;
     public int death_by_saw = 0;
     public int time_to_complete_level = 0;
+    public int death_by_puzzle = 0;
     public void IncreaseDeath()
     {
         death++;
@@ -59,6 +60,11 @@ public class increment_death : MonoBehaviour
         Debug.Log(time_to_complete_level);   
     }
 
+    public void IncreaseDeathByPuzzle()
+    {
+        death_by_puzzle++;
+    }
+
     // public void ResetDeath()
     // {
     //     death = 0;
@@ -70,5 +76,6 @@ public class increment_death : MonoBehaviour
     //     death_by_explosive = 0;
     //     death_by_saw = 0;
     //     time_to_complete_level = 0;
+    //     death_by_puzzle = 0;
     // }
 }
