@@ -17,6 +17,14 @@ public class Player : MonoBehaviour
     private string GROUND_TAG = "Ground";
     private bool isGrounded = true;
     public int time_start;
+
+    public bool intiater;
+    public Text TextBox1;
+    public Text TextBox2;
+    public Text TextBox3;
+    public int count = 0;
+    public int attemps = 0;
+    public bool loose_flag = false;
     // Start is called before the first frame update
     increment_death d;
     private void Awake()
@@ -40,8 +48,32 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         PlayerMoveKeyboard();
         PlayerJump();
+        if (count == 4)
+        {
+            TextBox3.enabled = true;
+            count = 0;
+            TextBox1.enabled = false;
+            TextBox2.enabled = false;
+        }
+        if (attemps == 2)
+        {
+            print("You Lost");
+            TextBox1.enabled = false;
+            TextBox2.enabled = false;
+            TextBox3.enabled = false;
+            attemps = 0;
+            playerTransform.position = new Vector2(-12f, -8.6f);
+           
+        }
+        // if (intiater)
+        // {
+        //     TextBox1.enabled = true;
+        //     TextBox2.enabled = true;
+        //     intiater = false;
+        // }
     }
 
     void PlayerMoveKeyboard()
@@ -150,6 +182,73 @@ public class Player : MonoBehaviour
             d.IncreaseTimeToCompleteLevel((int)Time.time - time_start);
             PlayerDied(System.DateTime.Now.Ticks.ToString(), d.death.ToString(), d.death_by_saw.ToString(), d.death_by_spikes.ToString(), d.death_by_enemy.ToString(), d.death_by_spear.ToString(), d.death_by_explosive.ToString(), d.death_by_crusher.ToString(), d.time_to_complete_level.ToString(), d.death_by_falling.ToString());
             // Debug.Log("Completed");
+        }
+		if (collision.gameObject.CompareTag("F"))
+        {
+            Destroy(collision.gameObject);
+            Alphabets_Swaner.ind = 2;
+            count++;
+            Alphabets_Swaner.flag = true;
+            GameObject[] FL = GameObject.FindGameObjectsWithTag("F_L");
+            SpriteRenderer sr = FL[0].GetComponent<SpriteRenderer>();
+            sr.enabled = true;
+
+            // Alphabets_Swaner.Alphabets[GameObject.Find("F").GetComponent<Alphabets_Swaner>().index()].SetActive(false);
+        }
+		if (collision.gameObject.CompareTag("I"))
+        {
+            Destroy(collision.gameObject);
+            Alphabets_Swaner.ind = 4;
+            count++;
+            Alphabets_Swaner.flag = true;
+            GameObject[] IL = GameObject.FindGameObjectsWithTag("I_L");
+            SpriteRenderer sr = IL[0].GetComponent<SpriteRenderer>();
+            sr.enabled = true;
+        }
+		if (collision.gameObject.CompareTag("R"))
+        {
+            Destroy(collision.gameObject);
+            Alphabets_Swaner.ind = 3;
+            count++;
+            Alphabets_Swaner.flag = true;
+            GameObject[] RL = GameObject.FindGameObjectsWithTag("R_L");
+            SpriteRenderer sr = RL[0].GetComponent<SpriteRenderer>();
+            sr.enabled = true;
+        }
+		if (collision.gameObject.CompareTag("E"))
+        {
+            Destroy(collision.gameObject);
+            Alphabets_Swaner.ind = 1;
+            count++;
+            Alphabets_Swaner.flag = true;
+            GameObject[] EL = GameObject.FindGameObjectsWithTag("E_L");
+            SpriteRenderer sr = EL[0].GetComponent<SpriteRenderer>();
+            sr.enabled = true;
+        }
+		if (collision.gameObject.CompareTag("A"))
+        {
+            Destroy(collision.gameObject);
+            Alphabets_Swaner.ind = 0;
+            attemps++;
+            Alphabets_Swaner.flag = true;
+        }
+        if (collision.gameObject.CompareTag("U"))
+        {
+            Destroy(collision.gameObject);
+            Alphabets_Swaner.ind = 5;
+            attemps++;
+            Alphabets_Swaner.flag = true;
+        }
+		if (collision.gameObject.CompareTag("detect"))
+        {
+            // intiater = true;
+            TextBox1.enabled = true;
+            TextBox2.enabled = true;
+        }
+        if (collision.gameObject.CompareTag("exit"))
+        {
+
+            TextBox3.enabled = false;
         }
     }
 

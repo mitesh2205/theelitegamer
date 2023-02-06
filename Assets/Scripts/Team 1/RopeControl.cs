@@ -40,30 +40,61 @@ public class RopeControl : MonoBehaviour
 
         if (fix)
         {
-
-            var joint = coll.gameObject.GetComponent<HingeJoint2D>();
-            if (joint && joint.enabled)
+            try
             {
-                pControl.enabled = false;
-
-                foreach (var col in colliders)
-                    col.enabled = false;
-
-                var chainParent = coll.transform.parent;
-                chains = new List<Transform>();
-                foreach (Transform chain in chainParent)
+                var joint = coll.gameObject.GetComponent<HingeJoint2D>();
+                if (joint && joint.enabled)
                 {
-                    chains.Add(chain);
+                    pControl.enabled = false;
+
+                    foreach (var col in colliders)
+                        col.enabled = false;
+
+                    var chainParent = coll.transform.parent;
+                    chains = new List<Transform>();
+                    foreach (Transform chain in chainParent)
+                    {
+                        chains.Add(chain);
+                    }
+
+                    collidedChain = coll.transform;
+                    chainIndex = chains.IndexOf(collidedChain);
+                    playerTransform.parent = collidedChain;
+                    onRope = true;
+
+                    direction = Mathf.Sign(Vector3.Dot(collidedChain.right, Vector3.up));
+                    fix = false;
                 }
-
-                collidedChain = coll.transform;
-                chainIndex = chains.IndexOf(collidedChain);
-                playerTransform.parent = collidedChain;
-                onRope = true;
-
-                direction = Mathf.Sign(Vector3.Dot(collidedChain.right, Vector3.up));
-                fix = false;
             }
+            catch (System.Exception)
+            {
+                
+                Debug.Log("Error");
+            }
+
+            // var joint = coll.gameObject.GetComponent<HingeJoint2D>();
+            // if (joint && joint.enabled)
+            // {
+            //     pControl.enabled = false;
+
+            //     foreach (var col in colliders)
+            //         col.enabled = false;
+
+            //     var chainParent = coll.transform.parent;
+            //     chains = new List<Transform>();
+            //     foreach (Transform chain in chainParent)
+            //     {
+            //         chains.Add(chain);
+            //     }
+
+            //     collidedChain = coll.transform;
+            //     chainIndex = chains.IndexOf(collidedChain);
+            //     playerTransform.parent = collidedChain;
+            //     onRope = true;
+
+            //     direction = Mathf.Sign(Vector3.Dot(collidedChain.right, Vector3.up));
+            //     fix = false;
+            // }
 
         }
         if (onRope)
