@@ -24,7 +24,11 @@ public class Player : MonoBehaviour
     public Text TextBox3;
     public int count = 0;
     public int attemps = 0;
-    public bool loose_flag = false;
+    public bool win_flag = false;
+
+    // hash set
+    public HashSet<string> hs = new HashSet<string>();
+    
     // Start is called before the first frame update
     increment_death d;
     private void Awake()
@@ -51,19 +55,23 @@ public class Player : MonoBehaviour
 
         PlayerMoveKeyboard();
         PlayerJump();
-        if (count == 4)
+        // count = hs.Count;
+        if (hs.Count == 4)
         {
             TextBox3.enabled = true;
+            win_flag = true;
             count = 0;
+            hs.Clear();
             TextBox1.enabled = false;
             TextBox2.enabled = false;
         }
+        // if (count == 4)
         if (attemps == 2)
         {
+            d.IncreaseDeath();
+            d.IncreaseDeathByPuzzle();
             print("You Lost");
-            TextBox1.enabled = false;
-            TextBox2.enabled = false;
-            TextBox3.enabled = false;
+            textbox_disabler();
             attemps = 0;
             playerTransform.position = new Vector2(-12f, -8.6f);
            
@@ -148,6 +156,14 @@ public class Player : MonoBehaviour
             d.IncreaseDeath();
             d.IncreaseDeathByCrusher();
             reset_player_position();
+
+        }
+        if (collision.gameObject.CompareTag("invisible"))
+        {
+            if (win_flag){
+                collision.gameObject.SetActive(false);
+            }
+        
         }
         
 
@@ -177,17 +193,16 @@ public class Player : MonoBehaviour
             reset_player_position();
         }
 
-        if (collision.gameObject.CompareTag("Finish")){
-            d.IncreaseDeath();
-            d.IncreaseTimeToCompleteLevel((int)Time.time - time_start);
-            PlayerDied(System.DateTime.Now.Ticks.ToString(), d.death.ToString(), d.death_by_saw.ToString(), d.death_by_spikes.ToString(), d.death_by_enemy.ToString(), d.death_by_spear.ToString(), d.death_by_explosive.ToString(), d.death_by_crusher.ToString(), d.time_to_complete_level.ToString(), d.death_by_falling.ToString());
-            // Debug.Log("Completed");
-        }
+       
 		if (collision.gameObject.CompareTag("F"))
         {
             Destroy(collision.gameObject);
+            // check if element not in set
+            if (!hs.Contains("F")){
+                hs.Add("F");
+            }
             Alphabets_Swaner.ind = 2;
-            count++;
+            // count++;
             Alphabets_Swaner.flag = true;
             GameObject[] FL = GameObject.FindGameObjectsWithTag("F_L");
             SpriteRenderer sr = FL[0].GetComponent<SpriteRenderer>();
@@ -197,9 +212,12 @@ public class Player : MonoBehaviour
         }
 		if (collision.gameObject.CompareTag("I"))
         {
+            if (!hs.Contains("I")){
+                hs.Add("I");
+            }
             Destroy(collision.gameObject);
             Alphabets_Swaner.ind = 4;
-            count++;
+            // count++;
             Alphabets_Swaner.flag = true;
             GameObject[] IL = GameObject.FindGameObjectsWithTag("I_L");
             SpriteRenderer sr = IL[0].GetComponent<SpriteRenderer>();
@@ -207,9 +225,12 @@ public class Player : MonoBehaviour
         }
 		if (collision.gameObject.CompareTag("R"))
         {
+            if (!hs.Contains("R")){
+                hs.Add("R");
+            }
             Destroy(collision.gameObject);
             Alphabets_Swaner.ind = 3;
-            count++;
+            // count++;
             Alphabets_Swaner.flag = true;
             GameObject[] RL = GameObject.FindGameObjectsWithTag("R_L");
             SpriteRenderer sr = RL[0].GetComponent<SpriteRenderer>();
@@ -217,9 +238,12 @@ public class Player : MonoBehaviour
         }
 		if (collision.gameObject.CompareTag("E"))
         {
+            if (!hs.Contains("E")){
+                hs.Add("E");
+            }
             Destroy(collision.gameObject);
             Alphabets_Swaner.ind = 1;
-            count++;
+            // count++;
             Alphabets_Swaner.flag = true;
             GameObject[] EL = GameObject.FindGameObjectsWithTag("E_L");
             SpriteRenderer sr = EL[0].GetComponent<SpriteRenderer>();
@@ -250,10 +274,26 @@ public class Player : MonoBehaviour
 
             TextBox3.enabled = false;
         }
+
+         if (collision.gameObject.CompareTag("Finish")){
+            d.IncreaseDeath();
+            d.IncreaseTimeToCompleteLevel((int)Time.time - time_start);
+            PlayerDied(System.DateTime.Now.Ticks.ToString(), d.death.ToString(), d.death_by_saw.ToString(), d.death_by_spikes.ToString(), d.death_by_enemy.ToString(), d.death_by_spear.ToString(), d.death_by_explosive.ToString(), d.death_by_crusher.ToString(), d.time_to_complete_level.ToString(), d.death_by_falling.ToString(), d.death_by_puzzle.ToString());
+            LoadNextLevel();
+            // Debug.Log("Completed");
+        }
     }
 
     private void reset_player_position(){
+        textbox_disabler();
         playerTransform.position = new Vector2(-12f, -8.6f);
+
+    }
+
+    private void textbox_disabler(){
+        TextBox1.enabled = false;
+        TextBox2.enabled = false;
+        TextBox3.enabled = false;
     }
 
 
@@ -270,6 +310,7 @@ public class Player : MonoBehaviour
     private string _explosives;
     private string _crusher;
     private string _falling;
+    private string _death_by_puzzle;
     private string _time_to_complete_level;
 
 
@@ -279,7 +320,7 @@ public class Player : MonoBehaviour
 
     // }
 
-    public void PlayerDied(string session, string attempts, string saw, string spike, string enemy, string spear, string explosives, string crusher, string time_to_complete_level , string falling)
+    public void PlayerDied(string session, string attempts, string saw, string spike, string enemy, string spear, string explosives, string crusher, string time_to_complete_level , string falling, string death_by_puzzle)
     {
         _sessionID = session;
         _number_of_attempts = attempts;
@@ -290,6 +331,7 @@ public class Player : MonoBehaviour
         _explosives = explosives;
         _crusher = crusher;
         _falling = falling;
+        _death_by_puzzle = death_by_puzzle;
         _time_to_complete_level = time_to_complete_level;
 
         StartCoroutine(Post());
@@ -314,6 +356,7 @@ public class Player : MonoBehaviour
         form.AddField("entry.995108995", _crusher);
         form.AddField("entry.787260575", _falling);
         form.AddField("entry.964640412", _time_to_complete_level);
+        form.AddField("entry.1713570514", _death_by_puzzle);
 
         
         UnityWebRequest www = UnityWebRequest.Post(URL, form);
@@ -334,6 +377,11 @@ public class Player : MonoBehaviour
     //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     // }
 
-    
+    //  Load next level
+
+    public void LoadNextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 
 }
