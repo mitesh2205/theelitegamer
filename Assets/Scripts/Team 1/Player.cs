@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     public Text TextBox3;
     public int count = 0;
     public int attemps = 0;
+    public int flagd=0;
     public bool win_flag = false;
 
     // hash set
@@ -61,6 +62,7 @@ public class Player : MonoBehaviour
             TextBox3.enabled = true;
             win_flag = true;
             count = 0;
+            attemps = -1;
             hs.Clear();
             TextBox1.enabled = false;
             TextBox2.enabled = false;
@@ -266,12 +268,22 @@ public class Player : MonoBehaviour
 		if (collision.gameObject.CompareTag("detect"))
         {
             // intiater = true;
-            TextBox1.enabled = true;
-            TextBox2.enabled = true;
+            if(flagd==0){
+                TextBox1.enabled = true;
+                TextBox2.enabled = true;
+                flagd = 1;
+            }
+            else if(flagd==1){
+                TextBox1.enabled = false;
+                TextBox2.enabled = false;
+                flagd = 0;
+            }
+            
         }
         if (collision.gameObject.CompareTag("exit"))
         {
-
+            TextBox1.enabled = false;
+            TextBox2.enabled = false;
             TextBox3.enabled = false;
         }
 
