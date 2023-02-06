@@ -3,7 +3,23 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
+  - Gate1
+  - Spike
+  - Gate2
+  - Pool
+  - Enemy
+  - bullet
+  - Rope2D
+  - Points
+  - Spring
+  - Ladder
+  - Spear
+  - Explosives
+  - upper_block
+  - Saw
+  - Outbound
   layers:
   - Default
   - TransparentFX
@@ -11,7 +27,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - water
   - 
   - 
   - 
@@ -38,6 +54,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: background
+    uniqueID: 613450765
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: water
+    uniqueID: 1786541053
     locked: 0
