@@ -24,12 +24,18 @@ public class Player : MonoBehaviour
     public Text TextBox3;
     public int count = 0;
     public int attemps = 0;
-    public int flagd=0;
+    public int flagd = 0;
+    public int flagw = 0;
+    public int flagt = 0;
     public bool win_flag = false;
 
+    public bool pushflag = false;
+
+    public bool flagss = false;
     // hash set
     public HashSet<string> hs = new HashSet<string>();
-    
+
+
     // Start is called before the first frame update
     increment_death d;
     private void Awake()
@@ -43,7 +49,7 @@ public class Player : MonoBehaviour
 
         // s._sessionID = System.DateTime.Now.Ticks;
         // Debug.Log(s._sessionID);
-         
+
     }
     void Start()
     {
@@ -54,6 +60,50 @@ public class Player : MonoBehaviour
     void Update()
     {
 
+        if (pushflag)
+        {
+            //find gamecomponent by tag and enable it 
+            // GameObject.FindGameObjectsWithTag("blokage").SpriteRenderer.enabled = false;
+            GameObject blokage = GameObject.FindWithTag("blokage");
+            if (blokage != null)
+            {
+                BoxCollider2D collider = blokage.GetComponent<BoxCollider2D>();
+                collider.isTrigger = true;
+                SpriteRenderer renderer = blokage.GetComponent<SpriteRenderer>();
+                renderer.enabled = false;
+                // blokage.SetActive(false);
+            }
+            GameObject push_button = GameObject.FindWithTag("Push_button");
+            if (push_button != null)
+            {
+                SpriteRenderer renderer = push_button.GetComponent<SpriteRenderer>();
+                renderer.color = Color.green;
+            }
+            // GameObject.FindGameObjectsWithTag("Push_button").SetActive(false);
+        }
+        else
+        {
+            GameObject blokage = GameObject.FindWithTag("blokage");
+            if (blokage != null)
+            {
+                BoxCollider2D collider = blokage.GetComponent<BoxCollider2D>();
+                collider.isTrigger = false;
+                SpriteRenderer renderer = blokage.GetComponent<SpriteRenderer>();
+                renderer.enabled = true;
+            }
+            GameObject push_button = GameObject.FindWithTag("Push_button");
+            if (push_button != null)
+            {
+                SpriteRenderer renderer = push_button.GetComponent<SpriteRenderer>();
+                renderer.color = Color.white;
+            }
+        }
+
+        if (flagss)
+        {
+            pushflag = false;
+            flagss = false;
+        }
         PlayerMoveKeyboard();
         PlayerJump();
         // count = hs.Count;
@@ -62,6 +112,8 @@ public class Player : MonoBehaviour
             TextBox3.enabled = true;
             win_flag = true;
             count = 0;
+            flagw = 1;
+            flagt = 1;
             attemps = -1;
             hs.Clear();
             TextBox1.enabled = false;
@@ -76,7 +128,7 @@ public class Player : MonoBehaviour
             textbox_disabler();
             attemps = 0;
             playerTransform.position = new Vector2(-12f, -8.6f);
-           
+
         }
         // if (intiater)
         // {
@@ -109,18 +161,37 @@ public class Player : MonoBehaviour
             moveForce = 10f;
             transform.localScale = originalSize;
         }
+
+        if (collision.gameObject.CompareTag("falling1"))
+        {
+            isGrounded = true;
+            moveForce = 10f;
+            transform.localScale = originalSize;
+        }
+        if (collision.gameObject.CompareTag("falling2"))
+        {
+            isGrounded = true;
+            moveForce = 10f;
+            transform.localScale = originalSize;
+        }
+        if (collision.gameObject.CompareTag("falling3"))
+        {
+            isGrounded = true;
+            moveForce = 10f;
+            transform.localScale = originalSize;
+        }
         if (collision.gameObject.CompareTag("Spike"))
         {
             d.IncreaseDeath();
             // Destroy(gameObject);
             d.IncreaseDeathBySpikes();
             reset_player_position();
-            
+
 
         }
         if (collision.gameObject.CompareTag("Saw"))
         {
-            
+
             d.IncreaseDeath();
             d.IncreaseDeathBySaw();
             reset_player_position();
@@ -162,25 +233,54 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("invisible"))
         {
-            if (win_flag){
+            if (win_flag)
+            {
                 collision.gameObject.SetActive(false);
             }
-        
+
         }
-        
+
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
+        if (collision.gameObject.CompareTag("Push_button"))
+        {
+            // disappear the wall with tag "blokage"
+            pushflag = true;
+        }
+
+        if (collision.gameObject.CompareTag("Set_Flags"))
+        {
+            flagss = true;
+            GameObject falling1 = GameObject.FindWithTag("falling1");
+            Rigidbody2D rb = falling1.GetComponent<Rigidbody2D>();
+            rb.bodyType = RigidbodyType2D.Kinematic;
+            falling1.transform.position = new Vector2(82.0246f, -10.2f);
+
+            GameObject falling2 = GameObject.FindWithTag("falling2");
+            Rigidbody2D rb2 = falling2.GetComponent<Rigidbody2D>();
+            rb2.bodyType = RigidbodyType2D.Kinematic;
+            falling2.transform.position = new Vector2(87.33f, -8.01f);
+
+            GameObject falling3 = GameObject.FindWithTag("falling3");
+            Rigidbody2D rb3 = falling3.GetComponent<Rigidbody2D>();
+            rb3.bodyType = RigidbodyType2D.Kinematic;
+            falling3.transform.position = new Vector2(93.09f, -5.84f);
+
+            print("flagss");
+        }
+
         if (collision.gameObject.CompareTag("Gate1"))
         {
             // below is the code to move the player to the next x,y position. set the x,y to the position you want the player to move to.
-            playerTransform.position = new Vector2(60f, -2.6f);
+            playerTransform.position = new Vector2(61.77f, 17f);
         }
         if (collision.gameObject.CompareTag("Gate2"))
         {
             // below is the code to move the player to the next x,y position. set the x,y to the position you want the player to move to.
-            playerTransform.position = new Vector2(22.99046f, -2.6f);
+            playerTransform.position = new Vector2(40.4f, -5.83f);
         }
         if (collision.gameObject.CompareTag("Points"))
         {
@@ -195,12 +295,13 @@ public class Player : MonoBehaviour
             reset_player_position();
         }
 
-       
-		if (collision.gameObject.CompareTag("F"))
+
+        if (collision.gameObject.CompareTag("F"))
         {
             Destroy(collision.gameObject);
             // check if element not in set
-            if (!hs.Contains("F")){
+            if (!hs.Contains("F"))
+            {
                 hs.Add("F");
             }
             Alphabets_Swaner.ind = 2;
@@ -212,9 +313,10 @@ public class Player : MonoBehaviour
 
             // Alphabets_Swaner.Alphabets[GameObject.Find("F").GetComponent<Alphabets_Swaner>().index()].SetActive(false);
         }
-		if (collision.gameObject.CompareTag("I"))
+        if (collision.gameObject.CompareTag("I"))
         {
-            if (!hs.Contains("I")){
+            if (!hs.Contains("I"))
+            {
                 hs.Add("I");
             }
             Destroy(collision.gameObject);
@@ -225,9 +327,10 @@ public class Player : MonoBehaviour
             SpriteRenderer sr = IL[0].GetComponent<SpriteRenderer>();
             sr.enabled = true;
         }
-		if (collision.gameObject.CompareTag("R"))
+        if (collision.gameObject.CompareTag("R"))
         {
-            if (!hs.Contains("R")){
+            if (!hs.Contains("R"))
+            {
                 hs.Add("R");
             }
             Destroy(collision.gameObject);
@@ -238,9 +341,10 @@ public class Player : MonoBehaviour
             SpriteRenderer sr = RL[0].GetComponent<SpriteRenderer>();
             sr.enabled = true;
         }
-		if (collision.gameObject.CompareTag("E"))
+        if (collision.gameObject.CompareTag("E"))
         {
-            if (!hs.Contains("E")){
+            if (!hs.Contains("E"))
+            {
                 hs.Add("E");
             }
             Destroy(collision.gameObject);
@@ -251,7 +355,7 @@ public class Player : MonoBehaviour
             SpriteRenderer sr = EL[0].GetComponent<SpriteRenderer>();
             sr.enabled = true;
         }
-		if (collision.gameObject.CompareTag("A"))
+        if (collision.gameObject.CompareTag("A"))
         {
             Destroy(collision.gameObject);
             Alphabets_Swaner.ind = 0;
@@ -265,20 +369,31 @@ public class Player : MonoBehaviour
             attemps++;
             Alphabets_Swaner.flag = true;
         }
-		if (collision.gameObject.CompareTag("detect"))
+        if (collision.gameObject.CompareTag("detect"))
         {
             // intiater = true;
-            if(flagd==0){
+            if (flagd == 0)
+            {
                 TextBox1.enabled = true;
                 TextBox2.enabled = true;
                 flagd = 1;
             }
-            else if(flagd==1){
+            else if (flagd == 1)
+            {
                 TextBox1.enabled = false;
                 TextBox2.enabled = false;
                 flagd = 0;
             }
-            
+            if (flagw == 1)
+            {
+                TextBox3.enabled = false;
+                flagw = 0;
+            }
+            if (flagt == 1)
+            {
+                TextBox1.enabled = false;
+                TextBox2.enabled = false;
+            }
         }
         if (collision.gameObject.CompareTag("exit"))
         {
@@ -287,7 +402,8 @@ public class Player : MonoBehaviour
             TextBox3.enabled = false;
         }
 
-         if (collision.gameObject.CompareTag("Finish")){
+        if (collision.gameObject.CompareTag("Finish"))
+        {
             d.IncreaseDeath();
             d.IncreaseTimeToCompleteLevel((int)Time.time - time_start);
             PlayerDied(System.DateTime.Now.Ticks.ToString(), d.death.ToString(), d.death_by_saw.ToString(), d.death_by_spikes.ToString(), d.death_by_enemy.ToString(), d.death_by_spear.ToString(), d.death_by_explosive.ToString(), d.death_by_crusher.ToString(), d.time_to_complete_level.ToString(), d.death_by_falling.ToString(), d.death_by_puzzle.ToString());
@@ -296,13 +412,15 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void reset_player_position(){
+    private void reset_player_position()
+    {
         textbox_disabler();
         playerTransform.position = new Vector2(-12f, -8.6f);
 
     }
 
-    private void textbox_disabler(){
+    private void textbox_disabler()
+    {
         TextBox1.enabled = false;
         TextBox2.enabled = false;
         TextBox3.enabled = false;
@@ -332,7 +450,7 @@ public class Player : MonoBehaviour
 
     // }
 
-    public void PlayerDied(string session, string attempts, string saw, string spike, string enemy, string spear, string explosives, string crusher, string time_to_complete_level , string falling, string death_by_puzzle)
+    public void PlayerDied(string session, string attempts, string saw, string spike, string enemy, string spear, string explosives, string crusher, string time_to_complete_level, string falling, string death_by_puzzle)
     {
         _sessionID = session;
         _number_of_attempts = attempts;
@@ -349,17 +467,18 @@ public class Player : MonoBehaviour
         StartCoroutine(Post());
     }
 
-    public void number_of_attempt(){
+    public void number_of_attempt()
+    {
         _number_of_attempts += 1;
         Debug.Log(_number_of_attempts);
     }
 
     private IEnumerator Post()
     {
-        
-       WWWForm form = new WWWForm();
-        form.AddField("entry.1873251736", _sessionID); 
-        form.AddField("entry.184508093", _number_of_attempts); 
+
+        WWWForm form = new WWWForm();
+        form.AddField("entry.1873251736", _sessionID);
+        form.AddField("entry.184508093", _number_of_attempts);
         form.AddField("entry.1811764899", _saw);
         form.AddField("entry.1524214175", _spike);
         form.AddField("entry.667379507", _enemy);
@@ -370,7 +489,7 @@ public class Player : MonoBehaviour
         form.AddField("entry.964640412", _time_to_complete_level);
         form.AddField("entry.1713570514", _death_by_puzzle);
 
-        
+
         UnityWebRequest www = UnityWebRequest.Post(URL, form);
         yield return www.SendWebRequest();
 
