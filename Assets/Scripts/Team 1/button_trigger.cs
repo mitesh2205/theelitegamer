@@ -7,6 +7,7 @@ public class button_trigger : MonoBehaviour
      public GameObject invisible_platform;
      public GameObject activate_platform;
      public GameObject activate_spring;
+     public GameObject activate_invisible_stone;
   
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -21,6 +22,10 @@ public class button_trigger : MonoBehaviour
             if (activate_spring != null)
             {
                 activate_spring.SetActive(true);
+            }
+            if (activate_invisible_stone != null)
+            {
+                activate_invisible_stone.SetActive(true);
             }
 
         }
