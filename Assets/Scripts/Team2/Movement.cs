@@ -15,6 +15,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        TimeLeft.ScoreValue = 2.0f;
     }
 
     // Update is called once per frame
