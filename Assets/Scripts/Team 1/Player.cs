@@ -42,15 +42,12 @@ public class Player : MonoBehaviour
     public HashSet<string> hs = new HashSet<string>();
 
 
-
-    // hash set
-
-
-
     // Start is called before the first frame update
     increment_death d;
+
     private void Awake()
     {
+
         myBody = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         d = FindObjectOfType<increment_death>();
@@ -77,10 +74,10 @@ public class Player : MonoBehaviour
 
     }
 
+
     // Update is called once per frame
     void Update()
     {
-
 
         if (pushflag)
         {
