@@ -2315,7 +2315,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.4, y: -7.26, z: -10}
+  m_LocalPosition: {x: -19, y: -7.24, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2511,7 +2511,6 @@ MonoBehaviour:
   invisible_platform: {fileID: 0}
   activate_platform: {fileID: 0}
   activate_spring: {fileID: 1282713298}
-  activate_invisible_stone: {fileID: 0}
 --- !u!61 &563097856
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6390,7 +6389,6 @@ MonoBehaviour:
   invisible_platform: {fileID: 0}
   activate_platform: {fileID: 1518757735}
   activate_spring: {fileID: 0}
-  activate_invisible_stone: {fileID: 0}
 --- !u!1001 &1456845758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9669,11 +9667,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6721935397402667387, guid: d740c0aec00972144978e37260f8a3bc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.4
+      value: -19
       objectReference: {fileID: 0}
     - target: {fileID: 6721935397402667387, guid: d740c0aec00972144978e37260f8a3bc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.92
+      value: -10.9
       objectReference: {fileID: 0}
     - target: {fileID: 6721935397402667387, guid: d740c0aec00972144978e37260f8a3bc, type: 3}
       propertyPath: m_LocalPosition.z
