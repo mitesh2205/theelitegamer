@@ -18,41 +18,111 @@ public class Player : MonoBehaviour
     private bool isGrounded = true;
     public int time_start;
 
+    public GameObject play_again_panel;
+    public Transform circle;
+    public Transform square;
+
+
     public bool intiater;
     public Text TextBox1;
     public Text TextBox2;
     public Text TextBox3;
     public int count = 0;
     public int attemps = 0;
-    public int flagd=0;
+
+    public int flagd = 0;
+    public int flagw = 0;
+    public int flagt = 0;
     public bool win_flag = false;
 
+    public bool pushflag = false;
+
+    public bool flagss = false;
     // hash set
     public HashSet<string> hs = new HashSet<string>();
-    
+
+
     // Start is called before the first frame update
     increment_death d;
+
     private void Awake()
     {
+
         myBody = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         d = FindObjectOfType<increment_death>();
         time_start = (int)Time.deltaTime;
 
+        if (pause_menu.GameIsPaused)
+        {
+            pause_menu.GameIsPaused = false;
+        }
+
+
         // create a object of the class and call the function
 
         // s._sessionID = System.DateTime.Now.Ticks;
         // Debug.Log(s._sessionID);
-         
+
     }
     void Start()
     {
         playerTransform = transform;
+
+        // circle = transform.Find("rolling_circle");
+
+
     }
+
 
     // Update is called once per frame
     void Update()
     {
+
+        if (pushflag)
+        {
+            //find gamecomponent by tag and enable it 
+            // GameObject.FindGameObjectsWithTag("blokage").SpriteRenderer.enabled = false;
+            GameObject blokage = GameObject.FindWithTag("blokage");
+            if (blokage != null)
+            {
+                BoxCollider2D collider = blokage.GetComponent<BoxCollider2D>();
+                collider.isTrigger = true;
+                SpriteRenderer renderer = blokage.GetComponent<SpriteRenderer>();
+                renderer.enabled = false;
+                // blokage.SetActive(false);
+            }
+            GameObject push_button = GameObject.FindWithTag("Push_button");
+            if (push_button != null)
+            {
+                SpriteRenderer renderer = push_button.GetComponent<SpriteRenderer>();
+                renderer.color = Color.green;
+            }
+            // GameObject.FindGameObjectsWithTag("Push_button").SetActive(false);
+        }
+        else
+        {
+            GameObject blokage = GameObject.FindWithTag("blokage");
+            if (blokage != null)
+            {
+                BoxCollider2D collider = blokage.GetComponent<BoxCollider2D>();
+                collider.isTrigger = false;
+                SpriteRenderer renderer = blokage.GetComponent<SpriteRenderer>();
+                renderer.enabled = true;
+            }
+            GameObject push_button = GameObject.FindWithTag("Push_button");
+            if (push_button != null)
+            {
+                SpriteRenderer renderer = push_button.GetComponent<SpriteRenderer>();
+                renderer.color = Color.white;
+            }
+        }
+
+        if (flagss)
+        {
+            pushflag = false;
+            flagss = false;
+        }
 
         PlayerMoveKeyboard();
         PlayerJump();
@@ -62,6 +132,8 @@ public class Player : MonoBehaviour
             TextBox3.enabled = true;
             win_flag = true;
             count = 0;
+            flagw = 1;
+            flagt = 1;
             attemps = -1;
             hs.Clear();
             TextBox1.enabled = false;
@@ -73,10 +145,16 @@ public class Player : MonoBehaviour
             d.IncreaseDeath();
             d.IncreaseDeathByPuzzle();
             print("You Lost");
+
             textbox_disabler();
             attemps = 0;
             playerTransform.position = new Vector2(-12f, -8.6f);
-           
+
+
+            // textbox_disabler();
+            attemps = 0;
+            playerTransform.position = new Vector2(-12f, -8.6f);
+
         }
         // if (intiater)
         // {
@@ -84,6 +162,27 @@ public class Player : MonoBehaviour
         //     TextBox2.enabled = true;
         //     intiater = false;
         // }
+
+
+        if (play_again_button.sendData == true)
+        {
+            play_again_button.sendData = false;
+            // print("sending data");
+            Debug.Log("sending data");
+            d.IncreaseDeath();
+            d.IncreaseTimeToCompleteLevel((int)Time.time - time_start);
+            PlayerDied(System.DateTime.Now.Ticks.ToString(), d.death.ToString(), d.death_by_saw.ToString(), d.death_by_spikes.ToString(), d.death_by_enemy.ToString(), d.death_by_spear.ToString(), d.death_by_explosive.ToString(), d.death_by_crusher.ToString(), d.time_to_complete_level.ToString(), d.death_by_falling.ToString(), d.death_by_puzzle.ToString());
+
+        }
+        else
+        {
+            // print("not sending data");
+            // Debug.Log("not sending data");
+            // play_again_panel.SetActive(false);
+        }
+
+
+
     }
 
     void PlayerMoveKeyboard()
@@ -109,20 +208,54 @@ public class Player : MonoBehaviour
             moveForce = 10f;
             transform.localScale = originalSize;
         }
+
+
+        if (collision.gameObject.CompareTag("falling1"))
+        {
+            isGrounded = true;
+            moveForce = 10f;
+            transform.localScale = originalSize;
+        }
+        if (collision.gameObject.CompareTag("falling2"))
+        {
+            isGrounded = true;
+            moveForce = 10f;
+            transform.localScale = originalSize;
+        }
+        if (collision.gameObject.CompareTag("falling3"))
+        {
+            isGrounded = true;
+            moveForce = 10f;
+            transform.localScale = originalSize;
+        }
+
         if (collision.gameObject.CompareTag("Spike"))
         {
             d.IncreaseDeath();
             // Destroy(gameObject);
             d.IncreaseDeathBySpikes();
+
             reset_player_position();
-            
+
+            circle.position = new Vector2(38.33f, 7.36f);
+            square.position = new Vector2(36.83f, 5.1f);
+            death_option();
+            reset_player_position();
+
+
 
         }
         if (collision.gameObject.CompareTag("Saw"))
         {
-            
+
+
             d.IncreaseDeath();
             d.IncreaseDeathBySaw();
+
+            d.IncreaseDeath();
+            d.IncreaseDeathBySaw();
+            death_option();
+
             reset_player_position();
         }
         if (collision.gameObject.CompareTag("Pool"))
@@ -133,6 +266,9 @@ public class Player : MonoBehaviour
         {
             d.IncreaseDeath();
             d.IncreaseDeathByEnemy();
+
+            death_option();
+
             reset_player_position();
         }
         if (collision.gameObject.CompareTag("Rope2D"))
@@ -145,42 +281,97 @@ public class Player : MonoBehaviour
         {
             d.IncreaseDeath();
             d.IncreaseDeathBySpear();
+
+            death_option();
+
             reset_player_position();
         }
         if (collision.gameObject.CompareTag("Explosives"))
         {
             d.IncreaseDeath();
             d.IncreaseDeathByExplosive();
+
+            death_option();
+
             reset_player_position();
         }
         if (collision.gameObject.CompareTag("upper_block"))
         {
             d.IncreaseDeath();
             d.IncreaseDeathByCrusher();
+
+            death_option();
+
             reset_player_position();
 
         }
         if (collision.gameObject.CompareTag("invisible"))
         {
-            if (win_flag){
+
+            if (win_flag)
+            {
                 collision.gameObject.SetActive(false);
             }
-        
+
         }
-        
+
+        if (win_flag)
+        {
+            collision.gameObject.SetActive(false);
+        }
 
     }
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
+
+        if (collision.gameObject.CompareTag("Push_button"))
+        {
+            // disappear the wall with tag "blokage"
+            pushflag = true;
+        }
+
+        if (collision.gameObject.CompareTag("Set_Flags"))
+        {
+            flagss = true;
+            GameObject falling1 = GameObject.FindWithTag("falling1");
+            Rigidbody2D rb = falling1.GetComponent<Rigidbody2D>();
+            rb.bodyType = RigidbodyType2D.Kinematic;
+            falling1.transform.position = new Vector2(82.0246f, -10.2f);
+
+            GameObject falling2 = GameObject.FindWithTag("falling2");
+            Rigidbody2D rb2 = falling2.GetComponent<Rigidbody2D>();
+            rb2.bodyType = RigidbodyType2D.Kinematic;
+            falling2.transform.position = new Vector2(87.33f, -8.01f);
+
+            GameObject falling3 = GameObject.FindWithTag("falling3");
+            Rigidbody2D rb3 = falling3.GetComponent<Rigidbody2D>();
+            rb3.bodyType = RigidbodyType2D.Kinematic;
+            falling3.transform.position = new Vector2(93.09f, -5.84f);
+
+            print("flagss");
+        }
+
         if (collision.gameObject.CompareTag("Gate1"))
         {
             // below is the code to move the player to the next x,y position. set the x,y to the position you want the player to move to.
-            playerTransform.position = new Vector2(60f, -2.6f);
+            playerTransform.position = new Vector2(60f, 17f);
         }
+        // if (collision.gameObject.CompareTag("Gate1"))
+        // {
+        //     // below is the code to move the player to the next x,y position. set the x,y to the position you want the player to move to.
+        //     playerTransform.position = new Vector2(60f, -2.6f);
+
+        // }
         if (collision.gameObject.CompareTag("Gate2"))
         {
             // below is the code to move the player to the next x,y position. set the x,y to the position you want the player to move to.
-            playerTransform.position = new Vector2(22.99046f, -2.6f);
+
+
+            playerTransform.position = new Vector2(41f, -5.619558f);
+
         }
         if (collision.gameObject.CompareTag("Points"))
         {
@@ -192,15 +383,17 @@ public class Player : MonoBehaviour
         {
             d.IncreaseDeath();
             d.IncreaseDeathByFalling();
+            death_option();
             reset_player_position();
         }
 
-       
-		if (collision.gameObject.CompareTag("F"))
+
+        if (collision.gameObject.CompareTag("F"))
         {
             Destroy(collision.gameObject);
             // check if element not in set
-            if (!hs.Contains("F")){
+            if (!hs.Contains("F"))
+            {
                 hs.Add("F");
             }
             Alphabets_Swaner.ind = 2;
@@ -212,9 +405,10 @@ public class Player : MonoBehaviour
 
             // Alphabets_Swaner.Alphabets[GameObject.Find("F").GetComponent<Alphabets_Swaner>().index()].SetActive(false);
         }
-		if (collision.gameObject.CompareTag("I"))
+        if (collision.gameObject.CompareTag("I"))
         {
-            if (!hs.Contains("I")){
+            if (!hs.Contains("I"))
+            {
                 hs.Add("I");
             }
             Destroy(collision.gameObject);
@@ -225,9 +419,10 @@ public class Player : MonoBehaviour
             SpriteRenderer sr = IL[0].GetComponent<SpriteRenderer>();
             sr.enabled = true;
         }
-		if (collision.gameObject.CompareTag("R"))
+        if (collision.gameObject.CompareTag("R"))
         {
-            if (!hs.Contains("R")){
+            if (!hs.Contains("R"))
+            {
                 hs.Add("R");
             }
             Destroy(collision.gameObject);
@@ -238,9 +433,10 @@ public class Player : MonoBehaviour
             SpriteRenderer sr = RL[0].GetComponent<SpriteRenderer>();
             sr.enabled = true;
         }
-		if (collision.gameObject.CompareTag("E"))
+        if (collision.gameObject.CompareTag("E"))
         {
-            if (!hs.Contains("E")){
+            if (!hs.Contains("E"))
+            {
                 hs.Add("E");
             }
             Destroy(collision.gameObject);
@@ -251,7 +447,7 @@ public class Player : MonoBehaviour
             SpriteRenderer sr = EL[0].GetComponent<SpriteRenderer>();
             sr.enabled = true;
         }
-		if (collision.gameObject.CompareTag("A"))
+        if (collision.gameObject.CompareTag("A"))
         {
             Destroy(collision.gameObject);
             Alphabets_Swaner.ind = 0;
@@ -265,20 +461,31 @@ public class Player : MonoBehaviour
             attemps++;
             Alphabets_Swaner.flag = true;
         }
-		if (collision.gameObject.CompareTag("detect"))
+        if (collision.gameObject.CompareTag("detect"))
         {
             // intiater = true;
-            if(flagd==0){
+            if (flagd == 0)
+            {
                 TextBox1.enabled = true;
                 TextBox2.enabled = true;
                 flagd = 1;
             }
-            else if(flagd==1){
+            else if (flagd == 1)
+            {
                 TextBox1.enabled = false;
                 TextBox2.enabled = false;
                 flagd = 0;
             }
-            
+            if (flagw == 1)
+            {
+                TextBox3.enabled = false;
+                flagw = 0;
+            }
+            if (flagt == 1)
+            {
+                TextBox1.enabled = false;
+                TextBox2.enabled = false;
+            }
         }
         if (collision.gameObject.CompareTag("exit"))
         {
@@ -287,7 +494,115 @@ public class Player : MonoBehaviour
             TextBox3.enabled = false;
         }
 
-         if (collision.gameObject.CompareTag("Finish")){
+        // if (collision.gameObject.CompareTag("Finish"))
+        // {
+
+        //     death_option();
+        //     reset_player_position();
+        // }
+
+
+        // if (collision.gameObject.CompareTag("F"))
+        // {
+        //     Destroy(collision.gameObject);
+        //     // check if element not in set
+        //     if (!hs.Contains("F")){
+        //         hs.Add("F");
+        //     }
+        //     Alphabets_Swaner.ind = 2;
+        //     // count++;
+        //     Alphabets_Swaner.flag = true;
+        //     GameObject[] FL = GameObject.FindGameObjectsWithTag("F_L");
+        //     SpriteRenderer sr = FL[0].GetComponent<SpriteRenderer>();
+        //     sr.enabled = true;
+
+        //     // Alphabets_Swaner.Alphabets[GameObject.Find("F").GetComponent<Alphabets_Swaner>().index()].SetActive(false);
+        // }
+        // if (collision.gameObject.CompareTag("I"))
+        // {
+        //     if (!hs.Contains("I")){
+        //         hs.Add("I");
+        //     }
+        //     Destroy(collision.gameObject);
+        //     Alphabets_Swaner.ind = 4;
+        //     // count++;
+        //     Alphabets_Swaner.flag = true;
+        //     GameObject[] IL = GameObject.FindGameObjectsWithTag("I_L");
+        //     SpriteRenderer sr = IL[0].GetComponent<SpriteRenderer>();
+        //     sr.enabled = true;
+        // }
+        // if (collision.gameObject.CompareTag("R"))
+        // {
+        //     if (!hs.Contains("R")){
+        //         hs.Add("R");
+        //     }
+        //     Destroy(collision.gameObject);
+        //     Alphabets_Swaner.ind = 3;
+        //     // count++;
+        //     Alphabets_Swaner.flag = true;
+        //     GameObject[] RL = GameObject.FindGameObjectsWithTag("R_L");
+        //     SpriteRenderer sr = RL[0].GetComponent<SpriteRenderer>();
+        //     sr.enabled = true;
+        // }
+        // if (collision.gameObject.CompareTag("E"))
+        // {
+        //     if (!hs.Contains("E")){
+        //         hs.Add("E");
+        //     }
+        //     Destroy(collision.gameObject);
+        //     Alphabets_Swaner.ind = 1;
+        //     // count++;
+        //     Alphabets_Swaner.flag = true;
+        //     GameObject[] EL = GameObject.FindGameObjectsWithTag("E_L");
+        //     SpriteRenderer sr = EL[0].GetComponent<SpriteRenderer>();
+        //     sr.enabled = true;
+        // }
+        // if (collision.gameObject.CompareTag("A"))
+        // {
+        //     Destroy(collision.gameObject);
+        //     Alphabets_Swaner.ind = 0;
+        //     attemps++;
+        //     Alphabets_Swaner.flag = true;
+        // }
+        // if (collision.gameObject.CompareTag("U"))
+        // {
+        //     Destroy(collision.gameObject);
+        //     Alphabets_Swaner.ind = 5;
+        //     attemps++;
+        //     Alphabets_Swaner.flag = true;
+        // }
+        // if (collision.gameObject.CompareTag("detect"))
+        // {
+        //     // intiater = true;
+        //     if(flagd==0){
+        //         TextBox1.enabled = true;
+        //         TextBox2.enabled = true;
+        //         flagd = 1;
+        //     }
+        //     else if(flagd==1){
+        //         TextBox1.enabled = false;
+        //         TextBox2.enabled = false;
+        //         flagd = 0;
+        //     }
+        //     if(flagw==1){
+        //         TextBox3.enabled = false;
+        //         flagw = 0;
+        //     }
+        //     if(flagt==1){
+        //         TextBox1.enabled = false;
+        //         TextBox2.enabled = false;
+        //     }
+        // }
+        // if (collision.gameObject.CompareTag("exit"))
+        // {
+        //     TextBox1.enabled = false;
+        //     TextBox2.enabled = false;
+        //     TextBox3.enabled = false;
+        // }
+
+        if (collision.gameObject.CompareTag("Finish"))
+        {
+
             d.IncreaseDeath();
             d.IncreaseTimeToCompleteLevel((int)Time.time - time_start);
             PlayerDied(System.DateTime.Now.Ticks.ToString(), d.death.ToString(), d.death_by_saw.ToString(), d.death_by_spikes.ToString(), d.death_by_enemy.ToString(), d.death_by_spear.ToString(), d.death_by_explosive.ToString(), d.death_by_crusher.ToString(), d.time_to_complete_level.ToString(), d.death_by_falling.ToString(), d.death_by_puzzle.ToString());
@@ -296,17 +611,41 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void reset_player_position(){
-        textbox_disabler();
+
+    private void reset_player_position()
+    {
+        // textbox_disabler();
+
         playerTransform.position = new Vector2(-12f, -8.6f);
 
     }
 
-    private void textbox_disabler(){
+
+    private void textbox_disabler()
+    {
         TextBox1.enabled = false;
         TextBox2.enabled = false;
         TextBox3.enabled = false;
     }
+
+
+
+    // private void textbox_disabler(){
+    //     TextBox1.enabled = false;
+    //     TextBox2.enabled = false;
+    //     TextBox3.enabled = false;
+    // }
+
+    private void death_option()
+    {
+        Time.timeScale = 0;
+        // GameObject panelObject = GameObject.Find("Panel");
+        // Panel panel = panelObject.GetComponent<Panel>();
+        play_again_panel.SetActive(true);
+
+    }
+
+
 
 
     // Google Form
@@ -332,7 +671,11 @@ public class Player : MonoBehaviour
 
     // }
 
-    public void PlayerDied(string session, string attempts, string saw, string spike, string enemy, string spear, string explosives, string crusher, string time_to_complete_level , string falling, string death_by_puzzle)
+
+    // public void PlayerDied(string session, string attempts, string saw, string spike, string enemy, string spear, string explosives, string crusher, string time_to_complete_level, string falling, string death_by_puzzle)
+
+    public void PlayerDied(string session, string attempts, string saw, string spike, string enemy, string spear, string explosives, string crusher, string time_to_complete_level, string falling, string death_by_puzzle)
+
     {
         _sessionID = session;
         _number_of_attempts = attempts;
@@ -346,20 +689,36 @@ public class Player : MonoBehaviour
         _death_by_puzzle = death_by_puzzle;
         _time_to_complete_level = time_to_complete_level;
 
+
         StartCoroutine(Post());
     }
 
-    public void number_of_attempt(){
+    // public void number_of_attempt()
+    // {
+
+    //     StartCoroutine(Post());
+    // }
+
+    public void number_of_attempt()
+    {
+
         _number_of_attempts += 1;
         Debug.Log(_number_of_attempts);
     }
 
     private IEnumerator Post()
     {
-        
-       WWWForm form = new WWWForm();
-        form.AddField("entry.1873251736", _sessionID); 
-        form.AddField("entry.184508093", _number_of_attempts); 
+
+
+        // WWWForm form = new WWWForm();
+        // form.AddField("entry.1873251736", _sessionID);
+        // form.AddField("entry.184508093", _number_of_attempts);
+
+
+        WWWForm form = new WWWForm();
+        form.AddField("entry.1873251736", _sessionID);
+        form.AddField("entry.184508093", _number_of_attempts);
+
         form.AddField("entry.1811764899", _saw);
         form.AddField("entry.1524214175", _spike);
         form.AddField("entry.667379507", _enemy);
@@ -370,7 +729,6 @@ public class Player : MonoBehaviour
         form.AddField("entry.964640412", _time_to_complete_level);
         form.AddField("entry.1713570514", _death_by_puzzle);
 
-        
         UnityWebRequest www = UnityWebRequest.Post(URL, form);
         yield return www.SendWebRequest();
 
