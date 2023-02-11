@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 6721935397402667388}
   - component: {fileID: 6721935397402667384}
   - component: {fileID: 8429523885212689545}
-  - component: {fileID: 3720558145022907163}
   - component: {fileID: 8492501221482553090}
   m_Layer: 0
   m_Name: Mitesh_Player
@@ -155,8 +154,6 @@ MonoBehaviour:
   flagw: 0
   flagt: 0
   win_flag: 0
-  pushflag: 0
-  flagss: 0
   URL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSfs4V6qSdWIIJw8WidhxIRurXeO2iNYbrobqBpdFobGjGESTQ/formResponse
 --- !u!114 &8429523885212689545
 MonoBehaviour:
@@ -172,18 +169,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swingForce: 10
   delayBeforeSecondHand: 0.4
---- !u!114 &3720558145022907163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6721935397402667391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71dc14228905d44d1a5292191ef811ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8492501221482553090
 MonoBehaviour:
   m_ObjectHideFlags: 0
