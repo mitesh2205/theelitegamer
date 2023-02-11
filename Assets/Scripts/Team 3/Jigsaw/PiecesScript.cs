@@ -7,11 +7,11 @@ public class PiecesScript : MonoBehaviour
     private Vector3 RightPosition;
     public bool IsRightPosition;
     public bool Selected;
-    float destroyDelay = 5f;
+    float destroyDelay = 2f;
     void Start()
     {
         RightPosition = transform.position;
-        transform.position = new Vector3(Random.Range(232f, 240f), Random.Range(-3f, -8f));
+        transform.position = new Vector3(Random.Range(230f, 252f), Random.Range(4f, -7f));
         
     }
      private void OnCollisionEnter2D(Collision2D collision)
@@ -20,7 +20,8 @@ public class PiecesScript : MonoBehaviour
             if (Vector3.Distance(transform.position, RightPosition) != 0.0f){
             transform.position = RightPosition;
             Destroy(collision.gameObject, destroyDelay);
-            }
+            
+        }
             
         }
     }
