@@ -286,12 +286,12 @@ d.spring_used.ToString(),d.button_used.ToString(),d.ladder_used.ToString(),d.jet
             // Destroy(gameObject);
             d.IncreaseDeathBySpikes();
 
-            reset_player_position();
+            // reset_player_position();
 
-            circle.position = new Vector2(38.33f, 7.36f);
-            square.position = new Vector2(36.83f, 5.1f);
+            
             death_option();
             reset_player_position();
+            
         }
         if (collision.gameObject.CompareTag("Spring"))
         {
@@ -685,6 +685,14 @@ d.spring_used.ToString(),d.button_used.ToString(),d.ladder_used.ToString(),d.jet
         // textbox_disabler();
 
         playerTransform.position = new Vector2(-12f, -8.6f);
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            circle.position = new Vector2(38.17f,11.64f);
+            square.position = new Vector2(36.83f, 5.1f);
+            GameObject.FindGameObjectWithTag("invisible_moving_platform").SetActive(false);
+            // invisible_platform_mov
+
+        }
 
     }
 
