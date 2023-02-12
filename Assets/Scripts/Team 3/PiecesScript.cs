@@ -24,6 +24,7 @@ public class PiecesScript : MonoBehaviour
         if(collision.gameObject.CompareTag("bullet")){
             if (Vector3.Distance(transform.position, RightPosition) != 0.0f){
             transform.position = RightPosition;
+            FinishPuzzleScript.totalPieces -=1;
             Destroy(collision.gameObject, destroyDelay);
             }
             

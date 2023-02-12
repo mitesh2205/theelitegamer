@@ -13,7 +13,7 @@ public class ProjectileScript : MonoBehaviour
     void Start()
     {
         _rb = this.GetComponent<Rigidbody>();
-        _velocity = new Vector3(10f, 10f, 0f);
+        _velocity = new Vector3(100f, 100f, 0f);
             
     }
 
