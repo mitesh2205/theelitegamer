@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float jetpackDuration = 2f;  // Duration of the jetpack in seconds
-    public float jetpackForce = 10f;    // Force applied by the jetpack
-    private float elapsedTime = 0f;      // Time elapsed since the jetpack was activated
+    public static float jetpackDuration = 2f;  // Duration of the jetpack in seconds
+    public static loat jetpackForce = 10f;    // Force applied by the jetpack
+    private static float elapsedTime = 0f;      // Time elapsed since the jetpack was activated
     private Rigidbody2D rigidbody;      // Reference to the Rigidbody2D component
-    private bool isJetpacking = false;   // Flag to check if the jetpack is active
-    private bool isGrounded = true;
+    private static bool isJetpacking = false;   // Flag to check if the jetpack is active
+    private static bool isGrounded = true;
 
     // Start is called before the first frame update
     void Start()
@@ -39,14 +39,14 @@ public class Movement : MonoBehaviour
                 isJetpacking = false;
             }
         }
-        else if(gameObject.CompareTag("Ground"))
+        else if (gameObject.CompareTag("Ground"))
         {
             TimeLeft.ScoreValue = 2;
             isGrounded = true;
         }
 
-        }
     }
+}
 
 
 
