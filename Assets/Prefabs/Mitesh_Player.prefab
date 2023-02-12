@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 8429523885212689545}
   - component: {fileID: 8492501221482553090}
   - component: {fileID: 4802442124922897984}
+  - component: {fileID: -1980270047696039671}
   m_Layer: 0
   m_Name: Mitesh_Player
   m_TagString: Player
@@ -224,7 +225,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6721935397402667391}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8882e73cc3c4c4c89ad9536da2a02b2c, type: 3}
   m_Name: 
@@ -235,6 +236,18 @@ MonoBehaviour:
   playerSpeed: 20
   leftLimit: 0
   rightLimit: 0
+--- !u!114 &-1980270047696039671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6721935397402667391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c850b1d1a853e4fc2b8c989a940b701c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8492501220944360930
 GameObject:
   m_ObjectHideFlags: 0
