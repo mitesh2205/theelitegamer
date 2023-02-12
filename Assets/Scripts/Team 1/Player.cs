@@ -71,7 +71,9 @@ public class Player : MonoBehaviour
     void Start()
     {
         playerTransform = transform;
-
+        myBody.gravityScale = 1;
+        print(myBody.gravityScale);
+        print("gravity");
         // circle = transform.Find("rolling_circle");
 
 
@@ -80,6 +82,52 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // myBody.gravityScale = -2;
+
+        if (pushflag)
+        {
+            //find gamecomponent by tag and enable it 
+            // GameObject.FindGameObjectsWithTag("blokage").SpriteRenderer.enabled = false;
+            GameObject blokage = GameObject.FindWithTag("blokage");
+            if (blokage != null)
+            {
+                BoxCollider2D collider = blokage.GetComponent<BoxCollider2D>();
+                collider.isTrigger = true;
+                SpriteRenderer renderer = blokage.GetComponent<SpriteRenderer>();
+                renderer.enabled = false;
+                // blokage.SetActive(false);
+            }
+            GameObject push_button = GameObject.FindWithTag("Push_button");
+            if (push_button != null)
+            {
+                SpriteRenderer renderer = push_button.GetComponent<SpriteRenderer>();
+                renderer.color = Color.green;
+            }
+            // GameObject.FindGameObjectsWithTag("Push_button").SetActive(false);
+        }
+        else
+        {
+            GameObject blokage = GameObject.FindWithTag("blokage");
+            if (blokage != null)
+            {
+                BoxCollider2D collider = blokage.GetComponent<BoxCollider2D>();
+                collider.isTrigger = false;
+                SpriteRenderer renderer = blokage.GetComponent<SpriteRenderer>();
+                renderer.enabled = true;
+            }
+            GameObject push_button = GameObject.FindWithTag("Push_button");
+            if (push_button != null)
+            {
+                SpriteRenderer renderer = push_button.GetComponent<SpriteRenderer>();
+                renderer.color = Color.white;
+            }
+        }
+
+        if (flagss)
+        {
+            pushflag = false;
+            flagss = false;
+        }
 
 
         if (pushflag)
@@ -384,6 +432,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Outbound"))
         {
+
             d.IncreaseDeath();
             d.IncreaseDeathByFalling();
             death_option();
@@ -620,6 +669,15 @@ public class Player : MonoBehaviour
         // textbox_disabler();
 
         playerTransform.position = new Vector2(-12f, -8.6f);
+        TimeLeft.ScoreValue = 1.5f;
+
+        Movement.jetpackDuration = 1.5f;
+        Movement.jetpackForce = 5f;
+        Movement.elapsedTime = 0f;
+        Movement.isJetpacking = false;
+        Movement.isGrounded = true;
+
+
 
     }
 
@@ -644,6 +702,7 @@ public class Player : MonoBehaviour
         Time.timeScale = 0;
         // GameObject panelObject = GameObject.Find("Panel");
         // Panel panel = panelObject.GetComponent<Panel>();
+        print("Death");
         play_again_panel.SetActive(true);
 
     }

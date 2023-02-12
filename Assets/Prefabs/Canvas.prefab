@@ -619,7 +619,6 @@ GameObject:
   - component: {fileID: 8642365877046150945}
   - component: {fileID: 8642365877046150951}
   - component: {fileID: 8642365877046150950}
-  - component: {fileID: 8642365877046150948}
   m_Layer: 5
   m_Name: Direction
   m_TagString: Invisible_wall
@@ -691,19 +690,6 @@ MonoBehaviour:
   m_Text: 'Space - Jump
 
     Movement - Arrow Keys'
---- !u!114 &8642365877046150948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8642365877046150944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a051c375f7848648bb55475d28f831f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textBox: {fileID: 8642365877046150944}
 --- !u!1 &8642365877309557417
 GameObject:
   m_ObjectHideFlags: 0

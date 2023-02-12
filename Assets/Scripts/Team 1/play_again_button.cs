@@ -17,8 +17,9 @@ public class play_again_button : MonoBehaviour
     public void no()
     {
         sendData = true;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene(0);
         Time.timeScale = 1f;
-
     }
 }
+
+
