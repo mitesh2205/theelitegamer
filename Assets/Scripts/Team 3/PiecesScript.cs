@@ -8,10 +8,15 @@ public class PiecesScript : MonoBehaviour
     public bool IsRightPosition;
     public bool Selected;
     float destroyDelay = 5f;
+    public float leftXCoordinate = 372.0f;
+    public float rightXCoordinate = 388f;
+    public float topYCoordinate = -1.2f;
+    public float bottomYCoordinate = -3.0f;
+
     void Start()
     {
         RightPosition = transform.position;
-        transform.position = new Vector3(Random.Range(-8f, 9f), Random.Range(2f, 4f));
+        transform.position = new Vector3(Random.Range(leftXCoordinate, rightXCoordinate), Random.Range(topYCoordinate, bottomYCoordinate));
         
     }
      private void OnCollisionEnter2D(Collision2D collision)

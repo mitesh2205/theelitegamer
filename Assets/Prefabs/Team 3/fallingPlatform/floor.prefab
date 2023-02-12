@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2043580620720390329}
   - component: {fileID: 2043580620720390328}
   - component: {fileID: 2043580620720390334}
-  - component: {fileID: 2043580620720390333}
+  - component: {fileID: 352534910}
   m_Layer: 0
   m_Name: floor
   m_TagString: floor
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2043580620720390332}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.0018, y: -4.1629, z: 0}
-  m_LocalScale: {x: 19.16596, y: -1.5755688, z: 1}
+  m_LocalScale: {x: 203.98459, y: -3.4800375, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2043580620720390333
+--- !u!114 &352534910
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,6 +121,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2043580620720390332}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 683bfd956fa984ce8ac909efd744f4db, type: 3}
+  m_Script: {fileID: 11500000, guid: 23ad25047f63145999a89abb054290e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
