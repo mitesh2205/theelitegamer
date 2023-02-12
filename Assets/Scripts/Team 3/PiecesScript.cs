@@ -7,7 +7,7 @@ public class PiecesScript : MonoBehaviour
     private Vector3 RightPosition;
     public bool IsRightPosition;
     public bool Selected;
-    float destroyDelay = 5f;
+    float destroyDelay = 2f;
     public float leftXCoordinate = 372.0f;
     public float rightXCoordinate = 388f;
     public float topYCoordinate = -1.2f;

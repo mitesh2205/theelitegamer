@@ -39,6 +39,7 @@ public class ShooterScript : MonoBehaviour
             
             if (cnt < 20){
                 cnt = cnt+1;
+                ScoreScript.scoreVal -= 1;
                 GameObject ballClone = Instantiate(ball);
                 ballClone.transform.position = firepoint.position;
                 ballClone.transform.rotation =  Quaternion.Euler(0,0,angle);

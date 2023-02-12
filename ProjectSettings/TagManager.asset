@@ -44,6 +44,7 @@ TagManager:
   - blokage
   - falling2
   - falling3
+  - floor
   layers:
   - Default
   - TransparentFX
@@ -83,4 +84,7 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 2664575611
     locked: 0
