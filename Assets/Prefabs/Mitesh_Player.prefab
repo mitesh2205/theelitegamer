@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5279182352489879353
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4336687034788341349}
+  m_Layer: 0
+  m_Name: weapon point
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4336687034788341349
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5279182352489879353}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.924, y: 0, z: 0}
+  m_LocalScale: {x: 1.7334027, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6721935397402667387}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6721935397402667391
 GameObject:
   m_ObjectHideFlags: 0
@@ -15,6 +46,8 @@ GameObject:
   - component: {fileID: 6721935397402667384}
   - component: {fileID: 8429523885212689545}
   - component: {fileID: 8492501221482553090}
+  - component: {fileID: 4802442124922897984}
+  - component: {fileID: -1980270047696039671}
   m_Layer: 0
   m_Name: Mitesh_Player
   m_TagString: Player
@@ -35,6 +68,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8492501221667247002}
+  - {fileID: 4336687034788341349}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -154,6 +188,8 @@ MonoBehaviour:
   flagw: 0
   flagt: 0
   win_flag: 0
+  pushflag: 0
+  flagss: 0
   URL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSfs4V6qSdWIIJw8WidhxIRurXeO2iNYbrobqBpdFobGjGESTQ/formResponse
 --- !u!114 &8429523885212689545
 MonoBehaviour:
@@ -182,6 +218,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6721935397402667388}
+--- !u!114 &4802442124922897984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6721935397402667391}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8882e73cc3c4c4c89ad9536da2a02b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ball: {fileID: 7273842426570458943, guid: d05c07d8bb5d54e2292496a4d7be5254, type: 3}
+  firepoint: {fileID: 4336687034788341349}
+  bulletSpeed: 10
+  playerSpeed: 20
+  leftLimit: 0
+  rightLimit: 0
+--- !u!114 &-1980270047696039671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6721935397402667391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c850b1d1a853e4fc2b8c989a940b701c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8492501220944360930
 GameObject:
   m_ObjectHideFlags: 0

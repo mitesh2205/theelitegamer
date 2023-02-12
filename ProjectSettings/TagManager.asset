@@ -47,6 +47,8 @@ TagManager:
   - Restore_G
   - Set_G
   - Reset_G
+  - floor
+  - ShootPowerUp
   - button_trigger
   layers:
   - Default
@@ -87,4 +89,7 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 2664575611
     locked: 0
