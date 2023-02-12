@@ -140,6 +140,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   originalSize: {x: 1, y: 1, z: 1}
+  time_start: 0
+  play_again_panel: {fileID: 0}
+  circle: {fileID: 0}
+  square: {fileID: 0}
+  intiater: 0
+  TextBox1: {fileID: 0}
+  TextBox2: {fileID: 0}
+  TextBox3: {fileID: 0}
+  count: 0
+  attemps: 0
+  flagd: 0
+  flagw: 0
+  flagt: 0
+  win_flag: 0
+  pushflag: 0
+  flagss: 0
   URL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSfs4V6qSdWIIJw8WidhxIRurXeO2iNYbrobqBpdFobGjGESTQ/formResponse
 --- !u!114 &3154666534393122848
 MonoBehaviour:
@@ -153,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb845bcf578f5ad4f898e70e0fe703cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swingForce: 10
+  swingForce: 4
   delayBeforeSecondHand: 0.4
 --- !u!114 &3091549542892219307
 MonoBehaviour:
@@ -281,7 +297,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3091549542942336828}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -10}
+  m_LocalPosition: {x: 0, y: 6.85, z: -10}
   m_LocalScale: {x: 1.7334026, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -296,7 +312,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3091549542942336828}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
   m_Name: 
@@ -310,7 +326,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 50
+    FieldOfView: 100
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
