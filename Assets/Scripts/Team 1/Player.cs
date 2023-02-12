@@ -42,12 +42,15 @@ public class Player : MonoBehaviour
     public HashSet<string> hs = new HashSet<string>();
 
 
+
+    // hash set
+
+
+
     // Start is called before the first frame update
     increment_death d;
-
     private void Awake()
     {
-
         myBody = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         d = FindObjectOfType<increment_death>();
@@ -68,16 +71,64 @@ public class Player : MonoBehaviour
     void Start()
     {
         playerTransform = transform;
-
+        myBody.gravityScale = 1;
+        print(myBody.gravityScale);
+        print("gravity");
         // circle = transform.Find("rolling_circle");
 
 
     }
 
-
     // Update is called once per frame
     void Update()
     {
+        // myBody.gravityScale = -2;
+
+        if (pushflag)
+        {
+            //find gamecomponent by tag and enable it 
+            // GameObject.FindGameObjectsWithTag("blokage").SpriteRenderer.enabled = false;
+            GameObject blokage = GameObject.FindWithTag("blokage");
+            if (blokage != null)
+            {
+                BoxCollider2D collider = blokage.GetComponent<BoxCollider2D>();
+                collider.isTrigger = true;
+                SpriteRenderer renderer = blokage.GetComponent<SpriteRenderer>();
+                renderer.enabled = false;
+                // blokage.SetActive(false);
+            }
+            GameObject push_button = GameObject.FindWithTag("Push_button");
+            if (push_button != null)
+            {
+                SpriteRenderer renderer = push_button.GetComponent<SpriteRenderer>();
+                renderer.color = Color.green;
+            }
+            // GameObject.FindGameObjectsWithTag("Push_button").SetActive(false);
+        }
+        else
+        {
+            GameObject blokage = GameObject.FindWithTag("blokage");
+            if (blokage != null)
+            {
+                BoxCollider2D collider = blokage.GetComponent<BoxCollider2D>();
+                collider.isTrigger = false;
+                SpriteRenderer renderer = blokage.GetComponent<SpriteRenderer>();
+                renderer.enabled = true;
+            }
+            GameObject push_button = GameObject.FindWithTag("Push_button");
+            if (push_button != null)
+            {
+                SpriteRenderer renderer = push_button.GetComponent<SpriteRenderer>();
+                renderer.color = Color.white;
+            }
+        }
+
+        if (flagss)
+        {
+            pushflag = false;
+            flagss = false;
+        }
+
 
         if (pushflag)
         {
@@ -381,6 +432,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Outbound"))
         {
+
             d.IncreaseDeath();
             d.IncreaseDeathByFalling();
             death_option();
@@ -641,6 +693,7 @@ public class Player : MonoBehaviour
         Time.timeScale = 0;
         // GameObject panelObject = GameObject.Find("Panel");
         // Panel panel = panelObject.GetComponent<Panel>();
+        print("Death");
         play_again_panel.SetActive(true);
 
     }

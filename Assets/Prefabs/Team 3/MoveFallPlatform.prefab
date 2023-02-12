@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1534258087636123679}
   - component: {fileID: 1459591766191379005}
   - component: {fileID: 2115395668}
+  - component: {fileID: 1189572512409904183}
   m_Layer: 0
   m_Name: Platform
   m_TagString: Untagged
@@ -128,6 +129,28 @@ MonoBehaviour:
   pos2: {fileID: 6247066118808297797}
   speed: 4
   startPos: {fileID: 9176799825244024733}
+  rb: {fileID: 1189572512409904183}
+--- !u!50 &1189572512409904183
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3489483892652978983}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 5
 --- !u!1 &4530588336373696760
 GameObject:
   m_ObjectHideFlags: 0
