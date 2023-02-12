@@ -7,6 +7,12 @@ public class MoveFallPlatformScript : MonoBehaviour
     public Transform pos1, pos2;
     public float speed;
     public Transform startPos;
+    float fallDelay = 1f;
+    float destroyDelay = 1f;
+    [SerializeField]  Rigidbody2D rb;
+
+    private bool isBulletHit = false;
+
 
     Vector3 nextPos;
     // Start is called before the first frame update
@@ -28,6 +34,26 @@ public class MoveFallPlatformScript : MonoBehaviour
             nextPos = pos1.position;
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, nextPos, speed*Time.deltaTime);
+        if (!isBulletHit)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, nextPos, speed*Time.deltaTime);
+        }
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("bullet")){
+            Debug.Log("Collision detected");
+            isBulletHit = true;
+            StartCoroutine(Fall());
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            Debug.Log(rb.constraints);
+            Destroy(collision.gameObject, destroyDelay);
+        }
+        
+    }
+    private IEnumerator Fall(){
+        yield return new WaitForSeconds(fallDelay);
     }
 }
