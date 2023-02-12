@@ -197,7 +197,7 @@ public class Player : MonoBehaviour
             d.IncreaseDeathByPuzzle();
             print("You Lost");
 
-            textbox_disabler();
+            // textbox_disabler();
             attemps = 0;
             playerTransform.position = new Vector2(-12f, -8.6f);
 
@@ -222,8 +222,8 @@ public class Player : MonoBehaviour
             Debug.Log("sending data");
             d.IncreaseDeath();
             d.IncreaseTimeToCompleteLevel((int)Time.time - time_start);
-            PlayerDied(System.DateTime.Now.Ticks.ToString(), d.death.ToString(), d.death_by_saw.ToString(), d.death_by_spikes.ToString(), d.death_by_enemy.ToString(), d.death_by_spear.ToString(), d.death_by_explosive.ToString(), d.death_by_crusher.ToString(), d.time_to_complete_level.ToString(), d.death_by_falling.ToString(), d.death_by_puzzle.ToString());
-
+             PlayerDied(System.DateTime.Now.Ticks.ToString(), d.death.ToString(), d.death_by_saw.ToString(), d.death_by_spikes.ToString(), d.death_by_enemy.ToString(), d.death_by_spear.ToString(), d.death_by_explosive.ToString(), d.death_by_crusher.ToString(), d.time_to_complete_level.ToString(), d.death_by_falling.ToString(), d.death_by_puzzle.ToString(), SceneManager.GetActiveScene().buildIndex.ToString(), 
+d.spring_used.ToString(),d.button_used.ToString(),d.ladder_used.ToString(),d.jetpack.ToString(),d.rope.ToString(), d.teleporter_used.ToString());
         }
         else
         {
@@ -292,9 +292,10 @@ public class Player : MonoBehaviour
             square.position = new Vector2(36.83f, 5.1f);
             death_option();
             reset_player_position();
-
-
-
+        }
+        if (collision.gameObject.CompareTag("Spring"))
+        {
+            d.IncreaseSpringUsed();
         }
         if (collision.gameObject.CompareTag("Saw"))
         {
@@ -327,6 +328,7 @@ public class Player : MonoBehaviour
             RopeControl.fix = true;
             RopeControl.coll = collision;
             transform.localScale = originalSize;
+            d.IncreaseRope();
         }
         if (collision.gameObject.CompareTag("Spear"))
         {
@@ -409,6 +411,7 @@ public class Player : MonoBehaviour
         {
             // below is the code to move the player to the next x,y position. set the x,y to the position you want the player to move to.
             playerTransform.position = new Vector2(60f, 17f);
+            d.IncreaseTeleporterUsed();
         }
         // if (collision.gameObject.CompareTag("Gate1"))
         // {
@@ -440,111 +443,123 @@ public class Player : MonoBehaviour
         }
 
 
-        if (collision.gameObject.CompareTag("F"))
-        {
-            Destroy(collision.gameObject);
-            // check if element not in set
-            if (!hs.Contains("F"))
-            {
-                hs.Add("F");
-            }
-            Alphabets_Swaner.ind = 2;
-            // count++;
-            Alphabets_Swaner.flag = true;
-            GameObject[] FL = GameObject.FindGameObjectsWithTag("F_L");
-            SpriteRenderer sr = FL[0].GetComponent<SpriteRenderer>();
-            sr.enabled = true;
+        // if (collision.gameObject.CompareTag("F"))
+        // {
+        //     Destroy(collision.gameObject);
+        //     // check if element not in set
+        //     if (!hs.Contains("F"))
+        //     {
+        //         hs.Add("F");
+        //     }
+        //     Alphabets_Swaner.ind = 2;
+        //     // count++;
+        //     Alphabets_Swaner.flag = true;
+        //     GameObject[] FL = GameObject.FindGameObjectsWithTag("F_L");
+        //     SpriteRenderer sr = FL[0].GetComponent<SpriteRenderer>();
+        //     sr.enabled = true;
 
-            // Alphabets_Swaner.Alphabets[GameObject.Find("F").GetComponent<Alphabets_Swaner>().index()].SetActive(false);
+        //     // Alphabets_Swaner.Alphabets[GameObject.Find("F").GetComponent<Alphabets_Swaner>().index()].SetActive(false);
+        // }
+        // if (collision.gameObject.CompareTag("I"))
+        // {
+        //     if (!hs.Contains("I"))
+        //     {
+        //         hs.Add("I");
+        //     }
+        //     Destroy(collision.gameObject);
+        //     Alphabets_Swaner.ind = 4;
+        //     // count++;
+        //     Alphabets_Swaner.flag = true;
+        //     GameObject[] IL = GameObject.FindGameObjectsWithTag("I_L");
+        //     SpriteRenderer sr = IL[0].GetComponent<SpriteRenderer>();
+        //     sr.enabled = true;
+        // }
+        // if (collision.gameObject.CompareTag("R"))
+        // {
+        //     if (!hs.Contains("R"))
+        //     {
+        //         hs.Add("R");
+        //     }
+        //     Destroy(collision.gameObject);
+        //     Alphabets_Swaner.ind = 3;
+        //     // count++;
+        //     Alphabets_Swaner.flag = true;
+        //     GameObject[] RL = GameObject.FindGameObjectsWithTag("R_L");
+        //     SpriteRenderer sr = RL[0].GetComponent<SpriteRenderer>();
+        //     sr.enabled = true;
+        // }
+        // if (collision.gameObject.CompareTag("E"))
+        // {
+        //     if (!hs.Contains("E"))
+        //     {
+        //         hs.Add("E");
+        //     }
+        //     Destroy(collision.gameObject);
+        //     Alphabets_Swaner.ind = 1;
+        //     // count++;
+        //     Alphabets_Swaner.flag = true;
+        //     GameObject[] EL = GameObject.FindGameObjectsWithTag("E_L");
+        //     SpriteRenderer sr = EL[0].GetComponent<SpriteRenderer>();
+        //     sr.enabled = true;
+        // }
+        // if (collision.gameObject.CompareTag("A"))
+        // {
+        //     Destroy(collision.gameObject);
+        //     Alphabets_Swaner.ind = 0;
+        //     attemps++;
+        //     Alphabets_Swaner.flag = true;
+        // }
+        // if (collision.gameObject.CompareTag("U"))
+        // {
+        //     Destroy(collision.gameObject);
+        //     Alphabets_Swaner.ind = 5;
+        //     attemps++;
+        //     Alphabets_Swaner.flag = true;
+        // }
+        // if (collision.gameObject.CompareTag("detect"))
+        // {
+        //     // intiater = true;
+        //     if (flagd == 0)
+        //     {
+        //         TextBox1.enabled = true;
+        //         TextBox2.enabled = true;
+        //         flagd = 1;
+        //     }
+        //     else if (flagd == 1)
+        //     {
+        //         TextBox1.enabled = false;
+        //         TextBox2.enabled = false;
+        //         flagd = 0;
+        //     }
+        //     if (flagw == 1)
+        //     {
+        //         TextBox3.enabled = false;
+        //         flagw = 0;
+        //     }
+        //     if (flagt == 1)
+        //     {
+        //         TextBox1.enabled = false;
+        //         TextBox2.enabled = false;
+        //     }
+        // }
+        // if (collision.gameObject.CompareTag("exit"))
+        // {
+        //     TextBox1.enabled = false;
+        //     TextBox2.enabled = false;
+        //     TextBox3.enabled = false;
+        // }
+
+        if (collision.gameObject.CompareTag("button_trigger")){
+            d.IncreaseButtonUsed();
         }
-        if (collision.gameObject.CompareTag("I"))
-        {
-            if (!hs.Contains("I"))
-            {
-                hs.Add("I");
-            }
-            Destroy(collision.gameObject);
-            Alphabets_Swaner.ind = 4;
-            // count++;
-            Alphabets_Swaner.flag = true;
-            GameObject[] IL = GameObject.FindGameObjectsWithTag("I_L");
-            SpriteRenderer sr = IL[0].GetComponent<SpriteRenderer>();
-            sr.enabled = true;
+
+        if (collision.gameObject.CompareTag("Ladder")){
+            d.IncreaseLadderUsed();
         }
-        if (collision.gameObject.CompareTag("R"))
-        {
-            if (!hs.Contains("R"))
-            {
-                hs.Add("R");
-            }
-            Destroy(collision.gameObject);
-            Alphabets_Swaner.ind = 3;
-            // count++;
-            Alphabets_Swaner.flag = true;
-            GameObject[] RL = GameObject.FindGameObjectsWithTag("R_L");
-            SpriteRenderer sr = RL[0].GetComponent<SpriteRenderer>();
-            sr.enabled = true;
-        }
-        if (collision.gameObject.CompareTag("E"))
-        {
-            if (!hs.Contains("E"))
-            {
-                hs.Add("E");
-            }
-            Destroy(collision.gameObject);
-            Alphabets_Swaner.ind = 1;
-            // count++;
-            Alphabets_Swaner.flag = true;
-            GameObject[] EL = GameObject.FindGameObjectsWithTag("E_L");
-            SpriteRenderer sr = EL[0].GetComponent<SpriteRenderer>();
-            sr.enabled = true;
-        }
-        if (collision.gameObject.CompareTag("A"))
-        {
-            Destroy(collision.gameObject);
-            Alphabets_Swaner.ind = 0;
-            attemps++;
-            Alphabets_Swaner.flag = true;
-        }
-        if (collision.gameObject.CompareTag("U"))
-        {
-            Destroy(collision.gameObject);
-            Alphabets_Swaner.ind = 5;
-            attemps++;
-            Alphabets_Swaner.flag = true;
-        }
-        if (collision.gameObject.CompareTag("detect"))
-        {
-            // intiater = true;
-            if (flagd == 0)
-            {
-                TextBox1.enabled = true;
-                TextBox2.enabled = true;
-                flagd = 1;
-            }
-            else if (flagd == 1)
-            {
-                TextBox1.enabled = false;
-                TextBox2.enabled = false;
-                flagd = 0;
-            }
-            if (flagw == 1)
-            {
-                TextBox3.enabled = false;
-                flagw = 0;
-            }
-            if (flagt == 1)
-            {
-                TextBox1.enabled = false;
-                TextBox2.enabled = false;
-            }
-        }
-        if (collision.gameObject.CompareTag("exit"))
-        {
-            TextBox1.enabled = false;
-            TextBox2.enabled = false;
-            TextBox3.enabled = false;
-        }
+
+        // if (collision.gameObject.CompareTag("jetpack_trigger")){
+        //     d.IncreaseButtonUsed();
+        // }
 
         // if (collision.gameObject.CompareTag("Finish"))
         // {
@@ -657,7 +672,8 @@ public class Player : MonoBehaviour
 
             d.IncreaseDeath();
             d.IncreaseTimeToCompleteLevel((int)Time.time - time_start);
-            PlayerDied(System.DateTime.Now.Ticks.ToString(), d.death.ToString(), d.death_by_saw.ToString(), d.death_by_spikes.ToString(), d.death_by_enemy.ToString(), d.death_by_spear.ToString(), d.death_by_explosive.ToString(), d.death_by_crusher.ToString(), d.time_to_complete_level.ToString(), d.death_by_falling.ToString(), d.death_by_puzzle.ToString());
+             PlayerDied(System.DateTime.Now.Ticks.ToString(), d.death.ToString(), d.death_by_saw.ToString(), d.death_by_spikes.ToString(), d.death_by_enemy.ToString(), d.death_by_spear.ToString(), d.death_by_explosive.ToString(), d.death_by_crusher.ToString(), d.time_to_complete_level.ToString(), d.death_by_falling.ToString(), d.death_by_puzzle.ToString(), SceneManager.GetActiveScene().buildIndex.ToString(), 
+d.spring_used.ToString(),d.button_used.ToString(),d.ladder_used.ToString(),d.jetpack.ToString(),d.rope.ToString(), d.teleporter_used.ToString());
             LoadNextLevel();
             // Debug.Log("Completed");
         }
@@ -673,12 +689,12 @@ public class Player : MonoBehaviour
     }
 
 
-    private void textbox_disabler()
-    {
-        TextBox1.enabled = false;
-        TextBox2.enabled = false;
-        TextBox3.enabled = false;
-    }
+    // private void textbox_disabler()
+    // {
+    //     TextBox1.enabled = false;
+    //     TextBox2.enabled = false;
+    //     TextBox3.enabled = false;
+    // }
 
 
 
@@ -700,8 +716,7 @@ public class Player : MonoBehaviour
 
 
 
-
-    // Google Form
+  // Google Form
 
     [SerializeField] private string URL;
 
@@ -716,6 +731,13 @@ public class Player : MonoBehaviour
     private string _falling;
     private string _death_by_puzzle;
     private string _time_to_complete_level;
+    private string _level;
+    private string _spring_used;
+    private string _button_used;
+    private string _ladder_used;
+    private string _jetpack_used;
+    private string _rope_used;
+    private string _teleport_used;
 
 
     // private void Awake()
@@ -724,11 +746,8 @@ public class Player : MonoBehaviour
 
     // }
 
-
-    // public void PlayerDied(string session, string attempts, string saw, string spike, string enemy, string spear, string explosives, string crusher, string time_to_complete_level, string falling, string death_by_puzzle)
-
-    public void PlayerDied(string session, string attempts, string saw, string spike, string enemy, string spear, string explosives, string crusher, string time_to_complete_level, string falling, string death_by_puzzle)
-
+    public void PlayerDied(string session, string attempts, string saw, string spike, string enemy, string spear, string explosives, string crusher, string time_to_complete_level , string falling, string death_by_puzzle, string level, string spring_used, string button_used, string ladder_used, string jetpack_used, string rope_used, string teleport_used)
+    
     {
         _sessionID = session;
         _number_of_attempts = attempts;
@@ -741,37 +760,27 @@ public class Player : MonoBehaviour
         _falling = falling;
         _death_by_puzzle = death_by_puzzle;
         _time_to_complete_level = time_to_complete_level;
-
-
+        _level = level;
+        _spring_used = spring_used;
+        _button_used = button_used;
+        _ladder_used = ladder_used;
+        _jetpack_used = jetpack_used;
+        _rope_used = rope_used;
+        _teleport_used = teleport_used;
         StartCoroutine(Post());
     }
 
-    // public void number_of_attempt()
-    // {
-
-    //     StartCoroutine(Post());
-    // }
-
-    public void number_of_attempt()
-    {
-
+    public void number_of_attempt(){
         _number_of_attempts += 1;
         Debug.Log(_number_of_attempts);
     }
 
     private IEnumerator Post()
     {
-
-
-        // WWWForm form = new WWWForm();
-        // form.AddField("entry.1873251736", _sessionID);
-        // form.AddField("entry.184508093", _number_of_attempts);
-
-
-        WWWForm form = new WWWForm();
-        form.AddField("entry.1873251736", _sessionID);
-        form.AddField("entry.184508093", _number_of_attempts);
-
+        
+       WWWForm form = new WWWForm();
+        form.AddField("entry.1873251736", _sessionID); 
+        form.AddField("entry.184508093", _number_of_attempts); 
         form.AddField("entry.1811764899", _saw);
         form.AddField("entry.1524214175", _spike);
         form.AddField("entry.667379507", _enemy);
@@ -780,8 +789,15 @@ public class Player : MonoBehaviour
         form.AddField("entry.995108995", _crusher);
         form.AddField("entry.787260575", _falling);
         form.AddField("entry.964640412", _time_to_complete_level);
-        form.AddField("entry.1713570514", _death_by_puzzle);
-
+        // form.AddField("entry.1713570514", _death_by_puzzle);
+        form.AddField("entry.1850271904", _level);
+        form.AddField("entry.441471285", _spring_used);
+        form.AddField("entry.1490520637", _button_used);
+        form.AddField("entry.2141273141", _ladder_used);
+        form.AddField("entry.477381647", _jetpack_used);
+        form.AddField("entry.2133737579", _rope_used);
+        form.AddField("entry.1240977175", _teleport_used);
+        
         UnityWebRequest www = UnityWebRequest.Post(URL, form);
         yield return www.SendWebRequest();
 
