@@ -9,7 +9,7 @@ using UnityEngine.Networking;
 public class LevelTimerScript : MonoBehaviour
 {
     public float timer;
-    private float initialTimerValue;
+    public float initialTimerValue;
     public GameObject RestartLevel;
     public LevelOverScreenScript LevelOverScreenScript;
     public static event Action onTimerOver;
@@ -31,6 +31,10 @@ public class LevelTimerScript : MonoBehaviour
             // timer = initialTimerValue;
             GameOver();
         }
+    }
+
+    public void resetTimer(){
+        timer = initialTimerValue;
     }
 
     public void GameOver(){

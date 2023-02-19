@@ -51,6 +51,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     public float maxstaytime = 2f;
 
+    public LevelTimerScript levelTimerScript;
+
     // hash set
 
 
@@ -68,7 +70,6 @@ public class Player : MonoBehaviour
         {
             pause_menu.GameIsPaused = false;
         }
-
 
         // create a object of the class and call the function
 
@@ -885,13 +886,16 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
 
         playerTransform.position = new Vector2(-59.3f, -18.8f);
         TimeLeft.ScoreValue = 1.5f;
-
+        Timer.timeleft = 0;
+        Timer.resetCounter = true;
         Movement.jetpackDuration = 1.5f;
         Movement.jetpackForce = 10f;
         Movement.elapsedTime = 0f;
         Movement.isJetpacking = false;
         Movement.isGrounded = true;
 
+        levelTimerScript.resetTimer();
+        
         if (SceneManager.GetActiveScene().buildIndex == 2)
         {
             circle.position = new Vector2(38.17f, 11.64f);

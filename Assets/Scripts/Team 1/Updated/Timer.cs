@@ -10,8 +10,8 @@ public class Timer : MonoBehaviour
     public static bool issafe;
 
     public float countdownTime;
-    private float timeleft;
-    private bool resetCounter = false;
+    public static float timeleft;
+    public static bool resetCounter = false;
     public Text countdownText;
     void Start()
     {
