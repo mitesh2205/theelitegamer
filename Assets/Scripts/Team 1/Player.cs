@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
             // reset_player_position();
             // death_option();
         }
-        else if (isColliding && timeElapsed >= maxstaytime && ispresentonred && !Timer.IsRedFloorSafe())
+        else if (isColliding && timeElapsed >= maxstaytime && ispresentonred && !Timer.IsGreenFloorSafe())
         {
             Debug.Log("Player is colling more than 2 sec");
             timeElapsed = 0f;
@@ -124,7 +124,7 @@ public class Player : MonoBehaviour
         {
             timeElapsed += Time.deltaTime;
         }
-        else if (isColliding && ispresentonred && !Timer.IsRedFloorSafe())
+        else if (isColliding && ispresentonred && !Timer.IsGreenFloorSafe())
         {
             timeElapsed += Time.deltaTime;
         }
@@ -324,21 +324,21 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
             ispresentonblue = true;
             timeElapsed = 0f;
         }
-        if (collision.gameObject.CompareTag("Red_block") && !Timer.IsRedFloorSafe())
+        if (collision.gameObject.CompareTag("Red_block") && !Timer.IsGreenFloorSafe())
         {
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsRedFloorSafe ---- Stay");
+            print("IsGreenFloorSafe ---- Stay");
             isColliding = true;
             ispresentonred = true;
         }
-        if (collision.gameObject.CompareTag("Red_block") && Timer.IsRedFloorSafe())
+        if (collision.gameObject.CompareTag("Red_block") && Timer.IsGreenFloorSafe())
         {
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsRedFloorSafe safe ----");
+            print("IsGreenFloorSafe safe ----");
             isColliding = true;
             ispresentonred = true;
             timeElapsed = 0f;
@@ -371,22 +371,22 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
 
         }
 
-        if (collision.gameObject.CompareTag("Red_block") && !Timer.IsRedFloorSafe())
+        if (collision.gameObject.CompareTag("Red_block") && !Timer.IsGreenFloorSafe())
         {
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsRedFloorSafe ---- Exit");
+            print("IsGreenFloorSafe ---- Exit");
             isColliding = false;
             timeElapsed = 0f;
             ispresentonred = false;
         }
-        if (collision.gameObject.CompareTag("Red_block") && Timer.IsRedFloorSafe())
+        if (collision.gameObject.CompareTag("Red_block") && Timer.IsGreenFloorSafe())
         {
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsRedFloorSafe ---- Exit");
+            print("IsGreenFloorSafe ---- Exit");
             isColliding = false;
             timeElapsed = 0f;
             ispresentonred = false;
@@ -423,23 +423,23 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
             // death_option();
         }
 
-        if (collision.gameObject.CompareTag("Red_block") && Timer.IsRedFloorSafe())
+        if (collision.gameObject.CompareTag("Red_block") && Timer.IsGreenFloorSafe())
         {
             isGrounded = true;
             moveForce = 10f;
             ispresentonred = true;
             transform.localScale = originalSize;
-            print("IsRedFloorSafe");
+            print("IsGreenFloorSafe");
             timeElapsed = 0f;
 
         }
 
-        if (collision.gameObject.CompareTag("Red_block") && !Timer.IsRedFloorSafe())
+        if (collision.gameObject.CompareTag("Red_block") && !Timer.IsGreenFloorSafe())
         {
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsRedNotSafe");
+            print("IsGreenNotSafe");
             ispresentonred = true;
             d.IncreaseDeath();
             d.IncreaseDeathByFalling();
@@ -883,7 +883,7 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
     {
         // textbox_disabler();
 
-        playerTransform.position = new Vector2(-12f, -8.6f);
+        playerTransform.position = new Vector2(-59.3f, -18.8f);
         TimeLeft.ScoreValue = 1.5f;
 
         Movement.jetpackDuration = 1.5f;
@@ -1029,10 +1029,10 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
         }
     }
 
-    // public void RestartLevel()
-    // {
-    //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    // }
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
     //  Load next level
 

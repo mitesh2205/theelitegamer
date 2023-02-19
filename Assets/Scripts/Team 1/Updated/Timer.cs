@@ -46,7 +46,7 @@ public class Timer : MonoBehaviour
                 timerSlider.maxValue = countdownTime;
                 timerSlider.value = countdownTime;
                 Image fill = timerSlider.fillRect.GetComponent<Image>();
-                fill.color = Color.red;
+                fill.color = Color.green;
                 issafe = false;
             }
         }
@@ -57,7 +57,7 @@ public class Timer : MonoBehaviour
     {
         return issafe;
     }
-    public static bool IsRedFloorSafe()
+    public static bool IsGreenFloorSafe()
     {
         return !issafe;
     }
