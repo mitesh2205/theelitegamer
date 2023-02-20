@@ -7,14 +7,17 @@ using UnityEngine.UI;
 
 public class LevelOverScreenScript : MonoBehaviour
 {
-   public Button RestartButton;
+    public Button RestartButton;
+    public static bool isGameOver = false;
+    void Start()
+    {
+        Button btn = RestartButton.GetComponent<Button>();
+        btn.onClick.AddListener(RestartLevel);
+    }
 
-	void Start () {
-		Button btn = RestartButton.GetComponent<Button>();
-		btn.onClick.AddListener(RestartLevel);
-	}
-
-	void RestartLevel(){
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-	}
+    void RestartLevel()
+    {
+        isGameOver = true;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }
