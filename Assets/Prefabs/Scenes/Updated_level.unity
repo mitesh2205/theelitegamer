@@ -1263,12 +1263,28 @@ PrefabInstance:
       value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 1702350638, guid: 411e8e359aeb03b44981e3e9aba8cf44, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702350638, guid: 411e8e359aeb03b44981e3e9aba8cf44, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702350638, guid: 411e8e359aeb03b44981e3e9aba8cf44, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 233.0605
+      value: 233.06049
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702350638, guid: 411e8e359aeb03b44981e3e9aba8cf44, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1702350638, guid: 411e8e359aeb03b44981e3e9aba8cf44, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -824.4697
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702350638, guid: 411e8e359aeb03b44981e3e9aba8cf44, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 486
       objectReference: {fileID: 0}
     - target: {fileID: 1724687195, guid: 411e8e359aeb03b44981e3e9aba8cf44, type: 3}
       propertyPath: m_Color.b
