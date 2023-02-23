@@ -16,19 +16,4 @@ public class Restart_game : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void level_1()
-    {
-        SceneManager.LoadScene(1);
-    }
-
-    public void level_2()
-    {
-        SceneManager.LoadScene(2);
-    }
-
-    public void level_3()
-    {
-        SceneManager.LoadScene(3);
-    }
-
 }
