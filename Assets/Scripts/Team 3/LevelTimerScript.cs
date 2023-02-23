@@ -27,7 +27,8 @@ public class LevelTimerScript : MonoBehaviour
         if (timer > 0)
         {
             timer -= Time.deltaTime;
-            timerText.text = "Time Left: " + Mathf.Round(timer);
+            //timerText.text = "Time Left: " + Mathf.Round(timer);
+            timerText.text = ":" + Mathf.Round(timer);
         }
         if (timer <= 0)
         {

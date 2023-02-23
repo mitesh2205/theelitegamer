@@ -12,7 +12,9 @@ public class Add_time : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             levelTimer.timer += 10;
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
+            renderer.enabled = false;
         }
     }
 }

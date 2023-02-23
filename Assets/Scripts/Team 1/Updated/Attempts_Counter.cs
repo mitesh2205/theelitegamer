@@ -14,6 +14,6 @@ public class Attempts_Counter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        showAttempts.text = "Attempts left: " + attempts;
+        showAttempts.text = ": " + attempts;
     }
 }
