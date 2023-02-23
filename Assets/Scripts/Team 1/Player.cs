@@ -92,6 +92,12 @@ public class Player : MonoBehaviour
 
     }
 
+    void decrease_attempts()
+    {
+        Attempts_Counter.attempts--;
+    }
+
+
     // Update is called once per frame
     void Update()
     {
@@ -519,15 +525,16 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
 
         if (collision.gameObject.CompareTag("Spike"))
         {
+
             d.IncreaseDeath();
             // Destroy(gameObject);
             d.IncreaseDeathBySpikes();
 
             // reset_player_position();
+            decrease_attempts();
 
-
-            death_option();
-            reset_player_position();
+            // death_option();
+            // reset_player_position();
 
         }
         if (collision.gameObject.CompareTag("Spring"))
@@ -556,9 +563,10 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
             d.IncreaseDeath();
             d.IncreaseDeathByEnemy();
 
-            death_option();
+            decrease_attempts();
 
-            reset_player_position();
+            // death_option();
+            // reset_player_position();
         }
         if (collision.gameObject.CompareTag("Rope2D"))
         {
@@ -589,10 +597,10 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
         {
             d.IncreaseDeath();
             d.IncreaseDeathByCrusher();
+            decrease_attempts();
+            // death_option();
 
-            death_option();
-
-            reset_player_position();
+            // reset_player_position();
 
         }
         if (collision.gameObject.CompareTag("invisible"))
@@ -615,6 +623,18 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
+        // if (collision.gameObject.CompareTag("setEvery"))
+        // {
+
+
+        //     GameObject[] healths = GameObject.FindGameObjectsWithTag("health_1");
+        //     foreach (GameObject health in healths)
+        //     {
+        //         health.GetComponent<SpriteRenderer>().enabled = true;
+        //     }
+        // }
+
         if (collision.gameObject.CompareTag("Success_spring"))
         {
             d.IncreaseSpringUsedCntSuccess();
