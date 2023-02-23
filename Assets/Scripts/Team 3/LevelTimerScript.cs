@@ -18,26 +18,31 @@ public class LevelTimerScript : MonoBehaviour
     void Start()
     {
         initialTimerValue = timer;
-        timerText = GetComponent<TMPro.TextMeshProUGUI>();   
+        timerText = GetComponent<TMPro.TextMeshProUGUI>();
     }
 
     // Update is called once per frame
     void Update()
-    {   if (timer > 0){
+    {
+        if (timer > 0)
+        {
             timer -= Time.deltaTime;
             timerText.text = "Time Left: " + Mathf.Round(timer);
         }
-        if (timer <= 0){
+        if (timer <= 0)
+        {
             // timer = initialTimerValue;
             GameOver();
         }
     }
 
-    public void resetTimer(){
+    public void resetTimer()
+    {
         timer = initialTimerValue;
     }
 
-    public void GameOver(){
+    public void GameOver()
+    {
         RestartLevel.SetActive(true);
     }
 }
