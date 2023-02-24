@@ -36,6 +36,8 @@ public class increment_death : MonoBehaviour
     public string death_location_of_player = "";
 
     public int is_timeout = 0;
+
+    public int is_level_completed = 0;
     public void IncreaseDeath()
     {
         death++;
@@ -179,7 +181,12 @@ public class increment_death : MonoBehaviour
 
     public void IncreaseIsTimeout()
     {
-        is_timeout = 1;
+        is_timeout++;
+    }
+
+    public void IncreaseIsLevelCompleted()
+    {
+        is_level_completed = 1;
     }
     // public void ResetDeath()
     // {
@@ -211,5 +218,6 @@ public class increment_death : MonoBehaviour
     //     number_of_attempt_left = 0;
     //     death_location_of_player = "";
     //     is_timeout = 0;
+    //     is_level_completed = 0;
     // }
 }

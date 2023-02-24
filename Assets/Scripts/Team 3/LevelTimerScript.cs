@@ -5,12 +5,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
-
+// using player script
 public class LevelTimerScript : MonoBehaviour
 {
     public float timer;
     public float initialTimerValue;
     public GameObject RestartLevel;
+    public static bool timerover = false;
     public LevelOverScreenScript LevelOverScreenScript;
     public static event Action onTimerOver;
     private TMPro.TextMeshProUGUI timerText;
@@ -44,6 +45,7 @@ public class LevelTimerScript : MonoBehaviour
 
     public void GameOver()
     {
-        RestartLevel.SetActive(true);
+        // RestartLevel.SetActive(true);
+        timerover = true;
     }
 }
