@@ -802,6 +802,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4223575866526623299, guid: 411e8e359aeb03b44981e3e9aba8cf44, type: 3}
   m_PrefabInstance: {fileID: 1185363795}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1185363797 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 759749590, guid: 411e8e359aeb03b44981e3e9aba8cf44, type: 3}
+  m_PrefabInstance: {fileID: 1185363795}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1185363798 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1116079332, guid: 411e8e359aeb03b44981e3e9aba8cf44, type: 3}
+  m_PrefabInstance: {fileID: 1185363795}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1199108592
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -874,6 +896,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLayout
       objectReference: {fileID: 0}
+    - target: {fileID: 4597564248403669128, guid: bf1fc70de47704be697da9112ab4508f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 97.24
+      objectReference: {fileID: 0}
     - target: {fileID: 5775649494757404016, guid: bf1fc70de47704be697da9112ab4508f, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -917,6 +943,18 @@ PrefabInstance:
     - target: {fileID: 5775649494757404016, guid: bf1fc70de47704be697da9112ab4508f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6576803765978322344, guid: bf1fc70de47704be697da9112ab4508f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 47.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 6576803765978322344, guid: bf1fc70de47704be697da9112ab4508f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -38.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728749476035111006, guid: bf1fc70de47704be697da9112ab4508f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.68
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf1fc70de47704be697da9112ab4508f, type: 3}
@@ -1215,15 +1253,15 @@ PrefabInstance:
     - target: {fileID: 1341916847, guid: 83526b6a8aa8c1f4bbaf964d1ad17d7f, type: 3}
       propertyPath: timerText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1185363798}
     - target: {fileID: 1341916847, guid: 83526b6a8aa8c1f4bbaf964d1ad17d7f, type: 3}
       propertyPath: timerSlider
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1185363797}
     - target: {fileID: 1341916847, guid: 83526b6a8aa8c1f4bbaf964d1ad17d7f, type: 3}
       propertyPath: countdownText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1185363798}
     - target: {fileID: 6323814845878362416, guid: 83526b6a8aa8c1f4bbaf964d1ad17d7f, type: 3}
       propertyPath: m_Name
       value: Gameconsole
