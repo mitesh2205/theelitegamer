@@ -8,7 +8,7 @@ public class TimeLeft : MonoBehaviour
     public static float ScoreValue = 1.5f;
     Text score;
     Text jetpack;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,11 +19,11 @@ public class TimeLeft : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        score.text = "Fuel left in jetpack (J Key): " + ScoreValue;
+        score.text = "(j key): " + ScoreValue;
 
-        if(ScoreValue <= 0)
+        if (ScoreValue <= 0)
         {
-            score.text = "Fuel left in jetpack (J Key): 0";
+            score.text = "(j key): 0";
         }
     }
 }

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class increment_death : MonoBehaviour
 {
+    public int red_safe_standing_time = 0;
+    public int blue_safe_standing_time = 0;
+    public int red_unsafe_standing_time = 0;
+    public int blue_unsafe_standing_time = 0;
     public int death = 0;
     public int death_by_spikes = 0;
     public int death_by_falling = 0;
@@ -22,6 +26,18 @@ public class increment_death : MonoBehaviour
     public int spring_used = 0;
     public int ladder_used = 0;
 
+    public int jetpack_used_cnt_success = 0;
+    public int rope_used_cnt_success = 0;
+    public int spring_used_cnt_success = 0;
+
+    public int teleporter_used_cnt_success = 0;
+
+    public int number_of_attempt_left = 0;
+    public string death_location_of_player = "";
+
+    public int is_timeout = 0;
+
+    public int is_level_completed = 0;
     public void IncreaseDeath()
     {
         death++;
@@ -31,7 +47,7 @@ public class increment_death : MonoBehaviour
     {
         death_by_spikes++;
     }
-    
+
     public void IncreaseDeathByFalling()
     {
         death_by_falling++;
@@ -64,8 +80,8 @@ public class increment_death : MonoBehaviour
 
     public void IncreaseTimeToCompleteLevel(int time_difference)
     {
-        time_to_complete_level = time_difference;  
-        Debug.Log(time_to_complete_level);   
+        time_to_complete_level = time_difference;
+        Debug.Log(time_to_complete_level);
     }
 
     public void IncreaseDeathByPuzzle()
@@ -109,8 +125,69 @@ public class increment_death : MonoBehaviour
         ladder_used++;
     }
 
+    public void IncreseTimeRedStandingSafe(int time)
+    {
+        red_safe_standing_time = time;
+        Debug.Log(red_safe_standing_time);
+    }
 
+    public void IncreseTimeBlueStandingSafe(int time)
+    {
+        blue_safe_standing_time = time;
+        Debug.Log(blue_safe_standing_time);
+    }
 
+    public void IncreseTimeRedStandingUnsafe(int time)
+    {
+        red_unsafe_standing_time = time;
+        Debug.Log(red_unsafe_standing_time);
+    }
+
+    public void IncreseTimeBlueStandingUnsafe(int time)
+    {
+        blue_unsafe_standing_time = time;
+        Debug.Log(blue_unsafe_standing_time);
+    }
+    public void IncreaseJetpackUsedCntSuccess()
+    {
+        jetpack_used_cnt_success++;
+    }
+
+    public void IncreaseRopeUsedCntSuccess()
+    {
+        rope_used_cnt_success++;
+    }
+
+    public void IncreaseSpringUsedCntSuccess()
+    {
+        spring_used_cnt_success++;
+    }
+
+    public void IncreaseTeleporterUsedCntSuccess()
+    {
+        teleporter_used_cnt_success++;
+    }
+
+    public void IncreaseNumberOfAttemptLeft()
+    {
+        number_of_attempt_left++;
+    }
+
+    public void IncreaseDeathLocationOfPlayer(float x, float y)
+    {
+        death_location_of_player += x.ToString() + ":" + y.ToString() + ",";
+
+    }
+
+    public void IncreaseIsTimeout()
+    {
+        is_timeout++;
+    }
+
+    public void IncreaseIsLevelCompleted()
+    {
+        is_level_completed = 1;
+    }
     // public void ResetDeath()
     // {
     //     death = 0;
@@ -130,5 +207,17 @@ public class increment_death : MonoBehaviour
     //     teleporter_used = 0;
     //     spring_used = 0;
     //     ladder_used = 0;
+    //     red_safe_standing_time = 0;
+    //     blue_safe_standing_time = 0;
+    //     red_unsafe_standing_time = 0;
+    //     blue_unsafe_standing_time = 0;
+    //     jetpack_used_cnt_success = 0;
+    //     rope_used_cnt_success = 0;
+    //     spring_used_cnt_success = 0;
+    //     teleporter_used_cnt_success = 0;
+    //     number_of_attempt_left = 0;
+    //     death_location_of_player = "";
+    //     is_timeout = 0;
+    //     is_level_completed = 0;
     // }
 }
