@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Newtonsoft.Json;
 
 public class increment_death : MonoBehaviour
 {
@@ -38,6 +39,9 @@ public class increment_death : MonoBehaviour
     public int is_timeout = 0;
 
     public int is_level_completed = 0;
+    public string coordinates_list;
+    public string player_path;
+
     public void IncreaseDeath()
     {
         death++;
@@ -177,6 +181,13 @@ public class increment_death : MonoBehaviour
     {
         death_location_of_player += x.ToString() + ":" + y.ToString() + ",";
 
+    }
+    
+    public void players_path(float x, float y)
+    {
+        string coordinates = "[" + x + "," + y + "],";
+        coordinates_list += coordinates;
+        player_path = coordinates_list;
     }
 
     public void IncreaseIsTimeout()
