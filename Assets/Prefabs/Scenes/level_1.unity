@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &744827354 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6020665788542019525, guid: 7a336492c4c475f4382680509c945801, type: 3}
+  m_PrefabInstance: {fileID: 1153370896}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1153370896
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -132,10 +143,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 48487409, guid: 7a336492c4c475f4382680509c945801, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 48487409, guid: 7a336492c4c475f4382680509c945801, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4223575867659470224, guid: 7a336492c4c475f4382680509c945801, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6020665787655552147, guid: 7a336492c4c475f4382680509c945801, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6020665787827633394, guid: 7a336492c4c475f4382680509c945801, type: 3}
@@ -186,5 +205,40 @@ PrefabInstance:
       propertyPath: m_Name
       value: level_1 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6020665788210025638, guid: 7a336492c4c475f4382680509c945801, type: 3}
+      propertyPath: timerText
+      value: 
+      objectReference: {fileID: 744827354}
+    - target: {fileID: 6020665788210025638, guid: 7a336492c4c475f4382680509c945801, type: 3}
+      propertyPath: timerSlider
+      value: 
+      objectReference: {fileID: 1811511351}
+    - target: {fileID: 6020665788210025638, guid: 7a336492c4c475f4382680509c945801, type: 3}
+      propertyPath: countdownText
+      value: 
+      objectReference: {fileID: 744827354}
+    - target: {fileID: 6020665788873167514, guid: 7a336492c4c475f4382680509c945801, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6020665788873167514, guid: 7a336492c4c475f4382680509c945801, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6020665789412225424, guid: 7a336492c4c475f4382680509c945801, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a336492c4c475f4382680509c945801, type: 3}
+--- !u!114 &1811511351 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6020665788775768664, guid: 7a336492c4c475f4382680509c945801, type: 3}
+  m_PrefabInstance: {fileID: 1153370896}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

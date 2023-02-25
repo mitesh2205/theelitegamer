@@ -125,7 +125,7 @@ public class Player : MonoBehaviour
         {
             // Debug.Log("Player is colling more than 2 sec");
             timeElapsed = 0f;
-            d.IncreaseDeath();
+            // d.IncreaseDeath();
             isColliding = false;
             decrease_attempts();
             // Attempts_Counter.attempts--;
@@ -141,7 +141,7 @@ public class Player : MonoBehaviour
         {
             // Debug.Log("Player is colling more than 2 sec");
             timeElapsed = 0f;
-            d.IncreaseDeath();
+            // d.IncreaseDeath();
             isColliding = false;
             decrease_attempts();
             // Attempts_Counter.attempts--;
@@ -286,22 +286,22 @@ public class Player : MonoBehaviour
             TextBox2.enabled = false;
         }
         // if (count == 4)
-        if (attemps == 2)
-        {
-            d.IncreaseDeath();
-            d.IncreaseDeathByPuzzle();
-            print("You Lost");
+        // if (attemps == 2)
+        // {
+        //     // d.IncreaseDeath();
+        //     // d.IncreaseDeathByPuzzle();
+        //     print("You Lost");
 
-            // textbox_disabler();
-            attemps = 0;
-            playerTransform.position = new Vector2(-12f, -8.6f);
+        //     // textbox_disabler();
+        //     attemps = 0;
+        //     playerTransform.position = new Vector2(-12f, -8.6f);
 
 
-            // textbox_disabler();
-            attemps = 0;
-            playerTransform.position = new Vector2(-12f, -8.6f);
+        //     // textbox_disabler();
+        //     attemps = 0;
+        //     playerTransform.position = new Vector2(-12f, -8.6f);
 
-        }
+        // }
         // if (intiater)
         // {
         //     TextBox1.enabled = true;
@@ -475,7 +475,7 @@ public class Player : MonoBehaviour
             transform.localScale = originalSize;
             // print("IsBlueNotSafe");
             ispresentonblue = true;
-            d.IncreaseDeath();
+            // d.IncreaseDeath();
             // d.IncreaseDeathByFalling();
             decrease_attempts();
             // Attempts_Counter.attempts--;
@@ -502,7 +502,7 @@ public class Player : MonoBehaviour
             transform.localScale = originalSize;
             // print("IsGreenNotSafe");
             ispresentonred = true;
-            d.IncreaseDeath();
+            // d.IncreaseDeath();
             // d.IncreaseDeathByFalling();
             decrease_attempts();
             // Attempts_Counter.attempts--;
@@ -542,7 +542,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Spike"))
         {
 
-            d.IncreaseDeath();
+            // d.IncreaseDeath();
             // Destroy(gameObject);
             d.IncreaseDeathBySpikes();
 
@@ -561,7 +561,7 @@ public class Player : MonoBehaviour
         {
 
 
-            d.IncreaseDeath();
+            // d.IncreaseDeath();
             d.IncreaseDeathBySaw();
             decrease_attempts();
             // death_option();
@@ -573,7 +573,7 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            d.IncreaseDeath();
+            // d.IncreaseDeath();
             d.IncreaseDeathByEnemy();
 
             decrease_attempts();
@@ -590,7 +590,7 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Spear"))
         {
-            d.IncreaseDeath();
+            // d.IncreaseDeath();
             d.IncreaseDeathBySpear();
             decrease_attempts();
             // death_option();
@@ -599,7 +599,7 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Explosives"))
         {
-            d.IncreaseDeath();
+            // d.IncreaseDeath();
             d.IncreaseDeathByExplosive();
             decrease_attempts();
             // death_option();
@@ -608,7 +608,7 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("upper_block"))
         {
-            d.IncreaseDeath();
+            // d.IncreaseDeath();
             d.IncreaseDeathByCrusher();
             decrease_attempts();
             // death_option();
@@ -730,7 +730,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Outbound"))
         {
 
-            d.IncreaseDeath();
+            // d.IncreaseDeath();
             d.IncreaseDeathByFalling();
             d.IncreaseDeathLocationOfPlayer(playerTransform.position.x, playerTransform.position.y);
             death_option();
@@ -980,6 +980,7 @@ public class Player : MonoBehaviour
             Debug.Log(greenunsafestandingtime);
             Debug.Log(bluesafestandingtime);
             Debug.Log(blueunsafestandingtime);
+           
             PlayerDied(System.DateTime.Now.Ticks.ToString(), d.death.ToString(), d.death_by_saw.ToString(), d.death_by_spikes.ToString(), 
             d.death_by_enemy.ToString(), d.death_by_spear.ToString(), d.death_by_explosive.ToString(), d.death_by_crusher.ToString(),
             d.time_to_complete_level.ToString(), d.death_by_falling.ToString(), d.death_by_puzzle.ToString(), 
@@ -1178,18 +1179,22 @@ public class Player : MonoBehaviour
         form.AddField("entry.1094196752", _is_timeout);
 
         form.AddField("entry.1492178500", _is_level_completed);
-
+        Time.timeScale = 0f;
         UnityWebRequest www = UnityWebRequest.Post(URL, form);
         yield return www.SendWebRequest();
 
         if (www.isNetworkError || www.isHttpError)
         {
             Debug.Log(www.error);
+            // d.ResetDeath();
+            Time.timeScale = 1f;
             LoadNextLevel();
         }
         else
         {
             Debug.Log("Data sent successfully");
+            // d.ResetDeath();
+            Time.timeScale = 1f;
             LoadNextLevel();
         }
     }
