@@ -476,7 +476,7 @@ public class Player : MonoBehaviour
             // print("IsBlueNotSafe");
             ispresentonblue = true;
             d.IncreaseDeath();
-            d.IncreaseDeathByFalling();
+            // d.IncreaseDeathByFalling();
             decrease_attempts();
             // Attempts_Counter.attempts--;
             // Destroy(gameObject);
@@ -503,7 +503,7 @@ public class Player : MonoBehaviour
             // print("IsGreenNotSafe");
             ispresentonred = true;
             d.IncreaseDeath();
-            d.IncreaseDeathByFalling();
+            // d.IncreaseDeathByFalling();
             decrease_attempts();
             // Attempts_Counter.attempts--;
             // Destroy(gameObject);
