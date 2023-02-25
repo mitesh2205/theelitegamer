@@ -21,7 +21,6 @@ public class Player : MonoBehaviour
     
     // private bool ispath_recorded;
 
-
     public GameObject play_again_panel;
     public Transform circle;
     public Transform square;
@@ -90,7 +89,7 @@ public class Player : MonoBehaviour
         playerTransform = transform;
         myBody.gravityScale = 1;
         print(myBody.gravityScale);
-        print("gravity");
+        // print("gravity");
         // circle = transform.Find("rolling_circle");
 
 
@@ -124,7 +123,7 @@ public class Player : MonoBehaviour
 
         if (isColliding && timeElapsed >= maxstaytime && ispresentonblue && !Timer.IsBlueFloorSafe())
         {
-            Debug.Log("Player is colling more than 2 sec");
+            // Debug.Log("Player is colling more than 2 sec");
             timeElapsed = 0f;
             d.IncreaseDeath();
             isColliding = false;
@@ -133,21 +132,21 @@ public class Player : MonoBehaviour
 
             blueunsafestandingtime += Time.deltaTime;
 
-            Debug.Log("present on blue and unsafe");
+            // Debug.Log("present on blue and unsafe");
             Debug.Log(blueunsafestandingtime);
             // reset_player_position();
             // death_option();
         }
         else if (isColliding && timeElapsed >= maxstaytime && ispresentonred && !Timer.IsGreenFloorSafe())
         {
-            Debug.Log("Player is colling more than 2 sec");
+            // Debug.Log("Player is colling more than 2 sec");
             timeElapsed = 0f;
             d.IncreaseDeath();
             isColliding = false;
             decrease_attempts();
             // Attempts_Counter.attempts--;
             greenunsafestandingtime += Time.deltaTime;
-            Debug.Log("present on green and unsafe");
+            // Debug.Log("present on green and unsafe");
             Debug.Log(greenunsafestandingtime);
             // reset_player_position();
             // death_option();
@@ -166,9 +165,6 @@ public class Player : MonoBehaviour
         {
             timeElapsed = 0f;
         }
-        // colliding with any floor--------------------
-
-        // colliding with the blue floor
 
         if (isColliding && ispresentonblue && Timer.IsBlueFloorSafe())
         {
@@ -182,8 +178,6 @@ public class Player : MonoBehaviour
             greensafestandingtime += Time.deltaTime;
             Debug.Log(greensafestandingtime);
         }
-        //----------------------------------------------
-
 
         if (pushflag)
         {
@@ -376,7 +370,7 @@ public class Player : MonoBehaviour
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsBlueFloorSafe ---- Stay");
+            // print("IsBlueFloorSafe ---- Stay");
             isColliding = true;
             ispresentonblue = true;
         }
@@ -385,7 +379,7 @@ public class Player : MonoBehaviour
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsBlueFloorSafe safe ----");
+            // print("IsBlueFloorSafe safe ----");
             isColliding = true;
             ispresentonblue = true;
             timeElapsed = 0f;
@@ -395,7 +389,7 @@ public class Player : MonoBehaviour
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsGreenFloorSafe ---- Stay");
+            // print("IsGreenFloorSafe ---- Stay");
             isColliding = true;
             ispresentonred = true;
         }
@@ -404,7 +398,7 @@ public class Player : MonoBehaviour
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsGreenFloorSafe safe ----");
+            // print("IsGreenFloorSafe safe ----");
             isColliding = true;
             ispresentonred = true;
             timeElapsed = 0f;
@@ -418,7 +412,7 @@ public class Player : MonoBehaviour
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsBlueFloorSafe ---- Exit");
+            // print("IsBlueFloorSafe ---- Exit");
             isColliding = false;
             timeElapsed = 0f;
             ispresentonblue = false;
@@ -430,7 +424,7 @@ public class Player : MonoBehaviour
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsBlueFloorSafe ---- Exit");
+            // print("IsBlueFloorSafe ---- Exit");
             isColliding = false;
             timeElapsed = 0f;
             ispresentonblue = false;
@@ -442,7 +436,7 @@ public class Player : MonoBehaviour
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsGreenFloorSafe ---- Exit");
+            // print("IsGreenFloorSafe ---- Exit");
             isColliding = false;
             timeElapsed = 0f;
             ispresentonred = false;
@@ -452,7 +446,7 @@ public class Player : MonoBehaviour
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsGreenFloorSafe ---- Exit");
+            // print("IsGreenFloorSafe ---- Exit");
             isColliding = false;
             timeElapsed = 0f;
             ispresentonred = false;
@@ -468,7 +462,7 @@ public class Player : MonoBehaviour
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsBlueFloorSafe");
+            // print("IsBlueFloorSafe");
             ispresentonblue = true;
             timeElapsed = 0f;
 
@@ -479,7 +473,7 @@ public class Player : MonoBehaviour
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsBlueNotSafe");
+            // print("IsBlueNotSafe");
             ispresentonblue = true;
             d.IncreaseDeath();
             d.IncreaseDeathByFalling();
@@ -496,7 +490,7 @@ public class Player : MonoBehaviour
             moveForce = 10f;
             ispresentonred = true;
             transform.localScale = originalSize;
-            print("IsGreenFloorSafe");
+            // print("IsGreenFloorSafe");
             timeElapsed = 0f;
 
         }
@@ -506,7 +500,7 @@ public class Player : MonoBehaviour
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsGreenNotSafe");
+            // print("IsGreenNotSafe");
             ispresentonred = true;
             d.IncreaseDeath();
             d.IncreaseDeathByFalling();
@@ -997,10 +991,6 @@ public class Player : MonoBehaviour
             d.teleporter_used_cnt_success.ToString(), Attempts_Counter.attempts.ToString(), d.death_location_of_player, 
             d.is_timeout.ToString(), d.is_level_completed.ToString(),d.player_path);
 
-            //             PlayerDied(System.DateTime.Now.Ticks.ToString(), d.death.ToString(), d.death_by_saw.ToString(), d.death_by_spikes.ToString(), d.death_by_enemy.ToString(), d.death_by_spear.ToString(), d.death_by_explosive.ToString(), d.death_by_crusher.ToString(), d.time_to_complete_level.ToString(), d.death_by_falling.ToString(), d.death_by_puzzle.ToString(), SceneManager.GetActiveScene().buildIndex.ToString(),
-            // d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.jetpack.ToString(), d.rope.ToString(), d.teleporter_used.ToString(), Math.Round(greensafestandingtime, 0).ToString(), Math.Round(bluesafestandingtime, 0).ToString(), Math.Round(greenunsafestandingtime, 0).ToString(), Math.Round(blueunsafestandingtime, 0).ToString(), d.jetpack_used_cnt_success.ToString(), d.rope_used_cnt_success.ToString(),
-            //  d.spring_used_cnt_success.ToString(), d.teleporter_used_cnt_success.ToString(), Attempts_Counter.attempts.ToString(), d.death_location_of_player, d.is_timeout.ToString());
-
             // Debug.Log("Completed");
 
 
@@ -1039,21 +1029,6 @@ public class Player : MonoBehaviour
 
     }
 
-
-    // private void textbox_disabler()
-    // {
-    //     TextBox1.enabled = false;
-    //     TextBox2.enabled = false;
-    //     TextBox3.enabled = false;
-    // }
-
-
-
-    // private void textbox_disabler(){
-    //     TextBox1.enabled = false;
-    //     TextBox2.enabled = false;
-    //     TextBox3.enabled = false;
-    // }
 
     private void death_option()
     {
