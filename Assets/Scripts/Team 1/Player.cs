@@ -1004,7 +1004,7 @@ public class Player : MonoBehaviour
             // Debug.Log("Completed");
 
 
-            LoadNextLevel();
+            // LoadNextLevel();
         }
     }
 
@@ -1210,10 +1210,12 @@ public class Player : MonoBehaviour
         if (www.isNetworkError || www.isHttpError)
         {
             Debug.Log(www.error);
+            LoadNextLevel();
         }
         else
         {
             Debug.Log("Data sent successfully");
+            LoadNextLevel();
         }
     }
 
