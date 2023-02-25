@@ -984,8 +984,7 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
         // textbox_disabler();
         // get current player position
         d.IncreaseDeathLocationOfPlayer(playerTransform.position.x, playerTransform.position.y);
-        // playerTransform.position = new Vector2(-59.3f, -18.8f);
-        playerTransform.position = new Vector2(-57f, -33f);
+        playerTransform.position = new Vector2(-59.3f, -18.8f);
         TimeLeft.ScoreValue = 1.5f;
         Timer.timeleft = 0;
         Timer.resetCounter = true;
@@ -997,14 +996,14 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
         Attempts_Counter.attempts = 3;
         levelTimerScript.resetTimer();
 
-        if (SceneManager.GetActiveScene().buildIndex == 2)
-        {
-            circle.position = new Vector2(38.17f, 11.64f);
-            square.position = new Vector2(36.83f, 5.1f);
-            GameObject.FindGameObjectWithTag("invisible_moving_platform").SetActive(false);
+        // if (SceneManager.GetActiveScene().buildIndex == 2)
+        // {
+            //circle.position = new Vector2(38.17f, 11.64f);
+            // square.position = new Vector2(36.83f, 5.1f);
+            //GameObject.FindGameObjectWithTag("invisible_moving_platform").SetActive(false);
             // invisible_platform_mov
 
-        }
+        // }
 
 
 
@@ -1193,4 +1192,3 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
     }
 
 }
-
