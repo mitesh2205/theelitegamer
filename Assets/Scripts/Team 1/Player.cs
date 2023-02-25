@@ -984,7 +984,8 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
         // textbox_disabler();
         // get current player position
         d.IncreaseDeathLocationOfPlayer(playerTransform.position.x, playerTransform.position.y);
-        playerTransform.position = new Vector2(-59.3f, -18.8f);
+        // playerTransform.position = new Vector2(-59.3f, -18.8f);
+        playerTransform.position = new Vector2(-57f, -33f);
         TimeLeft.ScoreValue = 1.5f;
         Timer.timeleft = 0;
         Timer.resetCounter = true;
