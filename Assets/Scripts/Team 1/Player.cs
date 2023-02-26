@@ -21,7 +21,6 @@ public class Player : MonoBehaviour
     
     // private bool ispath_recorded;
 
-
     public GameObject play_again_panel;
     public Transform circle;
     public Transform square;
@@ -90,7 +89,7 @@ public class Player : MonoBehaviour
         playerTransform = transform;
         myBody.gravityScale = 1;
         print(myBody.gravityScale);
-        print("gravity");
+        // print("gravity");
         // circle = transform.Find("rolling_circle");
 
 
@@ -99,6 +98,7 @@ public class Player : MonoBehaviour
     void decrease_attempts()
     {
         Attempts_Counter.attempts--;
+        d.IncreaseDeathLocationOfPlayer(playerTransform.position.x, playerTransform.position.y);
     }
 
 
@@ -123,28 +123,30 @@ public class Player : MonoBehaviour
 
         if (isColliding && timeElapsed >= maxstaytime && ispresentonblue && !Timer.IsBlueFloorSafe())
         {
-            Debug.Log("Player is colling more than 2 sec");
+            // Debug.Log("Player is colling more than 2 sec");
             timeElapsed = 0f;
-            d.IncreaseDeath();
+            // d.IncreaseDeath();
             isColliding = false;
-            Attempts_Counter.attempts--;
+            decrease_attempts();
+            // Attempts_Counter.attempts--;
 
             blueunsafestandingtime += Time.deltaTime;
 
-            Debug.Log("present on blue and unsafe");
+            // Debug.Log("present on blue and unsafe");
             Debug.Log(blueunsafestandingtime);
             // reset_player_position();
             // death_option();
         }
         else if (isColliding && timeElapsed >= maxstaytime && ispresentonred && !Timer.IsGreenFloorSafe())
         {
-            Debug.Log("Player is colling more than 2 sec");
+            // Debug.Log("Player is colling more than 2 sec");
             timeElapsed = 0f;
-            d.IncreaseDeath();
+            // d.IncreaseDeath();
             isColliding = false;
-            Attempts_Counter.attempts--;
+            decrease_attempts();
+            // Attempts_Counter.attempts--;
             greenunsafestandingtime += Time.deltaTime;
-            Debug.Log("present on green and unsafe");
+            // Debug.Log("present on green and unsafe");
             Debug.Log(greenunsafestandingtime);
             // reset_player_position();
             // death_option();
@@ -163,9 +165,6 @@ public class Player : MonoBehaviour
         {
             timeElapsed = 0f;
         }
-        // colliding with any floor--------------------
-
-        // colliding with the blue floor
 
         if (isColliding && ispresentonblue && Timer.IsBlueFloorSafe())
         {
@@ -179,8 +178,6 @@ public class Player : MonoBehaviour
             greensafestandingtime += Time.deltaTime;
             Debug.Log(greensafestandingtime);
         }
-        //----------------------------------------------
-
 
         if (pushflag)
         {
@@ -265,6 +262,11 @@ public class Player : MonoBehaviour
                 SpriteRenderer renderer = push_button.GetComponent<SpriteRenderer>();
                 renderer.color = Color.white;
             }
+        }
+
+        if(Movement.usedJetpack){
+            d.IncreaseJetpack();
+            Movement.usedJetpack = false;
         }
 
         if (flagss)
@@ -289,22 +291,22 @@ public class Player : MonoBehaviour
             TextBox2.enabled = false;
         }
         // if (count == 4)
-        if (attemps == 2)
-        {
-            d.IncreaseDeath();
-            d.IncreaseDeathByPuzzle();
-            print("You Lost");
+        // if (attemps == 2)
+        // {
+        //     // d.IncreaseDeath();
+        //     // d.IncreaseDeathByPuzzle();
+        //     print("You Lost");
 
-            // textbox_disabler();
-            attemps = 0;
-            playerTransform.position = new Vector2(-12f, -8.6f);
+        //     // textbox_disabler();
+        //     attemps = 0;
+        //     playerTransform.position = new Vector2(-12f, -8.6f);
 
 
-            // textbox_disabler();
-            attemps = 0;
-            playerTransform.position = new Vector2(-12f, -8.6f);
+        //     // textbox_disabler();
+        //     attemps = 0;
+        //     playerTransform.position = new Vector2(-12f, -8.6f);
 
-        }
+        // }
         // if (intiater)
         // {
         //     TextBox1.enabled = true;
@@ -328,9 +330,16 @@ public class Player : MonoBehaviour
             d.IncreseTimeRedStandingUnsafe((int)greenunsafestandingtime);
             d.IncreseTimeBlueStandingUnsafe((int)blueunsafestandingtime);
 
-            PlayerDied(System.DateTime.Now.Ticks.ToString(), d.death.ToString(), d.death_by_saw.ToString(), d.death_by_spikes.ToString(), d.death_by_enemy.ToString(), d.death_by_spear.ToString(), d.death_by_explosive.ToString(), d.death_by_crusher.ToString(), d.time_to_complete_level.ToString(), d.death_by_falling.ToString(), d.death_by_puzzle.ToString(), SceneManager.GetActiveScene().buildIndex.ToString(),
-d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.jetpack.ToString(), d.rope.ToString(), d.teleporter_used.ToString(), Math.Round(greensafestandingtime, 0).ToString(), Math.Round(bluesafestandingtime, 0).ToString(), Math.Round(greenunsafestandingtime, 0).ToString(), Math.Round(blueunsafestandingtime, 0).ToString(), d.jetpack_used_cnt_success.ToString(), d.rope_used_cnt_success.ToString(),
- d.spring_used_cnt_success.ToString(), d.teleporter_used_cnt_success.ToString(), Attempts_Counter.attempts.ToString(), d.death_location_of_player, d.is_timeout.ToString(), d.is_level_completed.ToString(), d.player_path);
+            PlayerDied(System.DateTime.Now.Ticks.ToString(), d.death.ToString(), d.death_by_saw.ToString(), 
+            d.death_by_spikes.ToString(), d.death_by_enemy.ToString(), d.death_by_spear.ToString(), 
+            d.death_by_explosive.ToString(), d.death_by_crusher.ToString(), d.time_to_complete_level.ToString(),
+            d.death_by_falling.ToString(), d.death_by_puzzle.ToString(), SceneManager.GetActiveScene().buildIndex.ToString(),
+            d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.jetpack.ToString(), 
+            d.rope.ToString(), d.teleporter_used.ToString(), Math.Round(greensafestandingtime, 0).ToString(), 
+            Math.Round(bluesafestandingtime, 0).ToString(), Math.Round(greenunsafestandingtime, 0).ToString(), 
+            Math.Round(blueunsafestandingtime, 0).ToString(), d.jetpack_used_cnt_success.ToString(), 
+            d.rope_used_cnt_success.ToString(), d.spring_used_cnt_success.ToString(), d.teleporter_used_cnt_success.ToString(), 
+            Attempts_Counter.attempts.ToString(), d.death_location_of_player, d.is_timeout.ToString(), d.is_level_completed.ToString(),d.player_path);
             // play_again_panel.SetActive(true
         }
         else
@@ -366,7 +375,7 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsBlueFloorSafe ---- Stay");
+            // print("IsBlueFloorSafe ---- Stay");
             isColliding = true;
             ispresentonblue = true;
         }
@@ -375,7 +384,7 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsBlueFloorSafe safe ----");
+            // print("IsBlueFloorSafe safe ----");
             isColliding = true;
             ispresentonblue = true;
             timeElapsed = 0f;
@@ -385,7 +394,7 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsGreenFloorSafe ---- Stay");
+            // print("IsGreenFloorSafe ---- Stay");
             isColliding = true;
             ispresentonred = true;
         }
@@ -394,7 +403,7 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsGreenFloorSafe safe ----");
+            // print("IsGreenFloorSafe safe ----");
             isColliding = true;
             ispresentonred = true;
             timeElapsed = 0f;
@@ -408,7 +417,7 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsBlueFloorSafe ---- Exit");
+            // print("IsBlueFloorSafe ---- Exit");
             isColliding = false;
             timeElapsed = 0f;
             ispresentonblue = false;
@@ -420,7 +429,7 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsBlueFloorSafe ---- Exit");
+            // print("IsBlueFloorSafe ---- Exit");
             isColliding = false;
             timeElapsed = 0f;
             ispresentonblue = false;
@@ -432,7 +441,7 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsGreenFloorSafe ---- Exit");
+            // print("IsGreenFloorSafe ---- Exit");
             isColliding = false;
             timeElapsed = 0f;
             ispresentonred = false;
@@ -442,7 +451,7 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsGreenFloorSafe ---- Exit");
+            // print("IsGreenFloorSafe ---- Exit");
             isColliding = false;
             timeElapsed = 0f;
             ispresentonred = false;
@@ -458,7 +467,7 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsBlueFloorSafe");
+            // print("IsBlueFloorSafe");
             ispresentonblue = true;
             timeElapsed = 0f;
 
@@ -469,11 +478,12 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsBlueNotSafe");
+            // print("IsBlueNotSafe");
             ispresentonblue = true;
-            d.IncreaseDeath();
-            d.IncreaseDeathByFalling();
-            Attempts_Counter.attempts--;
+            // d.IncreaseDeath();
+            // d.IncreaseDeathByFalling();
+            decrease_attempts();
+            // Attempts_Counter.attempts--;
             // Destroy(gameObject);
             // reset_player_position();
             // death_option();
@@ -485,7 +495,7 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
             moveForce = 10f;
             ispresentonred = true;
             transform.localScale = originalSize;
-            print("IsGreenFloorSafe");
+            // print("IsGreenFloorSafe");
             timeElapsed = 0f;
 
         }
@@ -495,11 +505,12 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
             isGrounded = true;
             moveForce = 10f;
             transform.localScale = originalSize;
-            print("IsGreenNotSafe");
+            // print("IsGreenNotSafe");
             ispresentonred = true;
-            d.IncreaseDeath();
-            d.IncreaseDeathByFalling();
-            Attempts_Counter.attempts--;
+            // d.IncreaseDeath();
+            // d.IncreaseDeathByFalling();
+            decrease_attempts();
+            // Attempts_Counter.attempts--;
             // Destroy(gameObject);
             // reset_player_position();
             // death_option();
@@ -536,7 +547,7 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
         if (collision.gameObject.CompareTag("Spike"))
         {
 
-            d.IncreaseDeath();
+            // d.IncreaseDeath();
             // Destroy(gameObject);
             d.IncreaseDeathBySpikes();
 
@@ -555,14 +566,11 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
         {
 
 
-            d.IncreaseDeath();
+            // d.IncreaseDeath();
             d.IncreaseDeathBySaw();
-
-            d.IncreaseDeath();
-            d.IncreaseDeathBySaw();
-            death_option();
-
-            reset_player_position();
+            decrease_attempts();
+            // death_option();
+            // reset_player_position();
         }
         if (collision.gameObject.CompareTag("Pool"))
         {
@@ -570,7 +578,7 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
         }
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            d.IncreaseDeath();
+            // d.IncreaseDeath();
             d.IncreaseDeathByEnemy();
 
             decrease_attempts();
@@ -587,7 +595,7 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
         }
         if (collision.gameObject.CompareTag("Spear"))
         {
-            d.IncreaseDeath();
+            // d.IncreaseDeath();
             d.IncreaseDeathBySpear();
             decrease_attempts();
             // death_option();
@@ -596,7 +604,7 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
         }
         if (collision.gameObject.CompareTag("Explosives"))
         {
-            d.IncreaseDeath();
+            // d.IncreaseDeath();
             d.IncreaseDeathByExplosive();
             decrease_attempts();
             // death_option();
@@ -605,7 +613,7 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
         }
         if (collision.gameObject.CompareTag("upper_block"))
         {
-            d.IncreaseDeath();
+            // d.IncreaseDeath();
             d.IncreaseDeathByCrusher();
             decrease_attempts();
             // death_option();
@@ -727,9 +735,9 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
         if (collision.gameObject.CompareTag("Outbound"))
         {
 
-            d.IncreaseDeath();
+            // d.IncreaseDeath();
             d.IncreaseDeathByFalling();
-
+            d.IncreaseDeathLocationOfPlayer(playerTransform.position.x, playerTransform.position.y);
             death_option();
             reset_player_position();
         }
@@ -977,18 +985,22 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
             Debug.Log(greenunsafestandingtime);
             Debug.Log(bluesafestandingtime);
             Debug.Log(blueunsafestandingtime);
-            PlayerDied(System.DateTime.Now.Ticks.ToString(), d.death.ToString(), d.death_by_saw.ToString(), d.death_by_spikes.ToString(), d.death_by_enemy.ToString(), d.death_by_spear.ToString(), d.death_by_explosive.ToString(), d.death_by_crusher.ToString(), d.time_to_complete_level.ToString(), d.death_by_falling.ToString(), d.death_by_puzzle.ToString(), SceneManager.GetActiveScene().buildIndex.ToString(),
-d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.jetpack.ToString(), d.rope.ToString(), d.teleporter_used.ToString(), Math.Round(greensafestandingtime, 0).ToString(), Math.Round(bluesafestandingtime, 0).ToString(), Math.Round(greenunsafestandingtime, 0).ToString(), Math.Round(blueunsafestandingtime, 0).ToString(), d.jetpack_used_cnt_success.ToString(), d.rope_used_cnt_success.ToString(),
- d.spring_used_cnt_success.ToString(), d.teleporter_used_cnt_success.ToString(), Attempts_Counter.attempts.ToString(), d.death_location_of_player, d.is_timeout.ToString(), d.is_level_completed.ToString(), d.player_path);
-
-            //             PlayerDied(System.DateTime.Now.Ticks.ToString(), d.death.ToString(), d.death_by_saw.ToString(), d.death_by_spikes.ToString(), d.death_by_enemy.ToString(), d.death_by_spear.ToString(), d.death_by_explosive.ToString(), d.death_by_crusher.ToString(), d.time_to_complete_level.ToString(), d.death_by_falling.ToString(), d.death_by_puzzle.ToString(), SceneManager.GetActiveScene().buildIndex.ToString(),
-            // d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.jetpack.ToString(), d.rope.ToString(), d.teleporter_used.ToString(), Math.Round(greensafestandingtime, 0).ToString(), Math.Round(bluesafestandingtime, 0).ToString(), Math.Round(greenunsafestandingtime, 0).ToString(), Math.Round(blueunsafestandingtime, 0).ToString(), d.jetpack_used_cnt_success.ToString(), d.rope_used_cnt_success.ToString(),
-            //  d.spring_used_cnt_success.ToString(), d.teleporter_used_cnt_success.ToString(), Attempts_Counter.attempts.ToString(), d.death_location_of_player, d.is_timeout.ToString());
+           
+            PlayerDied(System.DateTime.Now.Ticks.ToString(), d.death.ToString(), d.death_by_saw.ToString(), d.death_by_spikes.ToString(), 
+            d.death_by_enemy.ToString(), d.death_by_spear.ToString(), d.death_by_explosive.ToString(), d.death_by_crusher.ToString(),
+            d.time_to_complete_level.ToString(), d.death_by_falling.ToString(), d.death_by_puzzle.ToString(), 
+            SceneManager.GetActiveScene().buildIndex.ToString(),d.spring_used.ToString(), d.button_used.ToString(), 
+            d.ladder_used.ToString(), d.jetpack.ToString(), d.rope.ToString(), d.teleporter_used.ToString(), 
+            Math.Round(greensafestandingtime, 0).ToString(), Math.Round(bluesafestandingtime, 0).ToString(), 
+            Math.Round(greenunsafestandingtime, 0).ToString(), Math.Round(blueunsafestandingtime, 0).ToString(), 
+            d.jetpack_used_cnt_success.ToString(), d.rope_used_cnt_success.ToString(), d.spring_used_cnt_success.ToString(),
+            d.teleporter_used_cnt_success.ToString(), Attempts_Counter.attempts.ToString(), d.death_location_of_player, 
+            d.is_timeout.ToString(), d.is_level_completed.ToString(),d.player_path);
 
             // Debug.Log("Completed");
 
 
-            LoadNextLevel();
+            // LoadNextLevel();
         }
     }
 
@@ -997,9 +1009,8 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
     {
         // textbox_disabler();
         // get current player position
-        d.IncreaseDeathLocationOfPlayer(playerTransform.position.x, playerTransform.position.y);
-        // playerTransform.position = new Vector2(-59.3f, -18.8f);
-        playerTransform.position = new Vector2(-57f, -33f);
+        // d.IncreaseDeathLocationOfPlayer(playerTransform.position.x, playerTransform.position.y);
+        playerTransform.position = new Vector2(-59.3f, -18.8f);
         TimeLeft.ScoreValue = 1.5f;
         Timer.timeleft = 0;
         Timer.resetCounter = true;
@@ -1011,34 +1022,19 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
         Attempts_Counter.attempts = 3;
         levelTimerScript.resetTimer();
 
-        if (SceneManager.GetActiveScene().buildIndex == 2)
-        {
-            circle.position = new Vector2(38.17f, 11.64f);
-            square.position = new Vector2(36.83f, 5.1f);
-            GameObject.FindGameObjectWithTag("invisible_moving_platform").SetActive(false);
+        // if (SceneManager.GetActiveScene().buildIndex == 2)
+        // {
+            //circle.position = new Vector2(38.17f, 11.64f);
+            // square.position = new Vector2(36.83f, 5.1f);
+            //GameObject.FindGameObjectWithTag("invisible_moving_platform").SetActive(false);
             // invisible_platform_mov
 
-        }
+        // }
 
 
 
     }
 
-
-    // private void textbox_disabler()
-    // {
-    //     TextBox1.enabled = false;
-    //     TextBox2.enabled = false;
-    //     TextBox3.enabled = false;
-    // }
-
-
-
-    // private void textbox_disabler(){
-    //     TextBox1.enabled = false;
-    //     TextBox2.enabled = false;
-    //     TextBox3.enabled = false;
-    // }
 
     private void death_option()
     {
@@ -1100,8 +1096,13 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
 
     // }
 
-    public void PlayerDied(string session, string attempts, string saw, string spike, string enemy, string spear, string explosives, string crusher, string time_to_complete_level, string falling, string death_by_puzzle, string level, string spring_used, string button_used, string ladder_used, string jetpack_used, string rope_used, string teleport_used, string red_safe_standing_time, string blue_safe_standing_time, string red_unsafe_standing_time, string blue_unsafe_standing_time, string jetpack_used_cnt_success,
-     string rope_used_cnt_success, string spring_used_cnt_success, string teleport_used_cnt_success, string number_of_attempts_left, string death_location_of_player, string is_timeout, string is_level_completed, string player_path)
+    public void PlayerDied(string session, string attempts, string saw, string spike, string enemy, string spear, 
+    string explosives, string crusher, string time_to_complete_level, string falling, string death_by_puzzle, 
+    string level, string spring_used, string button_used, string ladder_used, string jetpack_used, string rope_used, 
+    string teleport_used, string red_safe_standing_time, string blue_safe_standing_time, string red_unsafe_standing_time,
+    string blue_unsafe_standing_time, string jetpack_used_cnt_success, string rope_used_cnt_success, 
+    string spring_used_cnt_success, string teleport_used_cnt_success, string number_of_attempts_left, 
+    string death_location_of_player, string is_timeout, string is_level_completed, string player_path)
 
     {
         _sessionID = session;
@@ -1183,17 +1184,23 @@ d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.
         form.AddField("entry.1094196752", _is_timeout);
 
         form.AddField("entry.1492178500", _is_level_completed);
-
+        Time.timeScale = 0f;
         UnityWebRequest www = UnityWebRequest.Post(URL, form);
         yield return www.SendWebRequest();
 
         if (www.isNetworkError || www.isHttpError)
         {
             Debug.Log(www.error);
+            d.ResetDeath();
+            Time.timeScale = 1f;
+            LoadNextLevel();
         }
         else
         {
             Debug.Log("Data sent successfully");
+            d.ResetDeath();
+            Time.timeScale = 1f;
+            LoadNextLevel();
         }
     }
 

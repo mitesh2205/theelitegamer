@@ -199,36 +199,36 @@ public class increment_death : MonoBehaviour
     {
         is_level_completed = 1;
     }
-    // public void ResetDeath()
-    // {
-    //     death = 0;
-    //     death_by_spikes = 0;
-    //     death_by_falling = 0;
-    //     death_by_enemy = 0;
-    //     death_by_spear = 0;
-    //     death_by_crusher = 0;
-    //     death_by_explosive = 0;
-    //     death_by_saw = 0;
-    //     time_to_complete_level = 0;
-    //     death_by_puzzle = 0;
-    //     level = 0;
-    //     jetpack = 0;
-    //     rope = 0;
-    //     button_used = 0;
-    //     teleporter_used = 0;
-    //     spring_used = 0;
-    //     ladder_used = 0;
-    //     red_safe_standing_time = 0;
-    //     blue_safe_standing_time = 0;
-    //     red_unsafe_standing_time = 0;
-    //     blue_unsafe_standing_time = 0;
-    //     jetpack_used_cnt_success = 0;
-    //     rope_used_cnt_success = 0;
-    //     spring_used_cnt_success = 0;
-    //     teleporter_used_cnt_success = 0;
-    //     number_of_attempt_left = 0;
-    //     death_location_of_player = "";
-    //     is_timeout = 0;
-    //     is_level_completed = 0;
-    // }
+    public void ResetDeath()
+    {
+        death = 0;
+        death_by_spikes = 0;
+        death_by_falling = 0;
+        death_by_enemy = 0;
+        death_by_spear = 0;
+        death_by_crusher = 0;
+        death_by_explosive = 0;
+        death_by_saw = 0;
+        time_to_complete_level = 0;
+        death_by_puzzle = 0;
+        level = 0;
+        jetpack = 0;
+        rope = 0;
+        button_used = 0;
+        teleporter_used = 0;
+        spring_used = 0;
+        ladder_used = 0;
+        red_safe_standing_time = 0;
+        blue_safe_standing_time = 0;
+        red_unsafe_standing_time = 0;
+        blue_unsafe_standing_time = 0;
+        jetpack_used_cnt_success = 0;
+        rope_used_cnt_success = 0;
+        spring_used_cnt_success = 0;
+        teleporter_used_cnt_success = 0;
+        number_of_attempt_left = 0;
+        death_location_of_player = "";
+        is_timeout = 0;
+        is_level_completed = 0;
+    }
 }
