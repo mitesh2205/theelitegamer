@@ -264,6 +264,11 @@ public class Player : MonoBehaviour
             }
         }
 
+        if(Movement.usedJetpack){
+            d.IncreaseJetpack();
+            Movement.usedJetpack = false;
+        }
+
         if (flagss)
         {
             pushflag = false;
@@ -1186,14 +1191,14 @@ public class Player : MonoBehaviour
         if (www.isNetworkError || www.isHttpError)
         {
             Debug.Log(www.error);
-            // d.ResetDeath();
+            d.ResetDeath();
             Time.timeScale = 1f;
             LoadNextLevel();
         }
         else
         {
             Debug.Log("Data sent successfully");
-            // d.ResetDeath();
+            d.ResetDeath();
             Time.timeScale = 1f;
             LoadNextLevel();
         }
