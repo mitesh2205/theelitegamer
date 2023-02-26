@@ -29,6 +29,7 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.J) && !isJetpacking && isGrounded)
         {
+            print("j key");
             elapsedTime = 0f;
             isJetpacking = true;
         }
@@ -36,6 +37,7 @@ public class Movement : MonoBehaviour
         if (isJetpacking)
         {
             // print("fff");
+            print("is jetpacking");
             isGrounded = false;
             elapsedTime += Time.deltaTime;
             TimeLeft.ScoreValue = jetpackDuration - elapsedTime;
@@ -44,11 +46,15 @@ public class Movement : MonoBehaviour
             if (elapsedTime >= jetpackDuration)
             {
                 isJetpacking = false;
+                isGrounded = true;
+                TimeLeft.ScoreValue = 0f;
+                jetpackDuration = 0f;
             }
         }
-        else if(gameObject.CompareTag("Ground"))
+        if (gameObject.CompareTag("Ground"))
         {
-            TimeLeft.ScoreValue = 2.0f;
+            // TimeLeft.ScoreValue = 2.0f;
+            print("ground");
             isGrounded = true;
         }
     }
