@@ -114,7 +114,7 @@ public class Player : MonoBehaviour
             LevelTimerScript.timerover = false;
         }
         // colliding with any floor--------------------
-        if (Attempts_Counter.attempts == 0)
+        if (Attempts_Counter.attempts <= 0)
         {
             reset_player_position();
             death_option();
@@ -1046,6 +1046,10 @@ public class Player : MonoBehaviour
 
     }
 
+    private void Player_life_reset(){
+        Attempts_Counter.attempts = 3;
+    }
+
 
 
     // Google Form
@@ -1193,6 +1197,7 @@ public class Player : MonoBehaviour
             Debug.Log(www.error);
             d.ResetDeath();
             Time.timeScale = 1f;
+            Player_life_reset();
             LoadNextLevel();
         }
         else
@@ -1200,6 +1205,7 @@ public class Player : MonoBehaviour
             Debug.Log("Data sent successfully");
             d.ResetDeath();
             Time.timeScale = 1f;
+            Player_life_reset();
             LoadNextLevel();
         }
     }
@@ -1208,6 +1214,8 @@ public class Player : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+
 
     //  Load next level
 
