@@ -1188,7 +1188,7 @@ public class Player : MonoBehaviour
         form.AddField("entry.1094196752", _is_timeout);
 
         form.AddField("entry.1492178500", _is_level_completed);
-        Time.timeScale = 0f;
+        // Time.timeScale = 0f;
         UnityWebRequest www = UnityWebRequest.Post(URL, form);
         yield return www.SendWebRequest();
 
@@ -1196,7 +1196,7 @@ public class Player : MonoBehaviour
         {
             Debug.Log(www.error);
             d.ResetDeath();
-            Time.timeScale = 1f;
+            // Time.timeScale = 1f;
             Player_life_reset();
             LoadNextLevel();
         }
@@ -1204,7 +1204,7 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Data sent successfully");
             d.ResetDeath();
-            Time.timeScale = 1f;
+            // Time.timeScale = 1f;
             Player_life_reset();
             LoadNextLevel();
         }
