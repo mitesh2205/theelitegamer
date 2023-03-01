@@ -138,6 +138,26 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2211197661636913368, guid: 584c221d0d8709742b3e9d39297325ed, type: 3}
+      propertyPath: speed
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211197661636913368, guid: 584c221d0d8709742b3e9d39297325ed, type: 3}
+      propertyPath: max_length
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211197661636913368, guid: 584c221d0d8709742b3e9d39297325ed, type: 3}
+      propertyPath: min_length
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211197662426741587, guid: 584c221d0d8709742b3e9d39297325ed, type: 3}
+      propertyPath: speed
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211197662426741587, guid: 584c221d0d8709742b3e9d39297325ed, type: 3}
+      propertyPath: max_length
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2218859936699798846, guid: 584c221d0d8709742b3e9d39297325ed, type: 3}
       propertyPath: m_Name
       value: Level_3
