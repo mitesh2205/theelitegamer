@@ -11,9 +11,9 @@ public class Fuel_added : MonoBehaviour
         {
             Movement.jetpackDuration += 1f;
             TimeLeft.ScoreValue += 1f;
-            // Destroy(gameObject);
-            SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
-            renderer.enabled = false;
+            Destroy(gameObject);
+            // SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
+            // renderer.enabled = false;
         }
     }
 }

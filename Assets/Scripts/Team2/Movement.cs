@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour
     public static bool isJetpacking = false;   // Flag to check if the jetpack is active
     public static bool isGrounded = true;
 
+    public static bool usedJetpack = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +50,7 @@ public class Movement : MonoBehaviour
                 isGrounded = true;
                 TimeLeft.ScoreValue = 0f;
                 jetpackDuration = 0f;
+                usedJetpack = true;
             }
         }
         if (gameObject.CompareTag("Ground"))

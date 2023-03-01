@@ -33,13 +33,13 @@ public class ShrinkPlatform : MonoBehaviour
         if (flag == 1)
         {
             temp = transform.localScale;
-            temp.x -= 0.07f;
+            temp.x -= speed;
             transform.localScale = temp;
         }
         else
         {
             temp = transform.localScale;
-            temp.x += 0.07f;
+            temp.x += speed;
             transform.localScale = temp;
         }
 
