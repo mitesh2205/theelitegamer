@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4711584325058992831}
   - component: {fileID: 4711584325058992824}
   - component: {fileID: 4711584325058992825}
+  - component: {fileID: 5305148702466115146}
   - component: {fileID: 4711584325058992829}
   - component: {fileID: 7552636724191041356}
   - component: {fileID: 7633769076199140551}
@@ -129,6 +130,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &5305148702466115146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4711584325058992826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab9ccb89501cff24395e1dab653ed80e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetColor: {r: 0.03268242, g: 0, b: 1, a: 0}
 --- !u!114 &4711584325058992829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +160,10 @@ MonoBehaviour:
   play_again_panel: {fileID: 0}
   circle: {fileID: 0}
   square: {fileID: 0}
+  greensafestandingtime: 0
+  bluesafestandingtime: 0
+  greenunsafestandingtime: 0
+  blueunsafestandingtime: 0
   intiater: 0
   TextBox1: {fileID: 0}
   TextBox2: {fileID: 0}
@@ -159,6 +177,7 @@ MonoBehaviour:
   pushflag: 0
   flagss: 0
   maxstaytime: 2
+  levelTimerScript: {fileID: 0}
   URL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSfs4V6qSdWIIJw8WidhxIRurXeO2iNYbrobqBpdFobGjGESTQ/formResponse
 --- !u!114 &7552636724191041356
 MonoBehaviour:
