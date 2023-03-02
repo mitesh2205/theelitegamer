@@ -11,8 +11,10 @@ public class Player : MonoBehaviour
     private Rigidbody2D myBody;
     private SpriteRenderer sr;
     private float movementX;
-    private float moveForce = 10f;
-    private float jumpForce = 10f;
+    [SerializeField]
+    private float moveForce = 12f;
+    [SerializeField]
+    private float jumpForce = 12f;
     private Transform playerTransform;
     public Vector3 originalSize = new Vector3(1, 1, 1);
     private string GROUND_TAG = "Ground";
@@ -56,7 +58,7 @@ public class Player : MonoBehaviour
     bool ispresentonred = false;
     bool ispresentonblue = false;
     [SerializeField]
-    public float maxstaytime = 2f;
+    public float maxstaytime = 8f;
 
     public LevelTimerScript levelTimerScript;
 
@@ -66,10 +68,16 @@ public class Player : MonoBehaviour
     public static bool store_blue_state;
     public static bool store_green_state;
 
-
+    public int perfect_jumps = 0;
+    public bool was_last_green = false;
+    public bool was_last_blue = false;
 
     // Start is called before the first frame update
     increment_death d;
+    public static bool blink_blue = false;
+    public static bool blink_green = false;
+
+    public static bool die_hint = false;
     private void Awake()
     {
         myBody = GetComponent<Rigidbody2D>();
@@ -96,10 +104,13 @@ public class Player : MonoBehaviour
         // print("gravity");
         // circle = transform.Find("rolling_circle");
 
+
     }
+
     void decrease_attempts()
     {
         Attempts_Counter.attempts--;
+        die_hint = true;
         d.IncreaseDeathLocationOfPlayer(playerTransform.position.x, playerTransform.position.y);
     }
 
@@ -107,12 +118,41 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        // if (!die_hint)
+        // {
+        //     reset_player_color_to_white();
+        // }
+        if (perfect_jumps >= 3)
+        {
+            perfect_jumps = 0;
+            GameObject[] red_blocks = GameObject.FindGameObjectsWithTag("Red_block");
+            foreach (GameObject red_block in red_blocks)
+            {
+                red_block.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+            GameObject[] blue_blocks = GameObject.FindGameObjectsWithTag("Blue_block");
+            foreach (GameObject blue_block in blue_blocks)
+            {
+                blue_block.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+            safemode = true;
+            Timer.danger_time = false;
+            store_blue_state = Timer.blue_safe;
+            store_green_state = Timer.green_safe;
+        }
         if (safemode)
         {
+
             safetimer += Time.deltaTime;
-            if (safetimer >= 5f)
+            if (safetimer >= 6f && safetimer < 10f)
             {
+                blink_blue = true;
+                blink_green = true;
+            }
+            if (safetimer >= 10f)
+            {
+                blink_blue = false;
+                blink_green = false;
                 safetimer = 0f;
                 safemode = false;
 
@@ -152,7 +192,9 @@ public class Player : MonoBehaviour
 
         if (isColliding && timeElapsed >= maxstaytime && ispresentonblue && !Timer.IsBlueFloorSafe())
         {
-            // Debug.Log("Player is colling more than 2 sec");
+            Debug.Log("Player is colling more than 2 sec");
+            Debug.Log("time elap: " + timeElapsed);
+            Debug.Log("max stay time: " + maxstaytime);
             timeElapsed = 0f;
             // d.IncreaseDeath();
             isColliding = false;
@@ -383,6 +425,11 @@ public class Player : MonoBehaviour
 
     }
 
+    void reset_player_color_to_white()
+    {
+        Debug.Log("reset_player_color_to_white");
+        sr.GetComponent<SpriteRenderer>().color = Color.white;
+    }
     void PlayerMoveKeyboard()
     {
         movementX = Input.GetAxisRaw("Horizontal");
@@ -403,7 +450,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Blue_block") && !Timer.IsBlueFloorSafe())
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
             // print("IsBlueFloorSafe ---- Stay");
             isColliding = true;
@@ -412,7 +459,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Blue_block") && Timer.IsBlueFloorSafe())
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
             // print("IsBlueFloorSafe safe ----");
             isColliding = true;
@@ -422,7 +469,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Red_block") && !Timer.IsGreenFloorSafe())
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
             // print("IsGreenFloorSafe ---- Stay");
             isColliding = true;
@@ -431,7 +478,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Red_block") && Timer.IsGreenFloorSafe())
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
             // print("IsGreenFloorSafe safe ----");
             isColliding = true;
@@ -445,7 +492,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Blue_block") && !Timer.IsBlueFloorSafe())
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
             // print("IsBlueFloorSafe ---- Exit");
             isColliding = false;
@@ -457,7 +504,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Blue_block") && Timer.IsBlueFloorSafe())
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
             // print("IsBlueFloorSafe ---- Exit");
             isColliding = false;
@@ -469,7 +516,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Red_block") && !Timer.IsGreenFloorSafe())
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
             // print("IsGreenFloorSafe ---- Exit");
             isColliding = false;
@@ -479,7 +526,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Red_block") && Timer.IsGreenFloorSafe())
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
             // print("IsGreenFloorSafe ---- Exit");
             isColliding = false;
@@ -495,10 +542,19 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Blue_block") && Timer.IsBlueFloorSafe())
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
             // print("IsBlueFloorSafe");
             ispresentonblue = true;
+            if (!was_last_blue && Timer.danger_time)
+            {
+                perfect_jumps++;
+                was_last_blue = true;
+                was_last_green = false;
+                Debug.Log("perfect jumps: " + perfect_jumps);
+            }
+
+
             timeElapsed = 0f;
 
         }
@@ -506,10 +562,11 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Blue_block") && !Timer.IsBlueFloorSafe())
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
             // print("IsBlueNotSafe");
             ispresentonblue = true;
+            perfect_jumps = 0;
             // d.IncreaseDeath();
             // d.IncreaseDeathByFalling();
             decrease_attempts();
@@ -522,10 +579,17 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Red_block") && Timer.IsGreenFloorSafe())
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             ispresentonred = true;
             transform.localScale = originalSize;
             // print("IsGreenFloorSafe");
+            if (!was_last_green && Timer.danger_time)
+            {
+                perfect_jumps++;
+                was_last_green = true;
+                was_last_blue = false;
+                Debug.Log("perfect jumps: " + perfect_jumps);
+            }
             timeElapsed = 0f;
 
         }
@@ -533,10 +597,11 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Red_block") && !Timer.IsGreenFloorSafe())
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
             // print("IsGreenNotSafe");
             ispresentonred = true;
+            perfect_jumps = 0;
             // d.IncreaseDeath();
             // d.IncreaseDeathByFalling();
             decrease_attempts();
@@ -550,7 +615,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag(GROUND_TAG))
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
         }
 
@@ -558,19 +623,19 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("falling1"))
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
         }
         if (collision.gameObject.CompareTag("falling2"))
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
         }
         if (collision.gameObject.CompareTag("falling3"))
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
         }
 
@@ -604,7 +669,7 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Pool"))
         {
-            moveForce = 5f;
+            // moveForce = 5f;
         }
         if (collision.gameObject.CompareTag("Enemy"))
         {
