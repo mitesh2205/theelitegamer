@@ -11,14 +11,16 @@ public class Player : MonoBehaviour
     private Rigidbody2D myBody;
     private SpriteRenderer sr;
     private float movementX;
-    private float moveForce = 10f;
-    private float jumpForce = 10f;
+    [SerializeField]
+    private float moveForce = 12f;
+    [SerializeField]
+    private float jumpForce = 12f;
     private Transform playerTransform;
     public Vector3 originalSize = new Vector3(1, 1, 1);
     private string GROUND_TAG = "Ground";
     private bool isGrounded = true;
     public int time_start;
-    
+
     // private bool ispath_recorded;
 
     public GameObject play_again_panel;
@@ -56,16 +58,26 @@ public class Player : MonoBehaviour
     bool ispresentonred = false;
     bool ispresentonblue = false;
     [SerializeField]
-    public float maxstaytime = 2f;
+    public float maxstaytime = 8f;
 
     public LevelTimerScript levelTimerScript;
 
     // hash set
+    float safetimer = 0f;
+    bool safemode = false;
+    public static bool store_blue_state;
+    public static bool store_green_state;
 
-
+    public int perfect_jumps = 0;
+    public bool was_last_green = false;
+    public bool was_last_blue = false;
 
     // Start is called before the first frame update
     increment_death d;
+    public static bool blink_blue = false;
+    public static bool blink_green = false;
+
+    public static bool die_hint = false;
     private void Awake()
     {
         myBody = GetComponent<Rigidbody2D>();
@@ -98,6 +110,7 @@ public class Player : MonoBehaviour
     void decrease_attempts()
     {
         Attempts_Counter.attempts--;
+        die_hint = true;
         d.IncreaseDeathLocationOfPlayer(playerTransform.position.x, playerTransform.position.y);
     }
 
@@ -105,6 +118,62 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // if (!die_hint)
+        // {
+        //     reset_player_color_to_white();
+        // }
+        if (perfect_jumps >= 3)
+        {
+            perfect_jumps = 0;
+            GameObject[] red_blocks = GameObject.FindGameObjectsWithTag("Red_block");
+            foreach (GameObject red_block in red_blocks)
+            {
+                red_block.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+            GameObject[] blue_blocks = GameObject.FindGameObjectsWithTag("Blue_block");
+            foreach (GameObject blue_block in blue_blocks)
+            {
+                blue_block.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+            safemode = true;
+            Timer.danger_time = false;
+            store_blue_state = Timer.blue_safe;
+            store_green_state = Timer.green_safe;
+        }
+        if (safemode)
+        {
+
+            safetimer += Time.deltaTime;
+            if (safetimer >= 6f && safetimer < 10f)
+            {
+                blink_blue = true;
+                blink_green = true;
+            }
+            if (safetimer >= 10f)
+            {
+                blink_blue = false;
+                blink_green = false;
+                safetimer = 0f;
+                safemode = false;
+
+                // set back the color of the red blocks and blue blocks to normal
+                GameObject[] redblocks = GameObject.FindGameObjectsWithTag("Red_block");
+                foreach (GameObject redblock in redblocks)
+                {
+                    redblock.GetComponent<SpriteRenderer>().color = Color.green;
+                }
+                GameObject[] blue_blocks = GameObject.FindGameObjectsWithTag("Blue_block");
+                foreach (GameObject blue_block in blue_blocks)
+                {
+                    blue_block.GetComponent<SpriteRenderer>().color = Color.blue;
+                }
+                Timer.danger_time = true;
+                Timer.blue_safe = store_blue_state;
+                Timer.green_safe = store_green_state;
+            }
+        }
+
+
         // myBody.gravityScale = -2;
         if (LevelTimerScript.timerover == true)
         {
@@ -123,7 +192,9 @@ public class Player : MonoBehaviour
 
         if (isColliding && timeElapsed >= maxstaytime && ispresentonblue && !Timer.IsBlueFloorSafe())
         {
-            // Debug.Log("Player is colling more than 2 sec");
+            Debug.Log("Player is colling more than 2 sec");
+            Debug.Log("time elap: " + timeElapsed);
+            Debug.Log("max stay time: " + maxstaytime);
             timeElapsed = 0f;
             // d.IncreaseDeath();
             isColliding = false;
@@ -264,7 +335,8 @@ public class Player : MonoBehaviour
             }
         }
 
-        if(Movement.usedJetpack){
+        if (Movement.usedJetpack)
+        {
             d.IncreaseJetpack();
             Movement.usedJetpack = false;
         }
@@ -330,16 +402,16 @@ public class Player : MonoBehaviour
             d.IncreseTimeRedStandingUnsafe((int)greenunsafestandingtime);
             d.IncreseTimeBlueStandingUnsafe((int)blueunsafestandingtime);
 
-            PlayerDied(System.DateTime.Now.Ticks.ToString(), d.death.ToString(), d.death_by_saw.ToString(), 
-            d.death_by_spikes.ToString(), d.death_by_enemy.ToString(), d.death_by_spear.ToString(), 
+            PlayerDied(System.DateTime.Now.Ticks.ToString(), d.death.ToString(), d.death_by_saw.ToString(),
+            d.death_by_spikes.ToString(), d.death_by_enemy.ToString(), d.death_by_spear.ToString(),
             d.death_by_explosive.ToString(), d.death_by_crusher.ToString(), d.time_to_complete_level.ToString(),
             d.death_by_falling.ToString(), d.death_by_puzzle.ToString(), SceneManager.GetActiveScene().buildIndex.ToString(),
-            d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.jetpack.ToString(), 
-            d.rope.ToString(), d.teleporter_used.ToString(), Math.Round(greensafestandingtime, 0).ToString(), 
-            Math.Round(bluesafestandingtime, 0).ToString(), Math.Round(greenunsafestandingtime, 0).ToString(), 
-            Math.Round(blueunsafestandingtime, 0).ToString(), d.jetpack_used_cnt_success.ToString(), 
-            d.rope_used_cnt_success.ToString(), d.spring_used_cnt_success.ToString(), d.teleporter_used_cnt_success.ToString(), 
-            Attempts_Counter.attempts.ToString(), d.death_location_of_player, d.is_timeout.ToString(), d.is_level_completed.ToString(),d.player_path);
+            d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.jetpack.ToString(),
+            d.rope.ToString(), d.teleporter_used.ToString(), Math.Round(greensafestandingtime, 0).ToString(),
+            Math.Round(bluesafestandingtime, 0).ToString(), Math.Round(greenunsafestandingtime, 0).ToString(),
+            Math.Round(blueunsafestandingtime, 0).ToString(), d.jetpack_used_cnt_success.ToString(),
+            d.rope_used_cnt_success.ToString(), d.spring_used_cnt_success.ToString(), d.teleporter_used_cnt_success.ToString(),
+            Attempts_Counter.attempts.ToString(), d.death_location_of_player, d.is_timeout.ToString(), d.is_level_completed.ToString(), d.player_path);
             // play_again_panel.SetActive(true
         }
         else
@@ -353,6 +425,11 @@ public class Player : MonoBehaviour
 
     }
 
+    void reset_player_color_to_white()
+    {
+        Debug.Log("reset_player_color_to_white");
+        sr.GetComponent<SpriteRenderer>().color = Color.white;
+    }
     void PlayerMoveKeyboard()
     {
         movementX = Input.GetAxisRaw("Horizontal");
@@ -373,7 +450,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Blue_block") && !Timer.IsBlueFloorSafe())
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
             // print("IsBlueFloorSafe ---- Stay");
             isColliding = true;
@@ -382,7 +459,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Blue_block") && Timer.IsBlueFloorSafe())
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
             // print("IsBlueFloorSafe safe ----");
             isColliding = true;
@@ -392,7 +469,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Red_block") && !Timer.IsGreenFloorSafe())
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
             // print("IsGreenFloorSafe ---- Stay");
             isColliding = true;
@@ -401,7 +478,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Red_block") && Timer.IsGreenFloorSafe())
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
             // print("IsGreenFloorSafe safe ----");
             isColliding = true;
@@ -415,7 +492,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Blue_block") && !Timer.IsBlueFloorSafe())
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
             // print("IsBlueFloorSafe ---- Exit");
             isColliding = false;
@@ -427,7 +504,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Blue_block") && Timer.IsBlueFloorSafe())
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
             // print("IsBlueFloorSafe ---- Exit");
             isColliding = false;
@@ -439,7 +516,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Red_block") && !Timer.IsGreenFloorSafe())
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
             // print("IsGreenFloorSafe ---- Exit");
             isColliding = false;
@@ -449,7 +526,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Red_block") && Timer.IsGreenFloorSafe())
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
             // print("IsGreenFloorSafe ---- Exit");
             isColliding = false;
@@ -465,10 +542,19 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Blue_block") && Timer.IsBlueFloorSafe())
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
             // print("IsBlueFloorSafe");
             ispresentonblue = true;
+            if (!was_last_blue && Timer.danger_time)
+            {
+                perfect_jumps++;
+                was_last_blue = true;
+                was_last_green = false;
+                Debug.Log("perfect jumps: " + perfect_jumps);
+            }
+
+
             timeElapsed = 0f;
 
         }
@@ -476,10 +562,11 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Blue_block") && !Timer.IsBlueFloorSafe())
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
             // print("IsBlueNotSafe");
             ispresentonblue = true;
+            perfect_jumps = 0;
             // d.IncreaseDeath();
             // d.IncreaseDeathByFalling();
             decrease_attempts();
@@ -492,10 +579,17 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Red_block") && Timer.IsGreenFloorSafe())
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             ispresentonred = true;
             transform.localScale = originalSize;
             // print("IsGreenFloorSafe");
+            if (!was_last_green && Timer.danger_time)
+            {
+                perfect_jumps++;
+                was_last_green = true;
+                was_last_blue = false;
+                Debug.Log("perfect jumps: " + perfect_jumps);
+            }
             timeElapsed = 0f;
 
         }
@@ -503,10 +597,11 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Red_block") && !Timer.IsGreenFloorSafe())
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
             // print("IsGreenNotSafe");
             ispresentonred = true;
+            perfect_jumps = 0;
             // d.IncreaseDeath();
             // d.IncreaseDeathByFalling();
             decrease_attempts();
@@ -520,7 +615,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag(GROUND_TAG))
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
         }
 
@@ -528,19 +623,19 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("falling1"))
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
         }
         if (collision.gameObject.CompareTag("falling2"))
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
         }
         if (collision.gameObject.CompareTag("falling3"))
         {
             isGrounded = true;
-            moveForce = 10f;
+            // moveForce = 10f;
             transform.localScale = originalSize;
         }
 
@@ -574,7 +669,7 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Pool"))
         {
-            moveForce = 5f;
+            // moveForce = 5f;
         }
         if (collision.gameObject.CompareTag("Enemy"))
         {
@@ -652,16 +747,35 @@ public class Player : MonoBehaviour
         //         health.GetComponent<SpriteRenderer>().enabled = true;
         //     }
         // }
+        if (collision.gameObject.CompareTag("freez"))
+        {
+            // get the sprite renderer of red and blue blocks and set the color to white 
+            //after 5 seconds set the color to red and blue again
+            GameObject[] red_blocks = GameObject.FindGameObjectsWithTag("Red_block");
+            foreach (GameObject red_block in red_blocks)
+            {
+                red_block.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+            GameObject[] blue_blocks = GameObject.FindGameObjectsWithTag("Blue_block");
+            foreach (GameObject blue_block in blue_blocks)
+            {
+                blue_block.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+            safemode = true;
+            Timer.danger_time = false;
+            store_blue_state = Timer.blue_safe;
+            store_green_state = Timer.green_safe;
 
+        }
         if (collision.gameObject.CompareTag("players_path"))
         {
             // declare a 2d array and store the x and y coordinates of the player
             // then store the coordinates in the array
-                d.players_path(transform.position.x, transform.position.y);
-                
-                // Debug.Log(coordinates_list.Count);
-                // Debug.Log("x: " + coordinates.x + " y: " + coordinates.y);
-                // ispath_recorded = true;
+            d.players_path(transform.position.x, transform.position.y);
+
+            // Debug.Log(coordinates_list.Count);
+            // Debug.Log("x: " + coordinates.x + " y: " + coordinates.y);
+            // ispath_recorded = true;
         }
         if (collision.gameObject.CompareTag("Success_spring"))
         {
@@ -709,7 +823,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Gate1"))
         {
             // below is the code to move the player to the next x,y position. set the x,y to the position you want the player to move to.
-            playerTransform.position = new Vector2(60f, 17f);
+            playerTransform.position = new Vector2(47.3f, 0.9f);
             d.IncreaseTeleporterUsed();
         }
         // if (collision.gameObject.CompareTag("Gate1"))
@@ -723,7 +837,15 @@ public class Player : MonoBehaviour
             // below is the code to move the player to the next x,y position. set the x,y to the position you want the player to move to.
 
 
-            playerTransform.position = new Vector2(41f, -5.619558f);
+            playerTransform.position = new Vector2(40.2f, -15.6f);
+
+        }
+        if (collision.gameObject.CompareTag("Gate3"))
+        {
+            // below is the code to move the player to the next x,y position. set the x,y to the position you want the player to move to.
+
+
+            playerTransform.position = new Vector2(133.3f, -15.6f);
 
         }
         if (collision.gameObject.CompareTag("Points"))
@@ -985,17 +1107,17 @@ public class Player : MonoBehaviour
             Debug.Log(greenunsafestandingtime);
             Debug.Log(bluesafestandingtime);
             Debug.Log(blueunsafestandingtime);
-           
-            PlayerDied(System.DateTime.Now.Ticks.ToString(), d.death.ToString(), d.death_by_saw.ToString(), d.death_by_spikes.ToString(), 
+
+            PlayerDied(System.DateTime.Now.Ticks.ToString(), d.death.ToString(), d.death_by_saw.ToString(), d.death_by_spikes.ToString(),
             d.death_by_enemy.ToString(), d.death_by_spear.ToString(), d.death_by_explosive.ToString(), d.death_by_crusher.ToString(),
-            d.time_to_complete_level.ToString(), d.death_by_falling.ToString(), d.death_by_puzzle.ToString(), 
-            SceneManager.GetActiveScene().buildIndex.ToString(),d.spring_used.ToString(), d.button_used.ToString(), 
-            d.ladder_used.ToString(), d.jetpack.ToString(), d.rope.ToString(), d.teleporter_used.ToString(), 
-            Math.Round(greensafestandingtime, 0).ToString(), Math.Round(bluesafestandingtime, 0).ToString(), 
-            Math.Round(greenunsafestandingtime, 0).ToString(), Math.Round(blueunsafestandingtime, 0).ToString(), 
+            d.time_to_complete_level.ToString(), d.death_by_falling.ToString(), d.death_by_puzzle.ToString(),
+            SceneManager.GetActiveScene().buildIndex.ToString(), d.spring_used.ToString(), d.button_used.ToString(),
+            d.ladder_used.ToString(), d.jetpack.ToString(), d.rope.ToString(), d.teleporter_used.ToString(),
+            Math.Round(greensafestandingtime, 0).ToString(), Math.Round(bluesafestandingtime, 0).ToString(),
+            Math.Round(greenunsafestandingtime, 0).ToString(), Math.Round(blueunsafestandingtime, 0).ToString(),
             d.jetpack_used_cnt_success.ToString(), d.rope_used_cnt_success.ToString(), d.spring_used_cnt_success.ToString(),
-            d.teleporter_used_cnt_success.ToString(), Attempts_Counter.attempts.ToString(), d.death_location_of_player, 
-            d.is_timeout.ToString(), d.is_level_completed.ToString(),d.player_path);
+            d.teleporter_used_cnt_success.ToString(), Attempts_Counter.attempts.ToString(), d.death_location_of_player,
+            d.is_timeout.ToString(), d.is_level_completed.ToString(), d.player_path);
 
             // Debug.Log("Completed");
 
@@ -1024,10 +1146,10 @@ public class Player : MonoBehaviour
 
         // if (SceneManager.GetActiveScene().buildIndex == 2)
         // {
-            //circle.position = new Vector2(38.17f, 11.64f);
-            // square.position = new Vector2(36.83f, 5.1f);
-            //GameObject.FindGameObjectWithTag("invisible_moving_platform").SetActive(false);
-            // invisible_platform_mov
+        //circle.position = new Vector2(38.17f, 11.64f);
+        // square.position = new Vector2(36.83f, 5.1f);
+        //GameObject.FindGameObjectWithTag("invisible_moving_platform").SetActive(false);
+        // invisible_platform_mov
 
         // }
 
@@ -1046,7 +1168,8 @@ public class Player : MonoBehaviour
 
     }
 
-    private void Player_life_reset(){
+    private void Player_life_reset()
+    {
         Attempts_Counter.attempts = 3;
     }
 
@@ -1100,12 +1223,12 @@ public class Player : MonoBehaviour
 
     // }
 
-    public void PlayerDied(string session, string attempts, string saw, string spike, string enemy, string spear, 
-    string explosives, string crusher, string time_to_complete_level, string falling, string death_by_puzzle, 
-    string level, string spring_used, string button_used, string ladder_used, string jetpack_used, string rope_used, 
+    public void PlayerDied(string session, string attempts, string saw, string spike, string enemy, string spear,
+    string explosives, string crusher, string time_to_complete_level, string falling, string death_by_puzzle,
+    string level, string spring_used, string button_used, string ladder_used, string jetpack_used, string rope_used,
     string teleport_used, string red_safe_standing_time, string blue_safe_standing_time, string red_unsafe_standing_time,
-    string blue_unsafe_standing_time, string jetpack_used_cnt_success, string rope_used_cnt_success, 
-    string spring_used_cnt_success, string teleport_used_cnt_success, string number_of_attempts_left, 
+    string blue_unsafe_standing_time, string jetpack_used_cnt_success, string rope_used_cnt_success,
+    string spring_used_cnt_success, string teleport_used_cnt_success, string number_of_attempts_left,
     string death_location_of_player, string is_timeout, string is_level_completed, string player_path)
 
     {
