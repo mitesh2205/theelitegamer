@@ -6,7 +6,7 @@ public class ShrinkPlatform : MonoBehaviour
 {
 
 
-    public float speed = 5f;
+    public float speed = 1f;
     public int flag = 1;
     Vector3 temp;
     public float min_length = 1f;
