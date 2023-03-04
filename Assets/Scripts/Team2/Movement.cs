@@ -11,6 +11,8 @@ public class Movement : MonoBehaviour
     public static bool isJetpacking = false;   // Flag to check if the jetpack is active
     public static bool isGrounded = true;
 
+    // public static bool enter_jetpack = true;
+    public static bool push_force = true;
     public static bool usedJetpack = false;
     // Start is called before the first frame update
     void Start()
@@ -37,21 +39,32 @@ public class Movement : MonoBehaviour
 
         if (isJetpacking)
         {
-            // print("fff");
-            print("is jetpacking");
+            print("is jetpacking" + isJetpacking);
             isGrounded = false;
             elapsedTime += Time.deltaTime;
             TimeLeft.ScoreValue = jetpackDuration - elapsedTime;
-            rigidbody.velocity = Vector2.up * jetpackForce;
-
-            if (elapsedTime >= jetpackDuration)
+            if (elapsedTime > (jetpackDuration))
             {
+                print("elapsedTime:" + elapsedTime);
+                print("jetpackDuration:" + jetpackDuration);
                 isJetpacking = false;
                 isGrounded = true;
                 TimeLeft.ScoreValue = 0f;
                 jetpackDuration = 0f;
                 usedJetpack = true;
+                push_force = false;
             }
+            // print("fff");
+            if (push_force)
+            {
+                print("push_force");
+                rigidbody.velocity = Vector2.up * jetpackForce;
+                print("TimeLeft.ScoreValue");
+            }
+            // rigidbody.velocity = Vector2.up * jetpackForce;
+            // print("TimeLeft.ScoreValue");
+
+
         }
         if (gameObject.CompareTag("Ground"))
         {

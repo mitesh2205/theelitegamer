@@ -10,6 +10,8 @@ public class Fuel_added : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Movement.jetpackDuration += 1f;
+            // Movement.enter_jetpack = true;
+            Movement.push_force = true;
             TimeLeft.ScoreValue += 1f;
             Destroy(gameObject);
             // SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
