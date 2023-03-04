@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1184872230015122242
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1184872230015122244}
+  - component: {fileID: 1184872230015122243}
+  m_Layer: 0
+  m_Name: deathManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1184872230015122244
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184872230015122242}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 47.147274, y: -6.1471767, z: 0.12701261}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1184872230015122243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184872230015122242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57e98c7a3957b244396c7384337f9a90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  red_safe_standing_time: 0
+  blue_safe_standing_time: 0
+  red_unsafe_standing_time: 0
+  blue_unsafe_standing_time: 0
+  death: 0
+  death_by_spikes: 0
+  death_by_falling: 0
+  death_by_enemy: 0
+  death_by_spear: 0
+  death_by_crusher: 0
+  death_by_explosive: 0
+  death_by_saw: 0
+  time_to_complete_level: 0
+  death_by_puzzle: 0
+  level: 0
+  jetpack: 0
+  rope: 0
+  button_used: 0
+  teleporter_used: 0
+  spring_used: 0
+  ladder_used: 0
+  jetpack_used_cnt_success: 0
+  rope_used_cnt_success: 0
+  spring_used_cnt_success: 0
+  teleporter_used_cnt_success: 0
+  number_of_attempt_left: 0
+  death_location_of_player: 
+  is_timeout: 0
+  is_level_completed: 0
