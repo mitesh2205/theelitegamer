@@ -130,11 +130,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 184113308187952546, guid: 128a5d9d6d4ea664fae57c58816136b7, type: 3}
+      propertyPath: startTimeTillSpawn
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 184113308245984766, guid: 128a5d9d6d4ea664fae57c58816136b7, type: 3}
+      propertyPath: startTimeTillSpawn
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 184113309038636320, guid: 128a5d9d6d4ea664fae57c58816136b7, type: 3}
       propertyPath: m_SortingLayer
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 184113309038636320, guid: 128a5d9d6d4ea664fae57c58816136b7, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -189125043
+      objectReference: {fileID: 0}
+    - target: {fileID: 739391316721282925, guid: 128a5d9d6d4ea664fae57c58816136b7, type: 3}
+      propertyPath: m_SortingLayer
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 739391316721282925, guid: 128a5d9d6d4ea664fae57c58816136b7, type: 3}
       propertyPath: m_SortingLayerID
       value: -189125043
       objectReference: {fileID: 0}
