@@ -5,8 +5,8 @@ using UnityEngine;
 public class playerFlash : MonoBehaviour
 {
     // Start is called before the first frame update
-    float duration = 4f; // Total duration of flashing effect
-    float frequency = 0.7f;
+    float duration = 2f; // Total duration of flashing effect
+    float frequency = 50f;
     private SpriteRenderer spriteRenderer;
     Color blueColor = new Color();
     void Start()
@@ -42,7 +42,6 @@ public class playerFlash : MonoBehaviour
             {
                 // spriteRenderer.color = Color.white;
                 if(Timer.blue_safe){
-                    ColorUtility.TryParseHtmlString("#0088F3", out blueColor);
                     spriteRenderer.color = blueColor;
                 }
                 else{
@@ -52,7 +51,7 @@ public class playerFlash : MonoBehaviour
             }
             // spriteRenderer.enabled = visible;
             // visible = !visible;
-            elapsed += frequency * 2;
+            elapsed += frequency * Time.deltaTime;
             yield return new WaitForSeconds(0.01f);
         }
         if(Timer.blue_safe){
