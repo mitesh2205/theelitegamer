@@ -28,6 +28,12 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
+        if(Player.reset_level_timer){
+            timeleft = 0f;
+            Player.reset_level_timer = false;
+            danger_time = true;
+            resetCounter = true;
+        }
         if (danger_time)
         {
 
