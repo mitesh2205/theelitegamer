@@ -9136,7 +9136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a5f6fddd6ae8a64583e1d11f9e04b6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTimeTillSpawn: 1
+  startTimeTillSpawn: 5
   laser: {fileID: 6329617948747804838, guid: a6f061379f00cf74cab62ac99f7f33e3, type: 3}
   whereToSpawn: {fileID: 4869457794490437016}
 --- !u!1 &5404465948724610462
@@ -11044,7 +11044,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0.09803922, b: 0.2784314, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
