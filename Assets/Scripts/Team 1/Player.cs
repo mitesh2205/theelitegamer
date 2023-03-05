@@ -873,35 +873,38 @@ public class Player : MonoBehaviour
 
             print("flagss");
         }
+        try{
+            if (collision.gameObject.CompareTag("Gate1"))
+            {
+                // below is the code to move the player to the next x,y position. set the x,y to the position you want the player to move to.
+                playerTransform.position = new Vector2(47.3f, 0.9f);
+                d.IncreaseTeleporterUsed();
+            }
+            // if (collision.gameObject.CompareTag("Gate1"))
+            // {
+            //     // below is the code to move the player to the next x,y position. set the x,y to the position you want the player to move to.
+            //     playerTransform.position = new Vector2(60f, -2.6f);
 
-        if (collision.gameObject.CompareTag("Gate1"))
-        {
-            // below is the code to move the player to the next x,y position. set the x,y to the position you want the player to move to.
-            playerTransform.position = new Vector2(47.3f, 0.9f);
-            d.IncreaseTeleporterUsed();
+            // }
+            if (collision.gameObject.CompareTag("Gate2"))
+            {
+                // below is the code to move the player to the next x,y position. set the x,y to the position you want the player to move to.
+
+                d.IncreaseTeleporterUsed();
+                playerTransform.position = new Vector2(40.2f, -15.6f);
+
+            }
+            if (collision.gameObject.CompareTag("Gate3"))
+            {
+                // below is the code to move the player to the next x,y position. set the x,y to the position you want the player to move to.
+                playerTransform.position = new Vector2(133.3f, -15.6f);
+                d.IncreaseTeleporterUsed();
+            }
         }
-        // if (collision.gameObject.CompareTag("Gate1"))
-        // {
-        //     // below is the code to move the player to the next x,y position. set the x,y to the position you want the player to move to.
-        //     playerTransform.position = new Vector2(60f, -2.6f);
-
-        // }
-        if (collision.gameObject.CompareTag("Gate2"))
-        {
-            // below is the code to move the player to the next x,y position. set the x,y to the position you want the player to move to.
-
-
-            playerTransform.position = new Vector2(40.2f, -15.6f);
-
+        catch(Exception e){
+            print(e);
         }
-        if (collision.gameObject.CompareTag("Gate3"))
-        {
-            // below is the code to move the player to the next x,y position. set the x,y to the position you want the player to move to.
 
-
-            playerTransform.position = new Vector2(133.3f, -15.6f);
-
-        }
         if (collision.gameObject.CompareTag("Points"))
         {
 
