@@ -319,6 +319,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: level_3_wrapper
       objectReference: {fileID: 0}
+    - target: {fileID: 7877604639082378134, guid: 6c4607dd8d0c4414bafb75011c141239, type: 3}
+      propertyPath: timer
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 7877604639568415744, guid: 6c4607dd8d0c4414bafb75011c141239, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -334,6 +338,10 @@ PrefabInstance:
     - target: {fileID: 7877604639568415744, guid: 6c4607dd8d0c4414bafb75011c141239, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877604639946725115, guid: 6c4607dd8d0c4414bafb75011c141239, type: 3}
+      propertyPath: countdownTime
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7877604640103792072, guid: 6c4607dd8d0c4414bafb75011c141239, type: 3}
       propertyPath: m_Enabled
