@@ -122,6 +122,18 @@ public class Player : MonoBehaviour
         // {
         //     reset_player_color_to_white();
         // }
+
+        // if the flag of blue safe is true in timer then change the color of player to blue else green 
+        if (Timer.IsBlueFloorSafe())
+        {
+            sr.color = Color.blue;
+        }
+        else
+        {
+            sr.color = Color.green;
+        }
+
+
         if (perfect_jumps >= 3)
         {
             perfect_jumps = 0;
