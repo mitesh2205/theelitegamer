@@ -747,26 +747,27 @@ public class Player : MonoBehaviour
         //         health.GetComponent<SpriteRenderer>().enabled = true;
         //     }
         // }
-        if (collision.gameObject.CompareTag("freez"))
-        {
-            // get the sprite renderer of red and blue blocks and set the color to white 
-            //after 5 seconds set the color to red and blue again
-            GameObject[] red_blocks = GameObject.FindGameObjectsWithTag("Red_block");
-            foreach (GameObject red_block in red_blocks)
-            {
-                red_block.GetComponent<SpriteRenderer>().color = Color.white;
-            }
-            GameObject[] blue_blocks = GameObject.FindGameObjectsWithTag("Blue_block");
-            foreach (GameObject blue_block in blue_blocks)
-            {
-                blue_block.GetComponent<SpriteRenderer>().color = Color.white;
-            }
-            safemode = true;
-            Timer.danger_time = false;
-            store_blue_state = Timer.blue_safe;
-            store_green_state = Timer.green_safe;
+        // if (collision.gameObject.CompareTag("freez"))
+        // {
+        //     // get the sprite renderer of red and blue blocks and set the color to white 
+        //     //after 5 seconds set the color to red and blue again
 
-        }
+        //     GameObject[] red_blocks = GameObject.FindGameObjectsWithTag("Red_block");
+        //     foreach (GameObject red_block in red_blocks)
+        //     {
+        //         red_block.GetComponent<SpriteRenderer>().color = Color.white;
+        //     }
+        //     GameObject[] blue_blocks = GameObject.FindGameObjectsWithTag("Blue_block");
+        //     foreach (GameObject blue_block in blue_blocks)
+        //     {
+        //         blue_block.GetComponent<SpriteRenderer>().color = Color.white;
+        //     }
+        //     safemode = true;
+        //     Timer.danger_time = false;
+        //     store_blue_state = Timer.blue_safe;
+        //     store_green_state = Timer.green_safe;
+
+        // }
         if (collision.gameObject.CompareTag("players_path"))
         {
             // declare a 2d array and store the x and y coordinates of the player
