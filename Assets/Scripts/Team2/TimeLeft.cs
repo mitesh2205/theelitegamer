@@ -19,11 +19,11 @@ public class TimeLeft : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        score.text = "(j key): " + ScoreValue;
+        score.text = "(j):" + ScoreValue.ToString("N2");
 
         if (ScoreValue <= 0)
         {
-            score.text = "(j key): 0";
+            score.text = "(j): 0";
         }
     }
 }

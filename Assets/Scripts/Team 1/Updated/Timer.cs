@@ -7,59 +7,109 @@ public class Timer : MonoBehaviour
     public Slider timerSlider;
     public Text timerText;
 
-    public static bool issafe;
+    // public static bool issafe;
 
     public float countdownTime;
     public static float timeleft;
     public static bool resetCounter = false;
     public Text countdownText;
+    public static bool blue_safe = false;
+    public static bool green_safe = true;
+    public static bool danger_time = true;
+
+
     void Start()
     {
         timerSlider.maxValue = countdownTime;
         timerSlider.value = countdownTime;
         timeleft = countdownTime;
-        issafe = false;
+        // issafe = false;
     }
 
     void Update()
     {
-        timeleft -= Time.deltaTime;
-        int minutes = Mathf.FloorToInt(timeleft / 60);
-        int seconds = Mathf.FloorToInt(timeleft - minutes * 60);
-        string texttime = string.Format("{0:00}:{1:00}", minutes, seconds);
-        countdownText.text = texttime;
-        timerSlider.value = timeleft;
-        if (timeleft <= 0)
+        if (danger_time)
         {
-            timeleft = countdownTime;
-            resetCounter = !resetCounter;
-            if (resetCounter)
+
+            timeleft -= Time.deltaTime;
+            int minutes = Mathf.FloorToInt(timeleft / 60);
+            int seconds = Mathf.FloorToInt(timeleft - minutes * 60);
+            string texttime = string.Format("{0:00}:{1:00}", minutes, seconds);
+            countdownText.text = texttime;
+            timerSlider.value = timeleft;
+            if (timeleft <= 0)
             {
-                timerSlider.maxValue = countdownTime;
-                timerSlider.value = countdownTime;
-                Image fill = timerSlider.fillRect.GetComponent<Image>();
-                fill.color = Color.blue;
-                issafe = true;
-            }
-            else
-            {
-                timerSlider.maxValue = countdownTime;
-                timerSlider.value = countdownTime;
-                Image fill = timerSlider.fillRect.GetComponent<Image>();
-                fill.color = Color.green;
-                issafe = false;
+                timeleft = countdownTime;
+                resetCounter = !resetCounter;
+                if (resetCounter)
+                {
+                    timerSlider.maxValue = countdownTime;
+                    timerSlider.value = countdownTime;
+                    Image fill = timerSlider.fillRect.GetComponent<Image>();
+                    fill.color = Color.blue;
+                    // issafe = true;
+                    blue_safe = true;
+                    green_safe = false;
+
+                }
+                else
+                {
+                    timerSlider.maxValue = countdownTime;
+                    timerSlider.value = countdownTime;
+                    Image fill = timerSlider.fillRect.GetComponent<Image>();
+                    fill.color = Color.green;
+                    // issafe = false;
+                    green_safe = true;
+                    blue_safe = false;
+
+                }
             }
         }
+        else
+        {
+
+            green_safe = true;
+            blue_safe = true;
+        }
+        // timeleft -= Time.deltaTime;
+        // int minutes = Mathf.FloorToInt(timeleft / 60);
+        // int seconds = Mathf.FloorToInt(timeleft - minutes * 60);
+        // string texttime = string.Format("{0:00}:{1:00}", minutes, seconds);
+        // countdownText.text = texttime;
+        // timerSlider.value = timeleft;
+        // if (timeleft <= 0)
+        // {
+        //     timeleft = countdownTime;
+        //     resetCounter = !resetCounter;
+        //     if (resetCounter)
+        //     {
+        //         timerSlider.maxValue = countdownTime;
+        //         timerSlider.value = countdownTime;
+        //         Image fill = timerSlider.fillRect.GetComponent<Image>();
+        //         fill.color = Color.blue;
+        //         issafe = true;
+        //     }
+        //     else
+        //     {
+        //         timerSlider.maxValue = countdownTime;
+        //         timerSlider.value = countdownTime;
+        //         Image fill = timerSlider.fillRect.GetComponent<Image>();
+        //         fill.color = Color.green;
+        //         issafe = false;
+        //     }
+        // }
 
 
     }
     public static bool IsBlueFloorSafe()
     {
-        return issafe;
+        // return issafe;
+        return blue_safe;
     }
     public static bool IsGreenFloorSafe()
     {
-        return !issafe;
+        // return !issafe;
+        return green_safe;
     }
 
 }
