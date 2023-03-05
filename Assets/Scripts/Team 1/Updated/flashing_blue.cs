@@ -9,9 +9,11 @@ public class flashing_blue : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     float duration = 4f; // Total duration of flashing effect
     float frequency = 0.2f; // How often the sprite should toggle (i.e. how quickly the flashing effect occurs)
+    Color blueColor = new Color();
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        ColorUtility.TryParseHtmlString("#0088F3", out blueColor);
 
     }
 
@@ -52,7 +54,7 @@ public class flashing_blue : MonoBehaviour
             }
             else
             {
-                spriteRenderer.color = Color.blue;
+                spriteRenderer.color = blueColor;
                 visible = !visible;
             }
             // spriteRenderer.enabled = visible;
@@ -60,7 +62,7 @@ public class flashing_blue : MonoBehaviour
             elapsed += frequency * 2;
             yield return new WaitForSeconds(0.01f);
         }
-        spriteRenderer.color = Color.blue; // Ensure sprite is visible at the end
+        spriteRenderer.color = blueColor; // Ensure sprite is visible at the end
     }
     IEnumerator FlashSprite(float duration, float frequency, SpriteRenderer spriteRenderer)
     {
@@ -76,7 +78,7 @@ public class flashing_blue : MonoBehaviour
             }
             else
             {
-                spriteRenderer.color = Color.blue;
+                spriteRenderer.color = blueColor;
                 visible = !visible;
             }
             // spriteRenderer.enabled = visible;
@@ -84,6 +86,6 @@ public class flashing_blue : MonoBehaviour
             elapsed += frequency * 2;
             yield return new WaitForSeconds(0.01f);
         }
-        spriteRenderer.color = Color.blue; // Ensure sprite is visible at the end
+        spriteRenderer.color = blueColor; // Ensure sprite is visible at the end
     }
 }

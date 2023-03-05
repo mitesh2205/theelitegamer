@@ -16,7 +16,7 @@ public class Timer : MonoBehaviour
     public static bool blue_safe = false;
     public static bool green_safe = true;
     public static bool danger_time = true;
-
+    Color blueColor = new Color();
 
     void Start()
     {
@@ -52,7 +52,9 @@ public class Timer : MonoBehaviour
                     timerSlider.maxValue = countdownTime;
                     timerSlider.value = countdownTime;
                     Image fill = timerSlider.fillRect.GetComponent<Image>();
-                    fill.color = Color.blue;
+                    // Color blue = "#0088F3".ToColor();
+                    ColorUtility.TryParseHtmlString("#0088F3", out blueColor);
+                    fill.color = blueColor;
                     // issafe = true;
                     blue_safe = true;
                     green_safe = false;

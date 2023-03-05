@@ -72,6 +72,8 @@ public class Player : MonoBehaviour
     public bool was_last_green = false;
     public bool was_last_blue = false;
 
+    Color blueColor = new Color();
+
     // Start is called before the first frame update
     increment_death d;
     public static bool blink_blue = false;
@@ -105,6 +107,7 @@ public class Player : MonoBehaviour
     }
     void Start()
     {
+        ColorUtility.TryParseHtmlString("#0088F3", out blueColor);
         playerTransform = transform;
         myBody.gravityScale = 1;
         print(myBody.gravityScale);
@@ -138,7 +141,7 @@ public class Player : MonoBehaviour
         {
             if (Timer.IsBlueFloorSafe())
             {
-                sr.color = Color.blue;
+                sr.color = blueColor;
             }
             else if (Timer.IsGreenFloorSafe())
             {
@@ -153,7 +156,7 @@ public class Player : MonoBehaviour
         // {
         //     if (Timer.IsBlueFloorSafe())
         //     {
-        //         // sr.color = Color.blue;
+        //         // sr.color = blueColor;
         //         player_set_color_blue();
         //     }
         //     else if (Timer.IsGreenFloorSafe())
@@ -207,7 +210,8 @@ public class Player : MonoBehaviour
                 GameObject[] blue_blocks = GameObject.FindGameObjectsWithTag("Blue_block");
                 foreach (GameObject blue_block in blue_blocks)
                 {
-                    blue_block.GetComponent<SpriteRenderer>().color = Color.blue;
+                    ColorUtility.TryParseHtmlString("#0088F3", out blueColor);
+                    blue_block.GetComponent<SpriteRenderer>().color = blueColor;
                 }
                 Timer.danger_time = true;
                 Timer.blue_safe = store_blue_state;
@@ -1418,7 +1422,7 @@ public class Player : MonoBehaviour
     // make player sprite blue
     public void player_set_color_blue()
     {
-        sr.color = Color.blue;
+        sr.color = blueColor;
     }
 }
 

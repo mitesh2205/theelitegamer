@@ -8,8 +8,10 @@ public class playerFlash : MonoBehaviour
     float duration = 4f; // Total duration of flashing effect
     float frequency = 0.7f;
     private SpriteRenderer spriteRenderer;
+    Color blueColor = new Color();
     void Start()
     {
+        ColorUtility.TryParseHtmlString("#0088F3", out blueColor);
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -40,7 +42,8 @@ public class playerFlash : MonoBehaviour
             {
                 // spriteRenderer.color = Color.white;
                 if(Timer.blue_safe){
-                    spriteRenderer.color = Color.blue;
+                    ColorUtility.TryParseHtmlString("#0088F3", out blueColor);
+                    spriteRenderer.color = blueColor;
                 }
                 else{
                     spriteRenderer.color = Color.green;
@@ -53,7 +56,7 @@ public class playerFlash : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         if(Timer.blue_safe){
-            spriteRenderer.color = Color.blue;
+            spriteRenderer.color = blueColor;
         }
         else if(Timer.green_safe){
             spriteRenderer.color = Color.green;
