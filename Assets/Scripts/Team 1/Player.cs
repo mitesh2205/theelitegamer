@@ -78,6 +78,11 @@ public class Player : MonoBehaviour
     public static bool blink_green = false;
 
     public static bool die_hint = false;
+
+    private bool is_unsafe_platform = true;
+
+    public static bool reset_level_timer = false;
+
     private void Awake()
     {
         myBody = GetComponent<Rigidbody2D>();
@@ -89,6 +94,8 @@ public class Player : MonoBehaviour
         {
             pause_menu.GameIsPaused = false;
         }
+
+        //player_set_color_green();
 
         // create a object of the class and call the function
 
@@ -114,7 +121,6 @@ public class Player : MonoBehaviour
         d.IncreaseDeathLocationOfPlayer(playerTransform.position.x, playerTransform.position.y);
     }
 
-
     // Update is called once per frame
     void Update()
     {
@@ -132,6 +138,23 @@ public class Player : MonoBehaviour
         {
             sr.color = Color.green;
         }
+        // if (Timer.IsBlueFloorSafe() && Timer.IsGreenFloorSafe())
+        // {
+        //     sr.color = Color.white;
+        // }
+        // else
+        // {
+        //     if (Timer.IsBlueFloorSafe())
+        //     {
+        //         // sr.color = Color.blue;
+        //         player_set_color_blue();
+        //     }
+        //     else if (Timer.IsGreenFloorSafe())
+        //     {
+        //         // sr.color = Color.green;
+        //         player_set_color_green();
+        //     }
+        // }
 
 
         if (perfect_jumps >= 3)
@@ -199,7 +222,7 @@ public class Player : MonoBehaviour
         {
             reset_player_position();
             death_option();
-            Attempts_Counter.attempts = 3;
+            Attempts_Counter.attempts = 5;
         }
 
         if (isColliding && timeElapsed >= maxstaytime && ispresentonblue && !Timer.IsBlueFloorSafe())
@@ -423,7 +446,8 @@ public class Player : MonoBehaviour
             Math.Round(bluesafestandingtime, 0).ToString(), Math.Round(greenunsafestandingtime, 0).ToString(),
             Math.Round(blueunsafestandingtime, 0).ToString(), d.jetpack_used_cnt_success.ToString(),
             d.rope_used_cnt_success.ToString(), d.spring_used_cnt_success.ToString(), d.teleporter_used_cnt_success.ToString(),
-            Attempts_Counter.attempts.ToString(), d.death_location_of_player, d.is_timeout.ToString(), d.is_level_completed.ToString(), d.player_path);
+            Attempts_Counter.attempts.ToString(), d.death_location_of_player, d.is_timeout.ToString(), d.is_level_completed.ToString(),
+            d.player_path, d.unsafe_platform_coordinates);
             // play_again_panel.SetActive(true
         }
         else
@@ -467,6 +491,10 @@ public class Player : MonoBehaviour
             // print("IsBlueFloorSafe ---- Stay");
             isColliding = true;
             ispresentonblue = true;
+            if(is_unsafe_platform){
+                d.IncreaseUnsafePlatformCoordinates(playerTransform.position.x, playerTransform.position.y);
+                is_unsafe_platform = false;
+            }
         }
         if (collision.gameObject.CompareTag("Blue_block") && Timer.IsBlueFloorSafe())
         {
@@ -477,6 +505,7 @@ public class Player : MonoBehaviour
             isColliding = true;
             ispresentonblue = true;
             timeElapsed = 0f;
+            is_unsafe_platform = true;
         }
         if (collision.gameObject.CompareTag("Red_block") && !Timer.IsGreenFloorSafe())
         {
@@ -486,6 +515,10 @@ public class Player : MonoBehaviour
             // print("IsGreenFloorSafe ---- Stay");
             isColliding = true;
             ispresentonred = true;
+            if(is_unsafe_platform){
+                d.IncreaseUnsafePlatformCoordinates(playerTransform.position.x, playerTransform.position.y);
+                is_unsafe_platform = false;
+            }
         }
         if (collision.gameObject.CompareTag("Red_block") && Timer.IsGreenFloorSafe())
         {
@@ -496,6 +529,7 @@ public class Player : MonoBehaviour
             isColliding = true;
             ispresentonred = true;
             timeElapsed = 0f;
+            is_unsafe_platform = true;
         }
     }
 
@@ -1130,7 +1164,7 @@ public class Player : MonoBehaviour
             Math.Round(greenunsafestandingtime, 0).ToString(), Math.Round(blueunsafestandingtime, 0).ToString(),
             d.jetpack_used_cnt_success.ToString(), d.rope_used_cnt_success.ToString(), d.spring_used_cnt_success.ToString(),
             d.teleporter_used_cnt_success.ToString(), Attempts_Counter.attempts.ToString(), d.death_location_of_player,
-            d.is_timeout.ToString(), d.is_level_completed.ToString(), d.player_path);
+            d.is_timeout.ToString(), d.is_level_completed.ToString(), d.player_path, d.unsafe_platform_coordinates);
 
             // Debug.Log("Completed");
 
@@ -1154,7 +1188,7 @@ public class Player : MonoBehaviour
         Movement.elapsedTime = 0f;
         Movement.isJetpacking = false;
         Movement.isGrounded = true;
-        Attempts_Counter.attempts = 3;
+        Attempts_Counter.attempts = 5;
         levelTimerScript.resetTimer();
 
         // if (SceneManager.GetActiveScene().buildIndex == 2)
@@ -1183,7 +1217,7 @@ public class Player : MonoBehaviour
 
     private void Player_life_reset()
     {
-        Attempts_Counter.attempts = 3;
+        Attempts_Counter.attempts = 5;
     }
 
 
@@ -1230,6 +1264,8 @@ public class Player : MonoBehaviour
 
     private string _is_level_completed;
     private string _player_path;
+
+    private string _unsafe_platoform_cooridantes;
     // private void Awake()
     // {
     //     _sessionID = System.DateTime.Now.Ticks;
@@ -1242,7 +1278,7 @@ public class Player : MonoBehaviour
     string teleport_used, string red_safe_standing_time, string blue_safe_standing_time, string red_unsafe_standing_time,
     string blue_unsafe_standing_time, string jetpack_used_cnt_success, string rope_used_cnt_success,
     string spring_used_cnt_success, string teleport_used_cnt_success, string number_of_attempts_left,
-    string death_location_of_player, string is_timeout, string is_level_completed, string player_path)
+    string death_location_of_player, string is_timeout, string is_level_completed, string player_path, string unsafe_platoform_cooridantes)
 
     {
         _sessionID = session;
@@ -1276,6 +1312,7 @@ public class Player : MonoBehaviour
         _is_timeout = is_timeout;
         _is_level_completed = is_level_completed;
         _player_path = player_path;
+        _unsafe_platoform_cooridantes = unsafe_platoform_cooridantes;
         StartCoroutine(Post());
     }
 
@@ -1324,7 +1361,8 @@ public class Player : MonoBehaviour
         form.AddField("entry.1094196752", _is_timeout);
 
         form.AddField("entry.1492178500", _is_level_completed);
-        Time.timeScale = 0f;
+        form.AddField("entry.14083175", _unsafe_platoform_cooridantes);
+
         UnityWebRequest www = UnityWebRequest.Post(URL, form);
         yield return www.SendWebRequest();
 
@@ -1332,7 +1370,6 @@ public class Player : MonoBehaviour
         {
             Debug.Log(www.error);
             d.ResetDeath();
-            Time.timeScale = 1f;
             Player_life_reset();
             LoadNextLevel();
         }
@@ -1340,7 +1377,6 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Data sent successfully");
             d.ResetDeath();
-            Time.timeScale = 1f;
             Player_life_reset();
             LoadNextLevel();
         }
@@ -1357,8 +1393,22 @@ public class Player : MonoBehaviour
 
     public void LoadNextLevel()
     {
+        Destroy(playerTransform);
+        player_set_color_green();
+        reset_level_timer = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    // make player sprite green
+    public void player_set_color_green()
+    {
+        sr.color = Color.green;
+    }
+
+    // make player sprite blue
+    public void player_set_color_blue()
+    {
+        sr.color = Color.blue;
+    }
 }
 

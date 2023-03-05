@@ -1707,6 +1707,7 @@ GameObject:
   - component: {fileID: 4543245593734386031}
   - component: {fileID: 5392978186989227634}
   - component: {fileID: 6267956577092358323}
+  - component: {fileID: 1857788606}
   m_Layer: 0
   m_Name: Player (1)
   m_TagString: Player
@@ -1855,7 +1856,7 @@ MonoBehaviour:
   win_flag: 0
   pushflag: 0
   flagss: 0
-  maxstaytime: 2
+  maxstaytime: 8
   levelTimerScript: {fileID: 6267956576369708041}
   perfect_jumps: 0
   was_last_green: 0
@@ -1911,6 +1912,18 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85f58fd862d8c0549ac3def6032566d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1857788606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701984314006382354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 388da2aa1e2d93149ba17eca0b3c2a67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1729276229382610090
@@ -11323,7 +11336,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -2.5, y: 0}
   m_SizeDelta: {x: 5, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -14877,6 +14890,7 @@ MonoBehaviour:
   is_level_completed: 0
   coordinates_list: 
   player_path: 
+  unsafe_platform_coordinates: 
 --- !u!1 &8149853589385227913
 GameObject:
   m_ObjectHideFlags: 0

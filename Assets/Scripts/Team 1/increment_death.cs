@@ -42,6 +42,8 @@ public class increment_death : MonoBehaviour
     public string coordinates_list;
     public string player_path;
 
+    public string unsafe_platform_coordinates="";
+
     public void IncreaseDeath()
     {
         death++;
@@ -199,6 +201,11 @@ public class increment_death : MonoBehaviour
     {
         is_level_completed = 1;
     }
+
+    public void IncreaseUnsafePlatformCoordinates(float x, float y)
+    {
+        unsafe_platform_coordinates += x.ToString() + ":" + y.ToString() + ",";
+    }
     public void ResetDeath()
     {
         death = 0;
@@ -230,5 +237,7 @@ public class increment_death : MonoBehaviour
         death_location_of_player = "";
         is_timeout = 0;
         is_level_completed = 0;
+        coordinates_list = "";
+        unsafe_platform_coordinates = "";
     }
 }
