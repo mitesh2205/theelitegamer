@@ -124,13 +124,20 @@ public class Player : MonoBehaviour
         // }
 
         // if the flag of blue safe is true in timer then change the color of player to blue else green 
-        if (Timer.IsBlueFloorSafe())
+        if (Timer.IsBlueFloorSafe() && Timer.IsGreenFloorSafe())
         {
-            sr.color = Color.blue;
+            sr.color = Color.white;
         }
         else
         {
-            sr.color = Color.green;
+            if (Timer.IsBlueFloorSafe())
+            {
+                sr.color = Color.blue;
+            }
+            else if (Timer.IsGreenFloorSafe())
+            {
+                sr.color = Color.green;
+            }
         }
 
 
