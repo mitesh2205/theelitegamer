@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TimeLeft : MonoBehaviour
 {
-    public static float ScoreValue = 1.5f;
+    public static float ScoreValue = Movement.jetpackDuration;
     Text score;
     Text jetpack;
 
@@ -23,7 +23,14 @@ public class TimeLeft : MonoBehaviour
 
         if (ScoreValue <= 0)
         {
+            Debug.Log("Time is up");
             score.text = "(j): 0";
+            ScoreValue = Movement.jetpackDuration;
+        }
+        else
+        {
+            Debug.Log("Time is not up");
+            score.text = "(j):" + ScoreValue.ToString("N2");
         }
     }
 }

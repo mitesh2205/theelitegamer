@@ -12,6 +12,7 @@ public class play_again_button : MonoBehaviour
     {
         Time.timeScale = 1f;
         Movement.push_force = true;
+        Movement.jetpackDuration = 1.5f;
         sendData = false;
         play_again_panel_button.SetActive(false);
     }
@@ -19,6 +20,7 @@ public class play_again_button : MonoBehaviour
     {
         sendData = true;
         Movement.push_force = true;
+        Movement.jetpackDuration = 1.5f;
         // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         SceneManager.LoadScene(0);
 

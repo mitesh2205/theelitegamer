@@ -830,6 +830,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("set_push_flag"))
         {
             Debug.Log("set_push_flag");
+            Movement.jetpackDuration = 1.5f;
             Movement.push_force = true;
         }
         if (collision.gameObject.CompareTag("players_path"))
