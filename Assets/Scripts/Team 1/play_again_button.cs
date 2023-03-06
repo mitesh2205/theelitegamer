@@ -11,14 +11,17 @@ public class play_again_button : MonoBehaviour
     public void yes()
     {
         Time.timeScale = 1f;
+        Movement.push_force = true;
         sendData = false;
         play_again_panel_button.SetActive(false);
     }
     public void no()
     {
         sendData = true;
+        Movement.push_force = true;
         // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         SceneManager.LoadScene(0);
+
         Time.timeScale = 1f;
 
     }

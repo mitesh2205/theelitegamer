@@ -502,7 +502,8 @@ public class Player : MonoBehaviour
             // print("IsBlueFloorSafe ---- Stay");
             isColliding = true;
             ispresentonblue = true;
-            if(is_unsafe_platform){
+            if (is_unsafe_platform)
+            {
                 d.IncreaseUnsafePlatformCoordinates(playerTransform.position.x, playerTransform.position.y);
                 is_unsafe_platform = false;
             }
@@ -526,7 +527,8 @@ public class Player : MonoBehaviour
             // print("IsGreenFloorSafe ---- Stay");
             isColliding = true;
             ispresentonred = true;
-            if(is_unsafe_platform){
+            if (is_unsafe_platform)
+            {
                 d.IncreaseUnsafePlatformCoordinates(playerTransform.position.x, playerTransform.position.y);
                 is_unsafe_platform = false;
             }
@@ -825,6 +827,11 @@ public class Player : MonoBehaviour
         //     store_green_state = Timer.green_safe;
 
         // }
+        if (collision.gameObject.CompareTag("set_push_flag"))
+        {
+            Debug.Log("set_push_flag");
+            Movement.push_force = true;
+        }
         if (collision.gameObject.CompareTag("players_path"))
         {
             // declare a 2d array and store the x and y coordinates of the player
@@ -877,7 +884,8 @@ public class Player : MonoBehaviour
 
             print("flagss");
         }
-        try{
+        try
+        {
             if (collision.gameObject.CompareTag("Gate1"))
             {
                 // below is the code to move the player to the next x,y position. set the x,y to the position you want the player to move to.
@@ -905,7 +913,8 @@ public class Player : MonoBehaviour
                 d.IncreaseTeleporterUsed();
             }
         }
-        catch(Exception e){
+        catch (Exception e)
+        {
             print(e);
         }
 
