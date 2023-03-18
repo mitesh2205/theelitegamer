@@ -14,6 +14,11 @@ public class Movement : MonoBehaviour
     // public static bool enter_jetpack = true;
     public static bool push_force = true;
     public static bool usedJetpack = false;
+    public static bool resumeJetpack = false;
+
+    public static bool resume1 = false;
+
+    public static bool stopit = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,17 +34,48 @@ public class Movement : MonoBehaviour
         // print("isjjet");
         // print(isGrounded);
         // print("isgrpound");
+        if (Input.GetKeyDown(KeyCode.J) && resumeJetpack)
+        {
+            print("j key pressed");
+            resumeJetpack = false;
+            stopit = false;
+            isJetpacking = false;
+            //wait for 2 seconds
+            resume1 = true;
 
-        if (Input.GetKeyDown(KeyCode.J) && !isJetpacking && isGrounded)
+        }
+        else if (Input.GetKeyDown(KeyCode.J) && !resumeJetpack)
+        {
+            print("j key pressed again");
+            stopit = true;
+            isGrounded = true;
+            print("j key isGrounded:" + isGrounded);
+            print("j key isJetpacking:" + isJetpacking);
+            print("j key stopit:" + stopit);
+        }
+        // if (Input.GetKeyDown(KeyCode.J) && resume1)
+        // {
+        //     print("j key pressed again");
+        //     stopit = true;
+        //     isGrounded = true;
+        //     print("j key isGrounded:" + isGrounded);
+        //     print("j key isJetpacking:" + isJetpacking);
+        //     print("j key stopit:" + stopit);
+        // }
+        if (Input.GetKeyDown(KeyCode.J) && !isJetpacking && isGrounded && stopit)
         {
             print("j key");
-            elapsedTime = 0f;
+            print("isGrounded:" + isGrounded);
+            // elapsedTime = 0f;
             isJetpacking = true;
+            resumeJetpack = true;
         }
 
         if (isJetpacking)
         {
+            print("j key inside isjetpacking");
             print("is jetpacking" + isJetpacking);
+            print("push force:" + push_force);
             isGrounded = false;
             elapsedTime += Time.deltaTime;
             TimeLeft.ScoreValue = jetpackDuration - elapsedTime;
@@ -53,6 +89,7 @@ public class Movement : MonoBehaviour
                 jetpackDuration = 0f;
                 usedJetpack = true;
                 push_force = false;
+                elapsedTime = 0f;
             }
             // print("fff");
             if (push_force)
@@ -72,5 +109,6 @@ public class Movement : MonoBehaviour
             print("ground");
             isGrounded = true;
         }
+
     }
 }
