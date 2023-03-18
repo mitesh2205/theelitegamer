@@ -44,6 +44,8 @@ public class increment_death : MonoBehaviour
 
     public string unsafe_platform_coordinates="";
 
+    public int death_by_laser = 0;
+
     public void IncreaseDeath()
     {
         death++;
@@ -206,6 +208,12 @@ public class increment_death : MonoBehaviour
     {
         unsafe_platform_coordinates += x.ToString() + ":" + y.ToString() + ",";
     }
+
+    public void IncreaseDeathByLaser()
+    {
+        death_by_laser++;
+    }
+
     public void ResetDeath()
     {
         death = 0;
@@ -239,5 +247,8 @@ public class increment_death : MonoBehaviour
         is_level_completed = 0;
         coordinates_list = "";
         unsafe_platform_coordinates = "";
+        death_by_laser = 0;
+        Movement.jetpackDuration = 1.5f;
+        Movement.elapsedTime = 0f;
     }
 }

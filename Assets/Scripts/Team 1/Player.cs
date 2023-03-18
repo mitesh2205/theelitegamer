@@ -458,7 +458,7 @@ public class Player : MonoBehaviour
             Math.Round(blueunsafestandingtime, 0).ToString(), d.jetpack_used_cnt_success.ToString(),
             d.rope_used_cnt_success.ToString(), d.spring_used_cnt_success.ToString(), d.teleporter_used_cnt_success.ToString(),
             Attempts_Counter.attempts.ToString(), d.death_location_of_player, d.is_timeout.ToString(), d.is_level_completed.ToString(),
-            d.player_path, d.unsafe_platform_coordinates);
+            d.player_path, d.unsafe_platform_coordinates, d.death_by_laser.ToString());
             // play_again_panel.SetActive(true
         }
         else
@@ -827,6 +827,11 @@ public class Player : MonoBehaviour
         //     store_green_state = Timer.green_safe;
 
         // }
+        if(collision.gameObject.CompareTag("Laser")){
+            d.IncreaseDeathByLaser();
+            Debug.Log("Laser");
+            decrease_attempts();
+        }
         if (collision.gameObject.CompareTag("set_push_flag"))
         {
             Debug.Log("set_push_flag");
@@ -1188,7 +1193,8 @@ public class Player : MonoBehaviour
             Math.Round(greenunsafestandingtime, 0).ToString(), Math.Round(blueunsafestandingtime, 0).ToString(),
             d.jetpack_used_cnt_success.ToString(), d.rope_used_cnt_success.ToString(), d.spring_used_cnt_success.ToString(),
             d.teleporter_used_cnt_success.ToString(), Attempts_Counter.attempts.ToString(), d.death_location_of_player,
-            d.is_timeout.ToString(), d.is_level_completed.ToString(), d.player_path, d.unsafe_platform_coordinates);
+            d.is_timeout.ToString(), d.is_level_completed.ToString(), d.player_path, d.unsafe_platform_coordinates,
+            d.death_by_laser.ToString());
 
             // Debug.Log("Completed");
 
@@ -1290,6 +1296,8 @@ public class Player : MonoBehaviour
     private string _player_path;
 
     private string _unsafe_platoform_cooridantes;
+
+    private string _death_by_laser;
     // private void Awake()
     // {
     //     _sessionID = System.DateTime.Now.Ticks;
@@ -1302,7 +1310,8 @@ public class Player : MonoBehaviour
     string teleport_used, string red_safe_standing_time, string blue_safe_standing_time, string red_unsafe_standing_time,
     string blue_unsafe_standing_time, string jetpack_used_cnt_success, string rope_used_cnt_success,
     string spring_used_cnt_success, string teleport_used_cnt_success, string number_of_attempts_left,
-    string death_location_of_player, string is_timeout, string is_level_completed, string player_path, string unsafe_platoform_cooridantes)
+    string death_location_of_player, string is_timeout, string is_level_completed, string player_path, string unsafe_platoform_cooridantes,
+    string death_by_laser)
 
     {
         _sessionID = session;
@@ -1337,6 +1346,7 @@ public class Player : MonoBehaviour
         _is_level_completed = is_level_completed;
         _player_path = player_path;
         _unsafe_platoform_cooridantes = unsafe_platoform_cooridantes;
+        _death_by_laser = death_by_laser;
         StartCoroutine(Post());
     }
 
@@ -1386,6 +1396,8 @@ public class Player : MonoBehaviour
 
         form.AddField("entry.1492178500", _is_level_completed);
         form.AddField("entry.14083175", _unsafe_platoform_cooridantes);
+
+        form.AddField("entry.607956081", _death_by_laser);
 
         UnityWebRequest www = UnityWebRequest.Post(URL, form);
         yield return www.SendWebRequest();
