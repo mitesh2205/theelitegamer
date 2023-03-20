@@ -8,14 +8,14 @@ public class game_guidance : MonoBehaviour
     // Then, hide it
 
     public GameObject textBox;
-    public Text myText;
+    // public Text myText;
 
     void Start()
     {
         textBox.SetActive(true);
         Invoke("HideTextBox", 5);
 
-        
+
     }
 
     void HideTextBox()
@@ -24,12 +24,14 @@ public class game_guidance : MonoBehaviour
     }
 
 
-private void OnCollisionExit2D(Collision2D collision){
+    private void OnCollisionExit2D(Collision2D collision)
+    {
 
-    if (collision.gameObject.tag == "d1") {
+        if (collision.gameObject.tag == "d1")
+        {
 
-        myText.text = "Hello, world!";
+            // myText.text = "Hello, world!";
+        }
     }
-}
-    
+
 }
