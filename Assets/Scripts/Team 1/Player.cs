@@ -498,7 +498,7 @@ public class Player : MonoBehaviour
         {
             isGrounded = true;
             // moveForce = 10f;
-            transform.localScale = originalSize;
+            // transform.localScale = originalSize;
             // print("IsBlueFloorSafe ---- Stay");
             isColliding = true;
             ispresentonblue = true;
@@ -512,7 +512,7 @@ public class Player : MonoBehaviour
         {
             isGrounded = true;
             // moveForce = 10f;
-            transform.localScale = originalSize;
+            // transform.localScale = originalSize;
             // print("IsBlueFloorSafe safe ----");
             isColliding = true;
             ispresentonblue = true;
@@ -523,7 +523,7 @@ public class Player : MonoBehaviour
         {
             isGrounded = true;
             // moveForce = 10f;
-            transform.localScale = originalSize;
+            // transform.localScale = originalSize;
             // print("IsGreenFloorSafe ---- Stay");
             isColliding = true;
             ispresentonred = true;
@@ -537,7 +537,7 @@ public class Player : MonoBehaviour
         {
             isGrounded = true;
             // moveForce = 10f;
-            transform.localScale = originalSize;
+            // transform.localScale = originalSize;
             // print("IsGreenFloorSafe safe ----");
             isColliding = true;
             ispresentonred = true;
@@ -552,7 +552,7 @@ public class Player : MonoBehaviour
         {
             isGrounded = true;
             // moveForce = 10f;
-            transform.localScale = originalSize;
+            // transform.localScale = originalSize;
             // print("IsBlueFloorSafe ---- Exit");
             isColliding = false;
             timeElapsed = 0f;
@@ -564,7 +564,7 @@ public class Player : MonoBehaviour
         {
             isGrounded = true;
             // moveForce = 10f;
-            transform.localScale = originalSize;
+            // transform.localScale = originalSize;
             // print("IsBlueFloorSafe ---- Exit");
             isColliding = false;
             timeElapsed = 0f;
@@ -576,7 +576,7 @@ public class Player : MonoBehaviour
         {
             isGrounded = true;
             // moveForce = 10f;
-            transform.localScale = originalSize;
+            // transform.localScale = originalSize;
             // print("IsGreenFloorSafe ---- Exit");
             isColliding = false;
             timeElapsed = 0f;
@@ -586,7 +586,7 @@ public class Player : MonoBehaviour
         {
             isGrounded = true;
             // moveForce = 10f;
-            transform.localScale = originalSize;
+            // transform.localScale = originalSize;
             // print("IsGreenFloorSafe ---- Exit");
             isColliding = false;
             timeElapsed = 0f;
@@ -602,7 +602,7 @@ public class Player : MonoBehaviour
         {
             isGrounded = true;
             // moveForce = 10f;
-            transform.localScale = originalSize;
+            // transform.localScale = originalSize;
             // print("IsBlueFloorSafe");
             ispresentonblue = true;
             if (!was_last_blue && Timer.danger_time)
@@ -622,7 +622,7 @@ public class Player : MonoBehaviour
         {
             isGrounded = true;
             // moveForce = 10f;
-            transform.localScale = originalSize;
+            // transform.localScale = originalSize;
             // print("IsBlueNotSafe");
             ispresentonblue = true;
             perfect_jumps = 0;
@@ -640,7 +640,7 @@ public class Player : MonoBehaviour
             isGrounded = true;
             // moveForce = 10f;
             ispresentonred = true;
-            transform.localScale = originalSize;
+            // transform.localScale = originalSize;
             // print("IsGreenFloorSafe");
             if (!was_last_green && Timer.danger_time)
             {
@@ -657,7 +657,7 @@ public class Player : MonoBehaviour
         {
             isGrounded = true;
             // moveForce = 10f;
-            transform.localScale = originalSize;
+            // transform.localScale = originalSize;
             // print("IsGreenNotSafe");
             ispresentonred = true;
             perfect_jumps = 0;
@@ -675,7 +675,7 @@ public class Player : MonoBehaviour
         {
             isGrounded = true;
             // moveForce = 10f;
-            transform.localScale = originalSize;
+            // transform.localScale = originalSize;
         }
 
 
@@ -683,19 +683,19 @@ public class Player : MonoBehaviour
         {
             isGrounded = true;
             // moveForce = 10f;
-            transform.localScale = originalSize;
+            // transform.localScale = originalSize;
         }
         if (collision.gameObject.CompareTag("falling2"))
         {
             isGrounded = true;
             // moveForce = 10f;
-            transform.localScale = originalSize;
+            // transform.localScale = originalSize;
         }
         if (collision.gameObject.CompareTag("falling3"))
         {
             isGrounded = true;
             // moveForce = 10f;
-            transform.localScale = originalSize;
+            // transform.localScale = originalSize;
         }
 
         if (collision.gameObject.CompareTag("Spike"))
@@ -744,7 +744,7 @@ public class Player : MonoBehaviour
         {
             RopeControl.fix = true;
             RopeControl.coll = collision;
-            transform.localScale = originalSize;
+            // transform.localScale = originalSize;
             d.IncreaseRope();
         }
         if (collision.gameObject.CompareTag("Spear"))
@@ -827,7 +827,8 @@ public class Player : MonoBehaviour
         //     store_green_state = Timer.green_safe;
 
         // }
-        if(collision.gameObject.CompareTag("Laser")){
+        if (collision.gameObject.CompareTag("Laser"))
+        {
             d.IncreaseDeathByLaser();
             Debug.Log("Laser");
             decrease_attempts();
