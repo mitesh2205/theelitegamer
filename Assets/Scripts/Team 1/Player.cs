@@ -85,6 +85,7 @@ public class Player : MonoBehaviour
 
     public static bool reset_level_timer = false;
 
+    public LevelTimerScript levelTimer1;
     private void Awake()
     {
         myBody = GetComponent<Rigidbody2D>();
@@ -231,9 +232,20 @@ public class Player : MonoBehaviour
         // colliding with any floor--------------------
         if (Attempts_Counter.attempts <= 0)
         {
-            reset_player_position();
-            death_option();
-            Attempts_Counter.attempts = 5;
+
+            if (button_trigger.checkpointReached)
+            {
+                reset_player_position_to_checkpoint();
+            }
+            else
+            {
+                reset_player_position();
+                death_option();
+                Attempts_Counter.attempts = 5;
+            }
+            // reset_player_position();
+            // death_option();
+            // Attempts_Counter.attempts = 5;
         }
 
         if (isColliding && timeElapsed >= maxstaytime && ispresentonblue && !Timer.IsBlueFloorSafe())
@@ -896,7 +908,7 @@ public class Player : MonoBehaviour
             if (collision.gameObject.CompareTag("Gate1"))
             {
                 // below is the code to move the player to the next x,y position. set the x,y to the position you want the player to move to.
-                playerTransform.position = new Vector2(47.3f, 0.9f);
+                playerTransform.position = new Vector2(142.1f, 30.72f); // updated 
                 d.IncreaseTeleporterUsed();
             }
             // if (collision.gameObject.CompareTag("Gate1"))
@@ -910,7 +922,7 @@ public class Player : MonoBehaviour
                 // below is the code to move the player to the next x,y position. set the x,y to the position you want the player to move to.
 
                 d.IncreaseTeleporterUsed();
-                playerTransform.position = new Vector2(40.2f, -15.6f);
+                playerTransform.position = new Vector2(90.07f, -14.01f); // updated
 
             }
             if (collision.gameObject.CompareTag("Gate3"))
@@ -935,10 +947,21 @@ public class Player : MonoBehaviour
         {
 
             // d.IncreaseDeath();
-            d.IncreaseDeathByFalling();
-            d.IncreaseDeathLocationOfPlayer(playerTransform.position.x, playerTransform.position.y);
-            death_option();
-            reset_player_position();
+            if (button_trigger.checkpointReached)
+            {
+                reset_player_position_to_checkpoint();
+            }
+            else
+            {
+                d.IncreaseDeathByFalling();
+                d.IncreaseDeathLocationOfPlayer(playerTransform.position.x, playerTransform.position.y);
+                death_option();
+                reset_player_position();
+            }
+            // d.IncreaseDeathByFalling();
+            // d.IncreaseDeathLocationOfPlayer(playerTransform.position.x, playerTransform.position.y);
+            // death_option();
+            // reset_player_position();
         }
 
 
@@ -1204,6 +1227,24 @@ public class Player : MonoBehaviour
         }
     }
 
+
+    // below function is used to reset the player position to the position of checkpoint if checkpoint is not null
+    private void reset_player_position_to_checkpoint()
+    {
+        playerTransform.position = button_trigger.checkpointPosition;
+        Attempts_Counter.attempts = 5;
+
+        levelTimer1.timer = button_trigger.timeLeft;
+        Movement.elapsedTime = button_trigger.jetPackLeft;
+        TimeLeft.ScoreValue = button_trigger.timer_jetpack;
+        Movement.jetpackDuration = button_trigger.jetpackduration1;
+        Debug.Log("b_ Movement.elapsedTime: " + Movement.elapsedTime);
+        Movement.resumeJetpack = false;
+        Movement.resume1 = false;
+        Movement.stopit = true;
+        Movement.push_force = true;
+        Movement.isJetpacking = false;
+    }
 
     private void reset_player_position()
     {

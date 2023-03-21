@@ -19,6 +19,8 @@ public class Movement : MonoBehaviour
     public static bool resume1 = false;
 
     public static bool stopit = true;
+
+    public static bool save = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +44,10 @@ public class Movement : MonoBehaviour
             isJetpacking = false;
             //wait for 2 seconds
             resume1 = true;
+            print("j key elapsedTime:" + elapsedTime);
+            print("j key TimeLeft.ScoreValue:" + TimeLeft.ScoreValue);
+            print("j key push force::" + push_force);
+
 
         }
         else if (Input.GetKeyDown(KeyCode.J) && !resumeJetpack)
@@ -81,6 +87,7 @@ public class Movement : MonoBehaviour
             TimeLeft.ScoreValue = jetpackDuration - elapsedTime;
             if (elapsedTime > (jetpackDuration))
             {
+                save = true;
                 print("elapsedTime:" + elapsedTime);
                 print("jetpackDuration:" + jetpackDuration);
                 isJetpacking = false;
