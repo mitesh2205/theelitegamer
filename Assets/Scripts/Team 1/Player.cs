@@ -86,6 +86,16 @@ public class Player : MonoBehaviour
     public static bool reset_level_timer = false;
 
     public LevelTimerScript levelTimer1;
+
+    // new code added 
+    public static Vector3 checkpointPosition;
+    public LevelTimerScript levelTimer;
+    public static float timeLeft;
+    public static float jetPackLeft;
+    public static float timer_jetpack;
+    public static float jetpackduration1;
+
+    public static bool checkpointReached = false;
     private void Awake()
     {
         myBody = GetComponent<Rigidbody2D>();
@@ -233,7 +243,7 @@ public class Player : MonoBehaviour
         if (Attempts_Counter.attempts <= 0)
         {
 
-            if (button_trigger.checkpointReached)
+            if (checkpointReached)
             {
                 reset_player_position_to_checkpoint();
             }
@@ -839,6 +849,20 @@ public class Player : MonoBehaviour
         //     store_green_state = Timer.green_safe;
 
         // }
+        if (collision.gameObject.CompareTag("checkpoint"))
+        {
+            checkpointReached = true;
+            // store the position of the checkpoint in the checkpointPosition variable by creating a new Vector3 object
+            checkpointPosition = new Vector3(transform.position.x + 8, transform.position.y, transform.position.z);
+
+            timeLeft = levelTimer.timer;
+            // set the jet pack left to the current jet pack left
+            jetPackLeft = Movement.elapsedTime;
+            timer_jetpack = TimeLeft.ScoreValue;
+            jetpackduration1 = Movement.jetpackDuration;
+
+        }
+
         if (collision.gameObject.CompareTag("Laser"))
         {
             d.IncreaseDeathByLaser();
@@ -1231,13 +1255,12 @@ public class Player : MonoBehaviour
     // below function is used to reset the player position to the position of checkpoint if checkpoint is not null
     private void reset_player_position_to_checkpoint()
     {
-        playerTransform.position = button_trigger.checkpointPosition;
+        playerTransform.position = checkpointPosition;
         Attempts_Counter.attempts = 5;
-
-        levelTimer1.timer = button_trigger.timeLeft;
-        Movement.elapsedTime = button_trigger.jetPackLeft;
-        TimeLeft.ScoreValue = button_trigger.timer_jetpack;
-        Movement.jetpackDuration = button_trigger.jetpackduration1;
+        levelTimer1.timer = timeLeft;
+        Movement.elapsedTime = jetPackLeft;
+        TimeLeft.ScoreValue = timer_jetpack;
+        Movement.jetpackDuration = jetpackduration1;
         Debug.Log("b_ Movement.elapsedTime: " + Movement.elapsedTime);
         Movement.resumeJetpack = false;
         Movement.resume1 = false;

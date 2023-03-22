@@ -29,18 +29,18 @@ public class button_trigger : MonoBehaviour
             {
                 // set the color of sprite renderer to green when player enters the trigger
                 spriteRenderer.color = Color.green;
-                checkpointReached = true;
-                // set the checkpoint position to the current position of the player with some offset on right side 
-                checkpointPosition = new Vector3(collision.transform.position.x + 8, collision.transform.position.y, collision.transform.position.z);
-                // set the time left to the current time left
-                timeLeft = levelTimer.timer;
-                // set the jet pack left to the current jet pack left
-                jetPackLeft = Movement.elapsedTime;
-                timer_jetpack = TimeLeft.ScoreValue;
-                jetpackduration1 = Movement.jetpackDuration;
-                Debug.Log("b_checkpoint:" + checkpointPosition);
-                Debug.Log("b_elapsedTime:" + Movement.elapsedTime);
-                Debug.Log("b_pushflag:" + Movement.push_force);
+                // checkpointReached = true;
+                // // set the checkpoint position to the current position of the player with some offset on right side 
+                // checkpointPosition = new Vector3(collision.transform.position.x + 8, collision.transform.position.y, collision.transform.position.z);
+                // // set the time left to the current time left
+                // timeLeft = levelTimer.timer;
+                // // set the jet pack left to the current jet pack left
+                // jetPackLeft = Movement.elapsedTime;
+                // timer_jetpack = TimeLeft.ScoreValue;
+                // jetpackduration1 = Movement.jetpackDuration;
+                // Debug.Log("b_checkpoint:" + checkpointPosition);
+                // Debug.Log("b_elapsedTime:" + Movement.elapsedTime);
+                // Debug.Log("b_pushflag:" + Movement.push_force);
                 firstTime = false;
             }
 
