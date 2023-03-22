@@ -5,7 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public static float jetpackDuration = 1.5f;  // Duration of the jetpack in seconds
-    public static float jetpackForce = 10f;    // Force applied by the jetpack
+    public static float jetpackForce = 13f;    // Force applied by the jetpack
     public static float elapsedTime = 0f;      // Time elapsed since the jetpack was activated
     public Rigidbody2D rigidbody;      // Reference to the Rigidbody2D component
     public static bool isJetpacking = false;   // Flag to check if the jetpack is active
