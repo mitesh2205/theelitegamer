@@ -21,6 +21,19 @@ public class Player : MonoBehaviour
     private bool isGrounded = true;
     public int time_start;
 
+
+
+
+    //Dhruvit Code
+    public GameObject myText;
+    public GameObject myText2;
+    public GameObject myText3;
+    public GameObject myText4;
+    public GameObject myText5;
+    public GameObject myText6;
+    public GameObject myText7;
+    
+
     // private bool ispath_recorded;
 
     public GameObject play_again_panel;
@@ -87,6 +100,23 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+
+        myText.SetActive(true);
+        myText2.SetActive(false);
+        myText3.SetActive(false);
+        myText4.SetActive(false);
+        myText5.SetActive(false);
+        myText6.SetActive(false);
+        myText7.SetActive(false);
+        
+
+
+        
+
+
+
+
+
         myBody = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         d = FindObjectOfType<increment_death>();
@@ -795,6 +825,86 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
+
+        if (collision.gameObject.tag == "pillar_1") {
+
+                myText.SetActive(false);
+                myText2.SetActive(true);
+
+        }
+
+
+        if (collision.gameObject.tag == "pillar_2") {
+
+                myText2.SetActive(false); 
+                            
+        }
+
+
+        if (collision.gameObject.tag == "pillar_3") {
+
+                myText3.SetActive(true);   
+                
+        }
+
+
+        if (collision.gameObject.tag == "pillar_4") {
+
+                myText3.SetActive(false);  
+                myText4.SetActive(true);
+                
+        }
+
+        if (collision.gameObject.tag == "pillar_5") {
+
+                myText4.SetActive(false);
+                myText5.SetActive(true);
+        }
+
+        if (collision.gameObject.tag == "pillar_6") {
+
+                myText5.SetActive(false);
+                
+        }
+
+        if (collision.gameObject.tag == "pillar_7") {
+
+                myText6.SetActive(true);
+                myText5.SetActive(false);
+                myText4.SetActive(false);
+                myText3.SetActive(false); 
+    
+        }
+
+        if (collision.gameObject.tag == "pillar_8") {
+
+                myText6.SetActive(false);
+
+        }
+
+        if (collision.gameObject.tag == "pillar_9") {
+
+                myText7.SetActive(true);
+
+        }
+
+
+        
+
+
+        
+
+
+
+
+
+
+
+        
+
+
+
 
         // if (collision.gameObject.CompareTag("setEvery"))
         // {
