@@ -10,6 +10,7 @@ public class waypoint : MonoBehaviour
     private int currentWaypoint = 0;
 
     public float speed = 2.0f;
+    public bool flipplayer = true;
 
     // Update is called once per frame
     void Update()
@@ -21,7 +22,15 @@ public class waypoint : MonoBehaviour
             {
                 currentWaypoint = 0;
             }
+            //  flip the sprite if the enemy touches the waypoint and moves to the next waypoint
+                transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+
+
+
+            
+                
         }
         transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypoint].transform.position, speed * Time.deltaTime);
+
     }
 }
