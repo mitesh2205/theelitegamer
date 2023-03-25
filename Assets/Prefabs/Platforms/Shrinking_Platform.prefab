@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1914804391512073871}
   m_Layer: 0
   m_Name: Shrinking_Platform
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd9566c547054c4f83319a120ec9201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 60
+  speed: 0.05
   flag: 1
   min_length: 1
   max_length: 9
