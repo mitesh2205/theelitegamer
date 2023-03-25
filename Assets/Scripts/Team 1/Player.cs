@@ -25,14 +25,14 @@ public class Player : MonoBehaviour
 
 
     //Dhruvit Code
-    public GameObject myText;
-    public GameObject myText2;
-    public GameObject myText3;
-    public GameObject myText4;
-    public GameObject myText5;
-    public GameObject myText6;
-    public GameObject myText7;
-    public GameObject myText8;
+    // public GameObject myText;
+    // public GameObject myText2;
+    // public GameObject myText3;
+    // public GameObject myText4;
+    // public GameObject myText5;
+    // public GameObject myText6;
+    // public GameObject myText7;
+    // public GameObject myText8;
     //Dhruvit Code End
 
 
@@ -103,14 +103,14 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         //Dhruvit's code start
-        myText.SetActive(true);
-        myText2.SetActive(false);
-        myText3.SetActive(false);
-        myText4.SetActive(false);
-        myText5.SetActive(false);
-        myText6.SetActive(false);
-        myText7.SetActive(false);
-        myText8.SetActive(false);
+        // myText.SetActive(true);
+        // myText2.SetActive(false);
+        // myText3.SetActive(false);
+        // myText4.SetActive(false);
+        // myText5.SetActive(false);
+        // myText6.SetActive(false);
+        // myText7.SetActive(false);
+        // myText8.SetActive(false);
         //Dhruvit's code end
 
 
@@ -830,94 +830,95 @@ public class Player : MonoBehaviour
     {
         //Dhruvit's code start
 
-        if (collision.gameObject.tag == "pillar_1")
-        {
+        // if (collision.gameObject.tag == "pillar_1")
+        // {
 
-            myText.SetActive(false);
-            myText2.SetActive(true);
+        //     // myText.SetActive(false);
+        //     // myText2.SetActive(true);
 
-        }
-
-
-        if (collision.gameObject.tag == "pillar_2")
-        {
-
-            myText2.SetActive(false);
-            myText8.SetActive(false);
-
-        }
+        // }
 
 
-        if (collision.gameObject.tag == "pillar_3")
-        {
+        // if (collision.gameObject.tag == "pillar_2")
+        // {
 
-            myText3.SetActive(true);
+        //     // myText2.SetActive(false);
+        //     // myText8.SetActive(false);
 
-        }
+        // }
 
 
-        if (collision.gameObject.tag == "pillar_4")
-        {
+        // if (collision.gameObject.tag == "pillar_3")
+        // {
 
-            myText3.SetActive(false);
-            myText4.SetActive(true);
+        //     // myText3.SetActive(true);
 
-        }
+        // }
 
-        if (collision.gameObject.tag == "pillar_5")
-        {
 
-            myText4.SetActive(false);
-            myText5.SetActive(true);
-            myText8.SetActive(false);
-            myText2.SetActive(false);
-        }
+        // if (collision.gameObject.tag == "pillar_4")
+        // {
 
-        if (collision.gameObject.tag == "pillar_6")
-        {
+        //     // myText3.SetActive(false);
+        //     // myText4.SetActive(true);
 
-            myText5.SetActive(false);
+        // }
 
-        }
+        // if (collision.gameObject.tag == "pillar_5")
+        // {
 
-        if (collision.gameObject.tag == "pillar_7")
-        {
+        //     // myText4.SetActive(false);
+        //     // myText5.SetActive(true);
+        //     // myText8.SetActive(false);
+        //     // myText2.SetActive(false);
+        // }
 
-            myText6.SetActive(true);
-            myText5.SetActive(false);
-            myText4.SetActive(false);
-            myText3.SetActive(false);
+        // if (collision.gameObject.tag == "pillar_6")
+        // {
 
-        }
+        //     // myText5.SetActive(false);
 
-        if (collision.gameObject.tag == "pillar_8")
-        {
+        // }
 
-            myText6.SetActive(false);
+        // if (collision.gameObject.tag == "pillar_7")
+        // {
 
-        }
+        //     // myText6.SetActive(true);
+        //     // myText5.SetActive(false);
+        //     // myText4.SetActive(false);
+        //     // myText3.SetActive(false);
 
-        if (collision.gameObject.tag == "pillar_9")
-        {
+        // }
 
-            myText7.SetActive(true);
+        // if (collision.gameObject.tag == "pillar_8")
+        // {
 
-        }
+        //     // myText6.SetActive(false);
 
-        if (collision.gameObject.tag == "pillar_10")
-        {
+        // }
 
-            myText3.SetActive(false);
+        // if (collision.gameObject.tag == "pillar_9")
+        // {
 
-        }
+        //     myText7.SetActive(true);
 
-        if (collision.gameObject.tag == "pillar_11")
-        {
+        // }
 
-            myText8.SetActive(true);
-            myText2.SetActive(false);
+        // if (collision.gameObject.tag == "pillar_10")
+        // {
 
-        }
+        //     // myText3.SetActive(false);
+
+        // }
+
+        // if (collision.gameObject.tag == "pillar_11")
+        // {
+
+        //     // myText8.SetActive(true);
+        //     // Jetpack_on.jetpack.SetActive(false);
+        //     // myText2.SetActive(false);
+
+        // }
         //Dhruvit's code end
 
 
