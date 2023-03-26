@@ -29,13 +29,7 @@ public class EnemySpawner : MonoBehaviour
     {
         currentTime -= Time.deltaTime;
         if (currentTime <= 0){
-            try{
-                SelectWave();
-            }
-            catch{
-                Debug.Log("No more waves");
-            }
-            // SelectWave();
+            SelectWave();
         }
     }
 

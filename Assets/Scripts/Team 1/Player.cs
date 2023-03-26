@@ -35,6 +35,13 @@ public class Player : MonoBehaviour
     // public GameObject myText8;
     //Dhruvit Code End
 
+    //Dhruvit new code
+    public GameObject step_on_green;
+    public GameObject step_on_blue;
+    public GameObject Reward_system;
+
+
+
 
     // private bool ispath_recorded;
 
@@ -125,6 +132,12 @@ public class Player : MonoBehaviour
         // myText7.SetActive(false);
         // myText8.SetActive(false);
         //Dhruvit's code end
+
+
+        //Dhruvit new code
+        step_on_green.SetActive(false);
+        step_on_blue.SetActive(false);
+        Reward_system.SetActive(false);
 
 
 
@@ -962,6 +975,38 @@ public class Player : MonoBehaviour
 
         // }
         //Dhruvit's code end
+
+
+
+        //Dhruvit new code
+        if (collision.gameObject.tag == "pillar_12")
+        {
+            step_on_green.SetActive(true);
+        }
+
+        if (collision.gameObject.tag == "pillar_13")
+        {
+            step_on_green.SetActive(false);
+            step_on_blue.SetActive(true);
+        }
+
+        if (collision.gameObject.tag == "pillar_15")
+        {
+            step_on_blue.SetActive(false);
+            Reward_system.SetActive(true);
+        }
+
+        if (collision.gameObject.tag == "pillar_9")
+        {
+            Reward_system.SetActive(false);
+        }
+
+        
+
+
+
+
+        
 
 
 
