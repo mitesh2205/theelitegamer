@@ -35,6 +35,13 @@ public class Player : MonoBehaviour
     // public GameObject myText8;
     //Dhruvit Code End
 
+    //Dhruvit new code
+    public GameObject step_on_green;
+    public GameObject step_on_blue;
+    public GameObject Reward_system;
+
+
+
 
     // private bool ispath_recorded;
 
@@ -100,6 +107,19 @@ public class Player : MonoBehaviour
 
     public static bool reset_level_timer = false;
 
+    public LevelTimerScript levelTimer1;
+
+    // new code added 
+    public static Vector3 checkpointPosition;
+    public LevelTimerScript levelTimer;
+    public static float timeLeft;
+    public static float jetPackLeft;
+    public static float timer_jetpack;
+    public static float jetpackduration1;
+
+    public static bool checkpointReached = false;
+    private Animator anim;
+
     private void Awake()
     {
         //Dhruvit's code start
@@ -112,6 +132,12 @@ public class Player : MonoBehaviour
         // myText7.SetActive(false);
         // myText8.SetActive(false);
         //Dhruvit's code end
+
+
+        //Dhruvit new code
+        step_on_green.SetActive(false);
+        step_on_blue.SetActive(false);
+        Reward_system.SetActive(false);
 
 
 
@@ -144,6 +170,7 @@ public class Player : MonoBehaviour
         playerTransform = transform;
         myBody.gravityScale = 1;
         print(myBody.gravityScale);
+        anim = GetComponent<Animator>();
         // print("gravity");
         // circle = transform.Find("rolling_circle");
 
@@ -264,9 +291,20 @@ public class Player : MonoBehaviour
         // colliding with any floor--------------------
         if (Attempts_Counter.attempts <= 0)
         {
-            reset_player_position();
-            death_option();
-            Attempts_Counter.attempts = 5;
+
+            if (checkpointReached)
+            {
+                reset_player_position_to_checkpoint();
+            }
+            else
+            {
+                reset_player_position();
+                death_option();
+                Attempts_Counter.attempts = 5;
+            }
+            // reset_player_position();
+            // death_option();
+            // Attempts_Counter.attempts = 5;
         }
 
         if (isColliding && timeElapsed >= maxstaytime && ispresentonblue && !Timer.IsBlueFloorSafe())
@@ -515,11 +553,28 @@ public class Player : MonoBehaviour
         movementX = Input.GetAxisRaw("Horizontal");
         transform.position += new Vector3(movementX, 0f, 0f) * Time.deltaTime * moveForce;
 
+        if (movementX > 0f)
+        {
+            anim.SetBool("running", true);
+            sr.flipX = false;
+        }
+        else if (movementX < 0f)
+        {
+            anim.SetBool("running", true);
+            sr.flipX = true;
+        }
+        else
+        {
+            anim.SetBool("running", false);
+
+        }
+
     }
     void PlayerJump()
     {
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
+            Debug.Log("Jump_pressed");
             isGrounded = false;
             myBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
@@ -529,7 +584,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Blue_block") && !Timer.IsBlueFloorSafe())
         {
-            isGrounded = true;
+            // isGrounded = true;
             // moveForce = 10f;
             // transform.localScale = originalSize;
             // print("IsBlueFloorSafe ---- Stay");
@@ -543,7 +598,7 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Blue_block") && Timer.IsBlueFloorSafe())
         {
-            isGrounded = true;
+            // isGrounded = true;
             // moveForce = 10f;
             // transform.localScale = originalSize;
             // print("IsBlueFloorSafe safe ----");
@@ -554,7 +609,7 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Red_block") && !Timer.IsGreenFloorSafe())
         {
-            isGrounded = true;
+            // isGrounded = true;
             // moveForce = 10f;
             // transform.localScale = originalSize;
             // print("IsGreenFloorSafe ---- Stay");
@@ -568,7 +623,7 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Red_block") && Timer.IsGreenFloorSafe())
         {
-            isGrounded = true;
+            // isGrounded = true;
             // moveForce = 10f;
             // transform.localScale = originalSize;
             // print("IsGreenFloorSafe safe ----");
@@ -583,7 +638,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Blue_block") && !Timer.IsBlueFloorSafe())
         {
-            isGrounded = true;
+            // isGrounded = true;
             // moveForce = 10f;
             // transform.localScale = originalSize;
             // print("IsBlueFloorSafe ---- Exit");
@@ -595,7 +650,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Blue_block") && Timer.IsBlueFloorSafe())
         {
-            isGrounded = true;
+            // isGrounded = true;
             // moveForce = 10f;
             // transform.localScale = originalSize;
             // print("IsBlueFloorSafe ---- Exit");
@@ -607,7 +662,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Red_block") && !Timer.IsGreenFloorSafe())
         {
-            isGrounded = true;
+            // isGrounded = true;
             // moveForce = 10f;
             // transform.localScale = originalSize;
             // print("IsGreenFloorSafe ---- Exit");
@@ -617,7 +672,7 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Red_block") && Timer.IsGreenFloorSafe())
         {
-            isGrounded = true;
+            // isGrounded = true;
             // moveForce = 10f;
             // transform.localScale = originalSize;
             // print("IsGreenFloorSafe ---- Exit");
@@ -923,6 +978,38 @@ public class Player : MonoBehaviour
 
 
 
+        //Dhruvit new code
+        if (collision.gameObject.tag == "pillar_12")
+        {
+            step_on_green.SetActive(true);
+        }
+
+        if (collision.gameObject.tag == "pillar_13")
+        {
+            step_on_green.SetActive(false);
+            step_on_blue.SetActive(true);
+        }
+
+        if (collision.gameObject.tag == "pillar_15")
+        {
+            step_on_blue.SetActive(false);
+            Reward_system.SetActive(true);
+        }
+
+        if (collision.gameObject.tag == "pillar_9")
+        {
+            Reward_system.SetActive(false);
+        }
+
+        
+
+
+
+
+        
+
+
+
 
 
 
@@ -968,6 +1055,20 @@ public class Player : MonoBehaviour
         //     store_green_state = Timer.green_safe;
 
         // }
+        if (collision.gameObject.CompareTag("checkpoint"))
+        {
+            checkpointReached = true;
+            // store the position of the checkpoint in the checkpointPosition variable by creating a new Vector3 object
+            checkpointPosition = new Vector3(transform.position.x + 8, transform.position.y, transform.position.z);
+
+            timeLeft = levelTimer.timer;
+            // set the jet pack left to the current jet pack left
+            jetPackLeft = Movement.elapsedTime;
+            timer_jetpack = TimeLeft.ScoreValue;
+            jetpackduration1 = Movement.jetpackDuration;
+
+        }
+
         if (collision.gameObject.CompareTag("Laser"))
         {
             d.IncreaseDeathByLaser();
@@ -1037,7 +1138,7 @@ public class Player : MonoBehaviour
             if (collision.gameObject.CompareTag("Gate1"))
             {
                 // below is the code to move the player to the next x,y position. set the x,y to the position you want the player to move to.
-                playerTransform.position = new Vector2(47.3f, 0.9f);
+                playerTransform.position = new Vector2(142.1f, 30.72f); // updated 
                 d.IncreaseTeleporterUsed();
             }
             // if (collision.gameObject.CompareTag("Gate1"))
@@ -1051,7 +1152,7 @@ public class Player : MonoBehaviour
                 // below is the code to move the player to the next x,y position. set the x,y to the position you want the player to move to.
 
                 d.IncreaseTeleporterUsed();
-                playerTransform.position = new Vector2(40.2f, -15.6f);
+                playerTransform.position = new Vector2(90.07f, -14.01f); // updated
 
             }
             if (collision.gameObject.CompareTag("Gate3"))
@@ -1076,12 +1177,27 @@ public class Player : MonoBehaviour
         {
 
             // d.IncreaseDeath();
-            d.IncreaseDeathByFalling();
-            d.IncreaseDeathLocationOfPlayer(playerTransform.position.x, playerTransform.position.y);
-            death_option();
-            reset_player_position();
+            if (button_trigger.checkpointReached)
+            {
+                reset_player_position_to_checkpoint();
+            }
+            else
+            {
+                d.IncreaseDeathByFalling();
+                d.IncreaseDeathLocationOfPlayer(playerTransform.position.x, playerTransform.position.y);
+                death_option();
+                reset_player_position();
+            }
+            // d.IncreaseDeathByFalling();
+            // d.IncreaseDeathLocationOfPlayer(playerTransform.position.x, playerTransform.position.y);
+            // death_option();
+            // reset_player_position();
         }
-
+        if (collision.gameObject.CompareTag("falling_bombs"))
+        {
+            decrease_attempts();
+            Destroy(collision.gameObject);
+        }
 
         // if (collision.gameObject.CompareTag("F"))
         // {
@@ -1345,6 +1461,23 @@ public class Player : MonoBehaviour
         }
     }
 
+
+    // below function is used to reset the player position to the position of checkpoint if checkpoint is not null
+    private void reset_player_position_to_checkpoint()
+    {
+        playerTransform.position = checkpointPosition;
+        Attempts_Counter.attempts = 5;
+        levelTimer1.timer = timeLeft;
+        Movement.elapsedTime = jetPackLeft;
+        TimeLeft.ScoreValue = timer_jetpack;
+        Movement.jetpackDuration = jetpackduration1;
+        Debug.Log("b_ Movement.elapsedTime: " + Movement.elapsedTime);
+        Movement.resumeJetpack = false;
+        Movement.resume1 = false;
+        Movement.stopit = true;
+        Movement.push_force = true;
+        Movement.isJetpacking = false;
+    }
 
     private void reset_player_position()
     {

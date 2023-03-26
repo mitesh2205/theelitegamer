@@ -4,38 +4,50 @@ using UnityEngine;
 
 public class button_trigger : MonoBehaviour
 {
-     public GameObject invisible_platform;
-     public GameObject activate_platform;
-     public GameObject activate_spring;
-     public GameObject activate_invisible_stone;
-  
+    // get the sprite renderer
+    public SpriteRenderer spriteRenderer;
+    public static bool checkpointReached = false;
 
+    // make the public variable to save the checkpoint position when player reaches the checkpoint
+    public static Vector3 checkpointPosition;
+    public LevelTimerScript levelTimer;
+    // make a public variable to save the time left when player reaches the checkpoint
+    public static float timeLeft;
+
+    // make a public variable to save the jet pack left when player reaches the checkpoint
+    public static float jetPackLeft;
+    public static float timer_jetpack;
+
+    public static float jetpackduration1;
+
+    public bool firstTime = true;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //  set attruibute of the object to active
-            if (invisible_platform != null)
+            if (firstTime)
             {
-                invisible_platform.SetActive(true);
+                // set the color of sprite renderer to green when player enters the trigger
+                spriteRenderer.color = Color.green;
+                // checkpointReached = true;
+                // // set the checkpoint position to the current position of the player with some offset on right side 
+                // checkpointPosition = new Vector3(collision.transform.position.x + 8, collision.transform.position.y, collision.transform.position.z);
+                // // set the time left to the current time left
+                // timeLeft = levelTimer.timer;
+                // // set the jet pack left to the current jet pack left
+                // jetPackLeft = Movement.elapsedTime;
+                // timer_jetpack = TimeLeft.ScoreValue;
+                // jetpackduration1 = Movement.jetpackDuration;
+                // Debug.Log("b_checkpoint:" + checkpointPosition);
+                // Debug.Log("b_elapsedTime:" + Movement.elapsedTime);
+                // Debug.Log("b_pushflag:" + Movement.push_force);
+                firstTime = false;
             }
-            if (activate_spring != null)
-            {
-                activate_spring.SetActive(true);
-            }
-            if (activate_invisible_stone != null)
-            {
-                activate_invisible_stone.SetActive(true);
-            }
+
 
         }
 
-        if (collision.gameObject.CompareTag("rolling_circle"))
-        {
-            //  set attruibute of the object to active
-            activate_platform.SetActive(true);
 
-        }
 
     }
 }
