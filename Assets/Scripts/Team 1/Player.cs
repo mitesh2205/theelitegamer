@@ -540,15 +540,18 @@ public class Player : MonoBehaviour
         movementX = Input.GetAxisRaw("Horizontal");
         transform.position += new Vector3(movementX, 0f, 0f) * Time.deltaTime * moveForce;
 
-        if (movementX > 0f){
+        if (movementX > 0f)
+        {
             anim.SetBool("running", true);
             sr.flipX = false;
         }
-        else if (movementX < 0f){
+        else if (movementX < 0f)
+        {
             anim.SetBool("running", true);
             sr.flipX = true;
         }
-        else{
+        else
+        {
             anim.SetBool("running", false);
 
         }
@@ -558,6 +561,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
+            Debug.Log("Jump_pressed");
             isGrounded = false;
             myBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
@@ -567,7 +571,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Blue_block") && !Timer.IsBlueFloorSafe())
         {
-            isGrounded = true;
+            // isGrounded = true;
             // moveForce = 10f;
             // transform.localScale = originalSize;
             // print("IsBlueFloorSafe ---- Stay");
@@ -581,7 +585,7 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Blue_block") && Timer.IsBlueFloorSafe())
         {
-            isGrounded = true;
+            // isGrounded = true;
             // moveForce = 10f;
             // transform.localScale = originalSize;
             // print("IsBlueFloorSafe safe ----");
@@ -592,7 +596,7 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Red_block") && !Timer.IsGreenFloorSafe())
         {
-            isGrounded = true;
+            // isGrounded = true;
             // moveForce = 10f;
             // transform.localScale = originalSize;
             // print("IsGreenFloorSafe ---- Stay");
@@ -606,7 +610,7 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Red_block") && Timer.IsGreenFloorSafe())
         {
-            isGrounded = true;
+            // isGrounded = true;
             // moveForce = 10f;
             // transform.localScale = originalSize;
             // print("IsGreenFloorSafe safe ----");
@@ -621,7 +625,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Blue_block") && !Timer.IsBlueFloorSafe())
         {
-            isGrounded = true;
+            // isGrounded = true;
             // moveForce = 10f;
             // transform.localScale = originalSize;
             // print("IsBlueFloorSafe ---- Exit");
@@ -633,7 +637,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Blue_block") && Timer.IsBlueFloorSafe())
         {
-            isGrounded = true;
+            // isGrounded = true;
             // moveForce = 10f;
             // transform.localScale = originalSize;
             // print("IsBlueFloorSafe ---- Exit");
@@ -645,7 +649,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Red_block") && !Timer.IsGreenFloorSafe())
         {
-            isGrounded = true;
+            // isGrounded = true;
             // moveForce = 10f;
             // transform.localScale = originalSize;
             // print("IsGreenFloorSafe ---- Exit");
@@ -655,7 +659,7 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Red_block") && Timer.IsGreenFloorSafe())
         {
-            isGrounded = true;
+            // isGrounded = true;
             // moveForce = 10f;
             // transform.localScale = originalSize;
             // print("IsGreenFloorSafe ---- Exit");
@@ -1144,7 +1148,8 @@ public class Player : MonoBehaviour
             // death_option();
             // reset_player_position();
         }
-        if (collision.gameObject.CompareTag("falling_bombs") ){
+        if (collision.gameObject.CompareTag("falling_bombs"))
+        {
             decrease_attempts();
             Destroy(collision.gameObject);
         }
