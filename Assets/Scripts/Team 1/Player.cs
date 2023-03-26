@@ -1144,7 +1144,10 @@ public class Player : MonoBehaviour
             // death_option();
             // reset_player_position();
         }
-
+        if (collision.gameObject.CompareTag("falling_bombs") ){
+            decrease_attempts();
+            Destroy(collision.gameObject);
+        }
 
         // if (collision.gameObject.CompareTag("F"))
         // {
