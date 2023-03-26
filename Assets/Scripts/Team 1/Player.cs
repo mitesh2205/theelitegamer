@@ -1382,7 +1382,14 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Finish"))
         {
-
+            checkpointReached = false;
+            Movement.elapsedTime = 0f;
+            Movement.jetpackDuration = 1.5f;
+            Movement.resumeJetpack = false;
+            Movement.resume1 = false;
+            Movement.stopit = true;
+            Movement.push_force = true;
+            Movement.isJetpacking = false;
             d.IncreaseDeath();
             d.IncreaseIsLevelCompleted();
             d.IncreaseTimeToCompleteLevel((int)Time.time - time_start);
