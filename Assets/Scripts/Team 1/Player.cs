@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
     public static bool store_blue_state;
     public static bool store_green_state;
 
-    public int perfect_jumps = 0;
+    public static int perfect_jumps = 0;
     public bool was_last_green = false;
     public bool was_last_blue = false;
 
