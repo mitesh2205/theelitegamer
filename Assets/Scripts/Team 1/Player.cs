@@ -111,6 +111,8 @@ public class Player : MonoBehaviour
     public static float jetpackduration1;
 
     public static bool checkpointReached = false;
+    private Animator anim;
+
     private void Awake()
     {
         //Dhruvit's code start
@@ -155,6 +157,7 @@ public class Player : MonoBehaviour
         playerTransform = transform;
         myBody.gravityScale = 1;
         print(myBody.gravityScale);
+        anim = GetComponent<Animator>();
         // print("gravity");
         // circle = transform.Find("rolling_circle");
 
@@ -536,6 +539,19 @@ public class Player : MonoBehaviour
     {
         movementX = Input.GetAxisRaw("Horizontal");
         transform.position += new Vector3(movementX, 0f, 0f) * Time.deltaTime * moveForce;
+
+        if (movementX > 0f){
+            anim.SetBool("running", true);
+            sr.flipX = false;
+        }
+        else if (movementX < 0f){
+            anim.SetBool("running", true);
+            sr.flipX = true;
+        }
+        else{
+            anim.SetBool("running", false);
+
+        }
 
     }
     void PlayerJump()
