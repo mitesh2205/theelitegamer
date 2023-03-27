@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
     public static bool store_blue_state;
     public static bool store_green_state;
 
-    public int perfect_jumps = 0;
+    public static int perfect_jumps = 0;
     public bool was_last_green = false;
     public bool was_last_blue = false;
 
@@ -112,6 +112,8 @@ public class Player : MonoBehaviour
 
     public static bool checkpointReached = false;
     private Animator anim;
+
+    public int attemps_record = 5;
 
     private void Awake()
     {
@@ -1015,7 +1017,8 @@ public class Player : MonoBehaviour
             checkpointReached = true;
             // store the position of the checkpoint in the checkpointPosition variable by creating a new Vector3 object
             checkpointPosition = new Vector3(transform.position.x + 8, transform.position.y, transform.position.z);
-
+            //store the attempts left
+            attemps_record = Attempts_Counter.attempts;
             timeLeft = levelTimer.timer;
             // set the jet pack left to the current jet pack left
             jetPackLeft = Movement.elapsedTime;
@@ -1428,7 +1431,7 @@ public class Player : MonoBehaviour
     private void reset_player_position_to_checkpoint()
     {
         playerTransform.position = checkpointPosition;
-        Attempts_Counter.attempts = 5;
+        Attempts_Counter.attempts = attemps_record;
         levelTimer1.timer = timeLeft;
         Movement.elapsedTime = jetPackLeft;
         TimeLeft.ScoreValue = timer_jetpack;
