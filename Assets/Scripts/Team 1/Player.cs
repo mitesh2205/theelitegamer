@@ -1385,6 +1385,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Finish"))
         {
+            perfect_jumps = 0;
             checkpointReached = false;
             Movement.elapsedTime = 0f;
             Movement.jetpackDuration = 1.5f;
