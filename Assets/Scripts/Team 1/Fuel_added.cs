@@ -9,14 +9,16 @@ public class Fuel_added : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Movement.jetpackDuration += 1f;
-            Movement.resumeJetpack = false;
-            Movement.resume1 = false;
-            Movement.stopit = true;
-            // Movement.enter_jetpack = true;
-            Movement.push_force = true;
-            TimeLeft.ScoreValue += 1f;
-            Destroy(gameObject);
+            if(Movement.jetpackDuration < 3f){
+                Movement.jetpackDuration += 1f;
+                Movement.resumeJetpack = false;
+                Movement.resume1 = false;
+                Movement.stopit = true;
+                // Movement.enter_jetpack = true;
+                Movement.push_force = true;
+                TimeLeft.ScoreValue += 1f;
+                Destroy(gameObject);
+            }
             // SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
             // renderer.enabled = false;
         }
