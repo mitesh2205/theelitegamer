@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
 
 
     //Dhruvit Code
+
     // public GameObject myText;
     // public GameObject myText2;
     // public GameObject myText3;
@@ -33,6 +34,13 @@ public class Player : MonoBehaviour
     // public GameObject myText6;
     // public GameObject myText7;
     // public GameObject myText8;
+    public GameObject myText9;
+    public GameObject myText10;
+    public GameObject myText11;
+    public GameObject myText12;
+    public GameObject myText13;
+    public GameObject myText14;
+
     //Dhruvit Code End
 
 
@@ -117,7 +125,9 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+
         //Dhruvit's code start
+
         // myText.SetActive(true);
         // myText2.SetActive(false);
         // myText3.SetActive(false);
@@ -126,11 +136,14 @@ public class Player : MonoBehaviour
         // myText6.SetActive(false);
         // myText7.SetActive(false);
         // myText8.SetActive(false);
+        myText9.SetActive(true);
+        myText10.SetActive(false);
+        myText11.SetActive(false);
+        myText12.SetActive(false);
+        myText13.SetActive(false);
+        myText14.SetActive(false);
+
         //Dhruvit's code end
-
-
-
-
 
 
 
@@ -963,6 +976,64 @@ public class Player : MonoBehaviour
         //     // myText2.SetActive(false);
 
         // }
+
+
+        if (collision.gameObject.tag == "Intro_off")
+        {
+            myText9.SetActive(false);
+            myText10.SetActive(true);
+        }
+
+        if (collision.gameObject.tag == "Blue_on")
+        {
+            myText10.SetActive(false);
+            myText11.SetActive(true);
+        }
+
+        if (collision.gameObject.tag == "Green_on")
+        {
+            myText11.SetActive(false);
+            myText12.SetActive(true);
+        }
+
+        if (collision.gameObject.tag == "congrats")
+        {
+            myText12.SetActive(false);
+            myText13.SetActive(true);
+        }
+
+        if (collision.gameObject.tag == "congrats")
+        {
+            myText13.SetActive(false);
+            myText14.SetActive(true);
+        }
+
+
+
+        if (collision.gameObject.tag == "restart")
+        {
+            myText9.SetActive(true);
+            myText10.SetActive(false);
+            myText11.SetActive(false);
+            myText12.SetActive(false);
+            myText13.SetActive(false);
+            myText14.SetActive(false);
+        }
+
+
+       
+
+
+
+
+
+
+
+
+
+
+
+
         //Dhruvit's code end
 
 
