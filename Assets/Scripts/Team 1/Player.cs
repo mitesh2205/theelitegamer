@@ -546,11 +546,13 @@ public class Player : MonoBehaviour
         {
             anim.SetBool("running", true);
             sr.flipX = false;
+            firepoint.unfix();
         }
         else if (movementX < 0f)
         {
             anim.SetBool("running", true);
             sr.flipX = true;
+            firepoint.fix();
         }
         else
         {
