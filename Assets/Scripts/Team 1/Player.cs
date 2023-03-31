@@ -120,6 +120,14 @@ public class Player : MonoBehaviour
     private float boostTime;
     private bool bosting;
 
+    private enum PlayerState
+    {
+        idle,
+        running,
+        jumping,
+        falling
+    };
+
     private void Awake()
     {
         //Dhruvit's code start
@@ -572,22 +580,40 @@ public class Player : MonoBehaviour
     {
         movementX = Input.GetAxisRaw("Horizontal");
         transform.position += new Vector3(movementX, 0f, 0f) * Time.deltaTime * moveForce;
-
+        
+        PlayerState playerState;
+        
         if (movementX > 0f)
         {
             anim.SetBool("running", true);
             sr.flipX = false;
+            playerState = PlayerState.Running;
         }
         else if (movementX < 0f)
         {
             anim.SetBool("running", true);
             sr.flipX = true;
+            playerState = PlayerState.Running;
         }
         else
         {
             anim.SetBool("running", false);
-
+            playerState = PlayerState.Idle;
         }
+
+        if(myBody.velocity.y < 0.1f)
+        {
+            anim.SetBool("falling", true);
+            playerState = PlayerState.Falling;
+        }
+        else if(myBody.velocity.y > 0.1f)
+        {
+            anim.SetBool("jumping", true);
+            playerState = PlayerState.Jumping;
+        }
+
+        anim.SetInteger("state", (int)playerState);
+
 
     }
     void PlayerJump()
