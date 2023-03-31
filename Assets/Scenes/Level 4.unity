@@ -134,6 +134,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1070961534824901193, guid: 96a012de192d54684b47ea5503d16ca1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1070961534824901193, guid: 96a012de192d54684b47ea5503d16ca1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2599794471218138344, guid: 96a012de192d54684b47ea5503d16ca1, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -176,10 +184,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2599794471218138344, guid: 96a012de192d54684b47ea5503d16ca1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5746080305713253938, guid: 96a012de192d54684b47ea5503d16ca1, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5746080305876170631, guid: 96a012de192d54684b47ea5503d16ca1, type: 3}
