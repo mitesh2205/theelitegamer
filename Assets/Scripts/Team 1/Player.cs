@@ -885,6 +885,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         //Dhruvit's code start
 
         // if (collision.gameObject.tag == "pillar_1")
@@ -984,28 +985,80 @@ public class Player : MonoBehaviour
             myText10.SetActive(true);
         }
 
+
         if (collision.gameObject.tag == "Blue_on")
         {
             myText10.SetActive(false);
             myText11.SetActive(true);
+
+            GameObject blokage = GameObject.FindWithTag("p1");
+            
+            SpriteRenderer renderer = blokage.GetComponent<SpriteRenderer>();
+            renderer.enabled = true;
+
+            BoxCollider2D collider = blokage.GetComponent<BoxCollider2D>();
+            collider.isTrigger = false;
+
         }
+
 
         if (collision.gameObject.tag == "Green_on")
         {
             myText11.SetActive(false);
             myText12.SetActive(true);
+
+            GameObject blokage = GameObject.FindWithTag("p2");
+            
+            SpriteRenderer renderer = blokage.GetComponent<SpriteRenderer>();
+            renderer.enabled = true;
+
+            BoxCollider2D collider = blokage.GetComponent<BoxCollider2D>();
+            collider.isTrigger = false;
         }
+
 
         if (collision.gameObject.tag == "congrats")
         {
             myText12.SetActive(false);
             myText13.SetActive(true);
+
+            GameObject blokage = GameObject.FindWithTag("p3");
+            
+            SpriteRenderer renderer = blokage.GetComponent<SpriteRenderer>();
+            renderer.enabled = true;
+
+            BoxCollider2D collider = blokage.GetComponent<BoxCollider2D>();
+            collider.isTrigger = false;
         }
 
-        if (collision.gameObject.tag == "congrats")
+
+
+        if (collision.gameObject.tag == "congrats_off")
         {
             myText13.SetActive(false);
             myText14.SetActive(true);
+
+            GameObject blokage = GameObject.FindWithTag("p4");
+            
+            SpriteRenderer renderer = blokage.GetComponent<SpriteRenderer>();
+            renderer.enabled = true;
+
+            BoxCollider2D collider = blokage.GetComponent<BoxCollider2D>();
+            collider.isTrigger = false;
+        }
+
+
+
+        if (collision.gameObject.tag == "last")
+        {
+            
+            GameObject blokage = GameObject.FindWithTag("p5");
+            
+            SpriteRenderer renderer = blokage.GetComponent<SpriteRenderer>();
+            renderer.enabled = true;
+
+            BoxCollider2D collider = blokage.GetComponent<BoxCollider2D>();
+            collider.isTrigger = false;
         }
 
 
@@ -1018,7 +1071,67 @@ public class Player : MonoBehaviour
             myText12.SetActive(false);
             myText13.SetActive(false);
             myText14.SetActive(false);
+
+            GameObject blokage = GameObject.FindWithTag("p1");
+            
+            SpriteRenderer renderer = blokage.GetComponent<SpriteRenderer>();
+            renderer.enabled = false;
+
+            BoxCollider2D collider = blokage.GetComponent<BoxCollider2D>();
+            collider.isTrigger = true;
+
+
+
+            GameObject blokage1 = GameObject.FindWithTag("p2");
+            
+            SpriteRenderer renderer1 = blokage1.GetComponent<SpriteRenderer>();
+            renderer1.enabled = false;
+
+            BoxCollider2D collider1 = blokage1.GetComponent<BoxCollider2D>();
+            collider1.isTrigger = true;
+
+
+
+
+            GameObject blokage2 = GameObject.FindWithTag("p3");
+            
+            SpriteRenderer renderer2 = blokage2.GetComponent<SpriteRenderer>();
+            renderer2.enabled = false;
+
+            BoxCollider2D collider2 = blokage2.GetComponent<BoxCollider2D>();
+            collider2.isTrigger = true;
+
+
+
+            GameObject blokage3 = GameObject.FindWithTag("p4");
+            
+            SpriteRenderer renderer3 = blokage3.GetComponent<SpriteRenderer>();
+            renderer3.enabled = true;
+
+            BoxCollider2D collider3 = blokage3.GetComponent<BoxCollider2D>();
+            collider3.isTrigger = false;
+
+
+
+            GameObject blokage4 = GameObject.FindWithTag("p5");
+            
+            SpriteRenderer renderer4 = blokage4.GetComponent<SpriteRenderer>();
+            renderer4.enabled = true;
+
+            BoxCollider2D collider4 = blokage4.GetComponent<BoxCollider2D>();
+            collider4.isTrigger = false;
+
         }
+
+
+        
+
+
+
+
+        
+    
+    
 
 
        
