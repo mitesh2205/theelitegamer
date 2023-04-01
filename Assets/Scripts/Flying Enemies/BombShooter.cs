@@ -57,7 +57,10 @@ public class BombShooter : MonoBehaviour
             Rigidbody2D rb = instance.GetComponent<Rigidbody2D>();
             if(rb != null)
             {
+                Debug.Log("Added velocity");
                 rb.velocity = transform.up * projectileSpeed;
+            }else{
+                Debug.Log("rb is null");
             }
 
             Destroy(instance, projectileLifetime);
