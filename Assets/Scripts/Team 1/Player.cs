@@ -588,6 +588,7 @@ public class Player : MonoBehaviour
             playerState = PlayerState.running;
             sr.flipX = false;
             spriteFlip = false;
+            firepoint.unfix();
         }
         else if (movementX < 0f)
         {
@@ -595,6 +596,7 @@ public class Player : MonoBehaviour
             playerState = PlayerState.running;
             sr.flipX = true;
             spriteFlip = true;
+            firepoint.fix();
         }
         else
         {
