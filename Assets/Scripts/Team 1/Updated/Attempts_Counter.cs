@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Attempts_Counter : MonoBehaviour
 {
     Text showAttempts;
-    public static int attempts = 5;
+    public static int attempts = 1;
     // Start is called before the first frame update
     void Start()
     {

@@ -302,7 +302,7 @@ public class Player : MonoBehaviour
             {
                 reset_player_position();
                 death_option();
-                Attempts_Counter.attempts = 5;
+                Attempts_Counter.attempts = 1;
             }
             // reset_player_position();
             // death_option();
@@ -1106,47 +1106,22 @@ public class Player : MonoBehaviour
             GameObject blokage3 = GameObject.FindWithTag("p4");
             
             SpriteRenderer renderer3 = blokage3.GetComponent<SpriteRenderer>();
-            renderer3.enabled = true;
+            renderer3.enabled = false;
 
             BoxCollider2D collider3 = blokage3.GetComponent<BoxCollider2D>();
-            collider3.isTrigger = false;
+            collider3.isTrigger = true;
 
 
 
             GameObject blokage4 = GameObject.FindWithTag("p5");
             
             SpriteRenderer renderer4 = blokage4.GetComponent<SpriteRenderer>();
-            renderer4.enabled = true;
+            renderer4.enabled = false;
 
             BoxCollider2D collider4 = blokage4.GetComponent<BoxCollider2D>();
-            collider4.isTrigger = false;
+            collider4.isTrigger = true;
 
         }
-
-
-        
-
-
-
-
-        
-    
-    
-
-
-       
-
-
-
-
-
-
-
-
-
-
-
-
         //Dhruvit's code end
 
 
@@ -1643,7 +1618,7 @@ public class Player : MonoBehaviour
         Movement.elapsedTime = 0f;
         Movement.isJetpacking = false;
         Movement.isGrounded = true;
-        Attempts_Counter.attempts = 5;
+        Attempts_Counter.attempts = 1;
         levelTimerScript.resetTimer();
 
         // if (SceneManager.GetActiveScene().buildIndex == 2)
@@ -1672,7 +1647,7 @@ public class Player : MonoBehaviour
 
     private void Player_life_reset()
     {
-        Attempts_Counter.attempts = 5;
+        Attempts_Counter.attempts = 1;
     }
 
 
