@@ -21,8 +21,7 @@ public class Player : MonoBehaviour
     private bool isGrounded = true;
     public int time_start;
     private bool isInvincible = false;
-    
-
+    public static bool spriteFlip = false;
 
 
 
@@ -585,34 +584,37 @@ public class Player : MonoBehaviour
         
         if (movementX > 0f)
         {
-            anim.SetBool("running", true);
+            // anim.SetBool("running", true);
+            playerState = PlayerState.running;
             sr.flipX = false;
-            playerState = PlayerState.Running;
+            spriteFlip = false;
         }
         else if (movementX < 0f)
         {
-            anim.SetBool("running", true);
+            // anim.SetBool("running", true);
+            playerState = PlayerState.running;
             sr.flipX = true;
-            playerState = PlayerState.Running;
+            spriteFlip = true;
         }
         else
         {
-            anim.SetBool("running", false);
-            playerState = PlayerState.Idle;
+            // anim.SetBool("running", false);
+            playerState = PlayerState.idle;
         }
 
-        if(myBody.velocity.y < 0.1f)
+        if(myBody.velocity.y < -0.1f)
         {
-            anim.SetBool("falling", true);
-            playerState = PlayerState.Falling;
+            // anim.SetBool("falling", true);
+            playerState = PlayerState.falling;
         }
         else if(myBody.velocity.y > 0.1f)
         {
-            anim.SetBool("jumping", true);
-            playerState = PlayerState.Jumping;
+            // anim.SetBool("jumping", true);
+            playerState = PlayerState.jumping;
         }
 
-        anim.SetInteger("state", (int)playerState);
+        anim.SetInteger("player_state", (int)playerState);
+        Debug.Log("player_state: " + playerState);
 
 
     }
