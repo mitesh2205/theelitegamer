@@ -98,13 +98,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1194300987032786180, guid: 3a749a94634b040eaad740a3e16e17bb, type: 3}
-  projectileSpeed: 50
+  projectileSpeed: 40
   projectileLifetime: 10
   firingRate: 0.3
-  baseFiringRate: 0.1
+  baseFiringRate: 1
   useAI: 1
-  firingRateVariance: 0.6
-  minimumFiringRate: 0.8
+  firingRateVariance: 0.5
+  minimumFiringRate: 0.1
   isFiring: 0
 --- !u!1 &1349169486227598588
 GameObject:
