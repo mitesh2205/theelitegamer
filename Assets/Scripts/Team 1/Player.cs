@@ -1065,6 +1065,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.tag == "restart")
         {
+            perfect_jumps=0;
             myText9.SetActive(true);
             myText10.SetActive(false);
             myText11.SetActive(false);
