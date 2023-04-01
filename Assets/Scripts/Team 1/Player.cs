@@ -931,13 +931,14 @@ public class Player : MonoBehaviour
 
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if(collision.gameObject.CompareTag("slippery_slope"))
-        {
-            moveForce = 15f;
-        }
-    }
+    // slope behaviour not intended.
+    // private void OnTriggerExit2D(Collider2D collision)
+    // {
+    //     if(collision.gameObject.CompareTag("slippery_slope"))
+    //     {
+    //         moveForce = 15f;
+    //     }
+    // }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("slippery_slope"))
