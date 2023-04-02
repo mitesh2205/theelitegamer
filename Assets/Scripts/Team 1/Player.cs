@@ -119,6 +119,7 @@ public class Player : MonoBehaviour
     private float boostTime;
     private bool bosting;
 
+    private bool hotReload = true;
     private enum PlayerState
     {
         idle,
@@ -139,12 +140,6 @@ public class Player : MonoBehaviour
         // myText7.SetActive(false);
         // myText8.SetActive(false);
         //Dhruvit's code end
-
-
-
-
-
-
 
 
         myBody = GetComponent<Rigidbody2D>();
@@ -172,6 +167,9 @@ public class Player : MonoBehaviour
         myBody.gravityScale = 1;
         print(myBody.gravityScale);
         anim = GetComponent<Animator>();
+
+        // playerTransform.color = Color.green;
+        // player_set_color_green();
         // print("gravity");
         // circle = transform.Find("rolling_circle");
 
@@ -192,10 +190,11 @@ public class Player : MonoBehaviour
             StartCoroutine(InvincibilityCoroutine());
         }
     }
-    IEnumerator InvincibilityCoroutine() {
-            yield return new WaitForSeconds(2);
-            isInvincible = false;
-        }
+    IEnumerator InvincibilityCoroutine()
+    {
+        yield return new WaitForSeconds(2);
+        isInvincible = false;
+    }
 
     // Update is called once per frame
     void Update()
@@ -204,7 +203,13 @@ public class Player : MonoBehaviour
         // {
         //     reset_player_color_to_white();
         // }
-
+        if (hotReload)
+        {
+            hotReload = false;
+            Timer.green_safe = true;
+            Timer.blue_safe = false;
+            // player_set_color_green();
+        }
         // if the flag of blue safe is true in timer then change the color of player to blue else green 
         if (Timer.IsBlueFloorSafe() && Timer.IsGreenFloorSafe())
         {
@@ -579,9 +584,9 @@ public class Player : MonoBehaviour
     {
         movementX = Input.GetAxisRaw("Horizontal");
         transform.position += new Vector3(movementX, 0f, 0f) * Time.deltaTime * moveForce;
-        
+
         PlayerState playerState;
-        
+
         if (movementX > 0f)
         {
             // anim.SetBool("running", true);
@@ -604,12 +609,12 @@ public class Player : MonoBehaviour
             playerState = PlayerState.idle;
         }
 
-        if(myBody.velocity.y < -0.1f)
+        if (myBody.velocity.y < -0.1f)
         {
             // anim.SetBool("falling", true);
             playerState = PlayerState.falling;
         }
-        else if(myBody.velocity.y > 0.1f)
+        else if (myBody.velocity.y > 0.1f)
         {
             // anim.SetBool("jumping", true);
             playerState = PlayerState.jumping;
@@ -682,7 +687,7 @@ public class Player : MonoBehaviour
             timeElapsed = 0f;
             is_unsafe_platform = true;
         }
-        
+
     }
 
     private void OnCollisionExit2D(Collision2D collision)

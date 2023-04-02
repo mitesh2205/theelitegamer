@@ -21,7 +21,7 @@ public class Player_tutorial : MonoBehaviour
     private bool isGrounded = true;
     public int time_start;
 
-
+    public static bool spriteFlip = false;
 
 
     //Dhruvit Code
@@ -122,6 +122,14 @@ public class Player_tutorial : MonoBehaviour
     private Animator anim;
 
     public int attemps_record = 5;
+
+    private enum PlayerState
+    {
+        idle,
+        running,
+        jumping,
+        falling
+    };
 
     private void Awake()
     {
@@ -552,24 +560,64 @@ public class Player_tutorial : MonoBehaviour
     }
     void PlayerMoveKeyboard()
     {
+        // movementX = Input.GetAxisRaw("Horizontal");
+        // transform.position += new Vector3(movementX, 0f, 0f) * Time.deltaTime * moveForce;
+
+        // if (movementX > 0f)
+        // {
+        //     anim.SetBool("running", true);
+        //     sr.flipX = false;
+        // }
+        // else if (movementX < 0f)
+        // {
+        //     anim.SetBool("running", true);
+        //     sr.flipX = true;
+        // }
+        // else
+        // {
+        //     anim.SetBool("running", false);
+
+        // }
         movementX = Input.GetAxisRaw("Horizontal");
         transform.position += new Vector3(movementX, 0f, 0f) * Time.deltaTime * moveForce;
 
+        PlayerState playerState;
+
         if (movementX > 0f)
         {
-            anim.SetBool("running", true);
+            // anim.SetBool("running", true);
+            playerState = PlayerState.running;
             sr.flipX = false;
+            spriteFlip = false;
+            firepoint.unfix();
         }
         else if (movementX < 0f)
         {
-            anim.SetBool("running", true);
+            // anim.SetBool("running", true);
+            playerState = PlayerState.running;
             sr.flipX = true;
+            spriteFlip = true;
+            firepoint.fix();
         }
         else
         {
-            anim.SetBool("running", false);
-
+            // anim.SetBool("running", false);
+            playerState = PlayerState.idle;
         }
+
+        if (myBody.velocity.y < -0.1f)
+        {
+            // anim.SetBool("falling", true);
+            playerState = PlayerState.falling;
+        }
+        else if (myBody.velocity.y > 0.1f)
+        {
+            // anim.SetBool("jumping", true);
+            playerState = PlayerState.jumping;
+        }
+
+        anim.SetInteger("player_state", (int)playerState);
+        Debug.Log("player_state: " + playerState);
 
     }
     void PlayerJump()
@@ -1554,9 +1602,12 @@ public class Player_tutorial : MonoBehaviour
             Movement.stopit = true;
             Movement.push_force = true;
             Movement.isJetpacking = false;
+            Timer.danger_time = true;
+            player_set_color_green();
             d.IncreaseDeath();
             d.IncreaseIsLevelCompleted();
             d.IncreaseTimeToCompleteLevel((int)Time.time - time_start);
+            LoadNextLevel();
             //             PlayerDied(System.DateTime.Now.Ticks.ToString(), d.death.ToString(), d.death_by_saw.ToString(), d.death_by_spikes.ToString(), d.death_by_enemy.ToString(), d.death_by_spear.ToString(), d.death_by_explosive.ToString(), d.death_by_crusher.ToString(), d.time_to_complete_level.ToString(), d.death_by_falling.ToString(), d.death_by_puzzle.ToString(), SceneManager.GetActiveScene().buildIndex.ToString(),
             // d.spring_used.ToString(), d.button_used.ToString(), d.ladder_used.ToString(), d.jetpack.ToString(), d.rope.ToString(), d.teleporter_used.ToString());
             // Debug.Log(d.red_safe_standing_time.ToString());
@@ -1568,17 +1619,17 @@ public class Player_tutorial : MonoBehaviour
             Debug.Log(bluesafestandingtime);
             Debug.Log(blueunsafestandingtime);
 
-            PlayerDied(System.DateTime.Now.Ticks.ToString(), d.death.ToString(), d.death_by_saw.ToString(), d.death_by_spikes.ToString(),
-            d.death_by_enemy.ToString(), d.death_by_spear.ToString(), d.death_by_explosive.ToString(), d.death_by_crusher.ToString(),
-            d.time_to_complete_level.ToString(), d.death_by_falling.ToString(), d.death_by_puzzle.ToString(),
-            SceneManager.GetActiveScene().buildIndex.ToString(), d.spring_used.ToString(), d.button_used.ToString(),
-            d.ladder_used.ToString(), d.jetpack.ToString(), d.rope.ToString(), d.teleporter_used.ToString(),
-            Math.Round(greensafestandingtime, 0).ToString(), Math.Round(bluesafestandingtime, 0).ToString(),
-            Math.Round(greenunsafestandingtime, 0).ToString(), Math.Round(blueunsafestandingtime, 0).ToString(),
-            d.jetpack_used_cnt_success.ToString(), d.rope_used_cnt_success.ToString(), d.spring_used_cnt_success.ToString(),
-            d.teleporter_used_cnt_success.ToString(), Attempts_Counter_tr.attempts.ToString(), d.death_location_of_player,
-            d.is_timeout.ToString(), d.is_level_completed.ToString(), d.player_path, d.unsafe_platform_coordinates,
-            d.death_by_laser.ToString());
+            // PlayerDied(System.DateTime.Now.Ticks.ToString(), d.death.ToString(), d.death_by_saw.ToString(), d.death_by_spikes.ToString(),
+            // d.death_by_enemy.ToString(), d.death_by_spear.ToString(), d.death_by_explosive.ToString(), d.death_by_crusher.ToString(),
+            // d.time_to_complete_level.ToString(), d.death_by_falling.ToString(), d.death_by_puzzle.ToString(),
+            // SceneManager.GetActiveScene().buildIndex.ToString(), d.spring_used.ToString(), d.button_used.ToString(),
+            // d.ladder_used.ToString(), d.jetpack.ToString(), d.rope.ToString(), d.teleporter_used.ToString(),
+            // Math.Round(greensafestandingtime, 0).ToString(), Math.Round(bluesafestandingtime, 0).ToString(),
+            // Math.Round(greenunsafestandingtime, 0).ToString(), Math.Round(blueunsafestandingtime, 0).ToString(),
+            // d.jetpack_used_cnt_success.ToString(), d.rope_used_cnt_success.ToString(), d.spring_used_cnt_success.ToString(),
+            // d.teleporter_used_cnt_success.ToString(), Attempts_Counter_tr.attempts.ToString(), d.death_location_of_player,
+            // d.is_timeout.ToString(), d.is_level_completed.ToString(), d.player_path, d.unsafe_platform_coordinates,
+            // d.death_by_laser.ToString());
 
             // Debug.Log("Completed");
 
@@ -1834,10 +1885,12 @@ public class Player_tutorial : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        Destroy(playerTransform);
+        // Destroy(gameObject);
+        Destroy(GameObject.Find("Player"));
         player_set_color_green();
         reset_level_timer = true;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(0);
     }
 
     // make player sprite green
