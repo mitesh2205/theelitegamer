@@ -4098,6 +4098,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7128999646186534927 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1861678070998551117, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+  m_PrefabInstance: {fileID: 8879208678336868930}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8879208678350731316
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4381,6 +4392,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2599794471218138344}
     m_Modifications:
+    - target: {fileID: 7233224577426538317, guid: 2a776c9e7ebfd5641aae1ae3603aa501, type: 3}
+      propertyPath: jetpackSlider
+      value: 
+      objectReference: {fileID: 7128999646186534927}
     - target: {fileID: 7824638060236202854, guid: 2a776c9e7ebfd5641aae1ae3603aa501, type: 3}
       propertyPath: m_RootOrder
       value: 5

@@ -13,6 +13,8 @@ public class Add_attempts : MonoBehaviour
                 Attempts_Counter.attempts += 1;
                 Destroy(gameObject);
             }
+            // Attempts_Counter.attempts += 1;
+            // Destroy(gameObject);
             // SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
             // renderer.enabled = false;
         }

@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     private SpriteRenderer sr;
     private float movementX;
     [SerializeField]
-    private float moveForce = 12f;
+    public static float moveForce = 15f;
     [SerializeField]
     private float jumpForce = 12f;
     private Transform playerTransform;
@@ -20,7 +20,8 @@ public class Player : MonoBehaviour
     private string GROUND_TAG = "Ground";
     private bool isGrounded = true;
     public int time_start;
-
+    private bool isInvincible = false;
+    public static bool spriteFlip = false;
 
 
 
@@ -115,6 +116,17 @@ public class Player : MonoBehaviour
 
     public int attemps_record = 5;
 
+    private float boostTime;
+    private bool bosting;
+
+    private enum PlayerState
+    {
+        idle,
+        running,
+        jumping,
+        falling
+    };
+
     private void Awake()
     {
         //Dhruvit's code start
@@ -168,10 +180,22 @@ public class Player : MonoBehaviour
 
     void decrease_attempts()
     {
-        Attempts_Counter.attempts--;
-        die_hint = true;
-        d.IncreaseDeathLocationOfPlayer(playerTransform.position.x, playerTransform.position.y);
+        // node on decreasing the attempt i want to make player invincible for 2 seconds 
+        // and then decrease the attempt
+
+        if (!isInvincible)
+        {
+            Attempts_Counter.attempts--;
+            die_hint = true;
+            d.IncreaseDeathLocationOfPlayer(playerTransform.position.x, playerTransform.position.y);
+            isInvincible = true;
+            StartCoroutine(InvincibilityCoroutine());
+        }
     }
+    IEnumerator InvincibilityCoroutine() {
+            yield return new WaitForSeconds(2);
+            isInvincible = false;
+        }
 
     // Update is called once per frame
     void Update()
@@ -234,6 +258,16 @@ public class Player : MonoBehaviour
             store_blue_state = Timer.blue_safe;
             store_green_state = Timer.green_safe;
         }
+        if (bosting)
+        {
+            boostTime += Time.deltaTime;
+            if (boostTime >= 4)
+            {
+                moveForce = 15f;
+                boostTime = 0;
+                bosting = false;
+            }
+        }
         if (safemode)
         {
 
@@ -284,12 +318,16 @@ public class Player : MonoBehaviour
             if (checkpointReached)
             {
                 reset_player_position_to_checkpoint();
+
             }
             else
             {
                 reset_player_position();
+                Debug.Log("player reset to start_____");
                 death_option();
+                Debug.Log("player died))____");
                 Attempts_Counter.attempts = 5;
+                Debug.Log("attempts reset to 5 _____");
             }
             // reset_player_position();
             // death_option();
@@ -541,22 +579,45 @@ public class Player : MonoBehaviour
     {
         movementX = Input.GetAxisRaw("Horizontal");
         transform.position += new Vector3(movementX, 0f, 0f) * Time.deltaTime * moveForce;
-
+        
+        PlayerState playerState;
+        
         if (movementX > 0f)
         {
-            anim.SetBool("running", true);
+            // anim.SetBool("running", true);
+            playerState = PlayerState.running;
             sr.flipX = false;
+            spriteFlip = false;
+            firepoint.unfix();
         }
         else if (movementX < 0f)
         {
-            anim.SetBool("running", true);
+            // anim.SetBool("running", true);
+            playerState = PlayerState.running;
             sr.flipX = true;
+            spriteFlip = true;
+            firepoint.fix();
         }
         else
         {
-            anim.SetBool("running", false);
-
+            // anim.SetBool("running", false);
+            playerState = PlayerState.idle;
         }
+
+        if(myBody.velocity.y < -0.1f)
+        {
+            // anim.SetBool("falling", true);
+            playerState = PlayerState.falling;
+        }
+        else if(myBody.velocity.y > 0.1f)
+        {
+            // anim.SetBool("jumping", true);
+            playerState = PlayerState.jumping;
+        }
+
+        anim.SetInteger("player_state", (int)playerState);
+        Debug.Log("player_state: " + playerState);
+
 
     }
     void PlayerJump()
@@ -621,6 +682,7 @@ public class Player : MonoBehaviour
             timeElapsed = 0f;
             is_unsafe_platform = true;
         }
+        
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -869,7 +931,23 @@ public class Player : MonoBehaviour
 
     }
 
-
+    // slope behaviour not intended.
+    // private void OnTriggerExit2D(Collider2D collision)
+    // {
+    //     if(collision.gameObject.CompareTag("slippery_slope"))
+    //     {
+    //         moveForce = 15f;
+    //     }
+    // }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("slippery_slope"))
+        {
+            bosting = true;
+            moveForce = 25f;
+            Debug.Log("on slope");
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Dhruvit's code start
@@ -1025,6 +1103,13 @@ public class Player : MonoBehaviour
             timer_jetpack = TimeLeft.ScoreValue;
             jetpackduration1 = Movement.jetpackDuration;
 
+        }
+
+        if (collision.gameObject.CompareTag("slippery_slope"))
+        {
+            bosting = true;
+            moveForce = 25f;
+            Debug.Log("on slope");
         }
 
         if (collision.gameObject.CompareTag("Laser"))
@@ -1483,6 +1568,8 @@ public class Player : MonoBehaviour
         // Panel panel = panelObject.GetComponent<Panel>();
         print("Death");
         play_again_panel.SetActive(true);
+        Attempts_Counter.attempts = 5;
+        myBody.gravityScale = 1;
 
     }
 
