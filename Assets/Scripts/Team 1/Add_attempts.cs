@@ -9,8 +9,12 @@ public class Add_attempts : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Attempts_Counter.attempts += 1;
-            Destroy(gameObject);
+            if(Attempts_Counter.attempts < 5){
+                Attempts_Counter.attempts += 1;
+                Destroy(gameObject);
+            }
+            // Attempts_Counter.attempts += 1;
+            // Destroy(gameObject);
             // SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
             // renderer.enabled = false;
         }
