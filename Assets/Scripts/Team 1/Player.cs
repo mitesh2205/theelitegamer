@@ -588,6 +588,7 @@ public class Player : MonoBehaviour
             playerState = PlayerState.running;
             sr.flipX = false;
             spriteFlip = false;
+            firepoint.unfix();
         }
         else if (movementX < 0f)
         {
@@ -595,6 +596,7 @@ public class Player : MonoBehaviour
             playerState = PlayerState.running;
             sr.flipX = true;
             spriteFlip = true;
+            firepoint.fix();
         }
         else
         {
@@ -929,13 +931,14 @@ public class Player : MonoBehaviour
 
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if(collision.gameObject.CompareTag("slippery_slope"))
-        {
-            moveForce = 15f;
-        }
-    }
+    // slope behaviour not intended.
+    // private void OnTriggerExit2D(Collider2D collision)
+    // {
+    //     if(collision.gameObject.CompareTag("slippery_slope"))
+    //     {
+    //         moveForce = 15f;
+    //     }
+    // }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("slippery_slope"))
