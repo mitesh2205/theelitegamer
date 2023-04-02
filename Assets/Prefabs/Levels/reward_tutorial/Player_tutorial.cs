@@ -181,7 +181,7 @@ public class Player_tutorial : MonoBehaviour
 
     void decrease_attempts()
     {
-        Attempts_Counter.attempts--;
+        Attempts_Counter_tr.attempts--;
         die_hint = true;
         d.IncreaseDeathLocationOfPlayer(playerTransform.position.x, playerTransform.position.y);
     }
@@ -291,7 +291,7 @@ public class Player_tutorial : MonoBehaviour
             LevelTimerScript.timerover = false;
         }
         // colliding with any floor--------------------
-        if (Attempts_Counter.attempts <= 0)
+        if (Attempts_Counter_tr.attempts <= 0)
         {
 
             if (checkpointReached)
@@ -302,7 +302,7 @@ public class Player_tutorial : MonoBehaviour
             {
                 reset_player_position();
                 death_option();
-                Attempts_Counter.attempts = 1;
+                Attempts_Counter_tr.attempts = 1;
             }
             // reset_player_position();
             // death_option();
@@ -530,7 +530,7 @@ public class Player_tutorial : MonoBehaviour
             Math.Round(bluesafestandingtime, 0).ToString(), Math.Round(greenunsafestandingtime, 0).ToString(),
             Math.Round(blueunsafestandingtime, 0).ToString(), d.jetpack_used_cnt_success.ToString(),
             d.rope_used_cnt_success.ToString(), d.spring_used_cnt_success.ToString(), d.teleporter_used_cnt_success.ToString(),
-            Attempts_Counter.attempts.ToString(), d.death_location_of_player, d.is_timeout.ToString(), d.is_level_completed.ToString(),
+            Attempts_Counter_tr.attempts.ToString(), d.death_location_of_player, d.is_timeout.ToString(), d.is_level_completed.ToString(),
             d.player_path, d.unsafe_platform_coordinates, d.death_by_laser.ToString());
             // play_again_panel.SetActive(true
         }
@@ -1178,7 +1178,7 @@ public class Player_tutorial : MonoBehaviour
             // store the position of the checkpoint in the checkpointPosition variable by creating a new Vector3 object
             checkpointPosition = new Vector3(transform.position.x + 8, transform.position.y, transform.position.z);
             //store the attempts left
-            attemps_record = Attempts_Counter.attempts;
+            attemps_record = Attempts_Counter_tr.attempts;
             timeLeft = levelTimer.timer;
             // set the jet pack left to the current jet pack left
             jetPackLeft = Movement.elapsedTime;
@@ -1576,7 +1576,7 @@ public class Player_tutorial : MonoBehaviour
             Math.Round(greensafestandingtime, 0).ToString(), Math.Round(bluesafestandingtime, 0).ToString(),
             Math.Round(greenunsafestandingtime, 0).ToString(), Math.Round(blueunsafestandingtime, 0).ToString(),
             d.jetpack_used_cnt_success.ToString(), d.rope_used_cnt_success.ToString(), d.spring_used_cnt_success.ToString(),
-            d.teleporter_used_cnt_success.ToString(), Attempts_Counter.attempts.ToString(), d.death_location_of_player,
+            d.teleporter_used_cnt_success.ToString(), Attempts_Counter_tr.attempts.ToString(), d.death_location_of_player,
             d.is_timeout.ToString(), d.is_level_completed.ToString(), d.player_path, d.unsafe_platform_coordinates,
             d.death_by_laser.ToString());
 
@@ -1592,7 +1592,7 @@ public class Player_tutorial : MonoBehaviour
     private void reset_player_position_to_checkpoint()
     {
         playerTransform.position = checkpointPosition;
-        Attempts_Counter.attempts = attemps_record;
+        Attempts_Counter_tr.attempts = attemps_record;
         levelTimer1.timer = timeLeft;
         Movement.elapsedTime = jetPackLeft;
         TimeLeft.ScoreValue = timer_jetpack;
@@ -1619,7 +1619,7 @@ public class Player_tutorial : MonoBehaviour
         Movement.elapsedTime = 0f;
         Movement.isJetpacking = false;
         Movement.isGrounded = true;
-        Attempts_Counter.attempts = 1;
+        Attempts_Counter_tr.attempts = 1;
         levelTimerScript.resetTimer();
 
         // if (SceneManager.GetActiveScene().buildIndex == 2)
@@ -1652,7 +1652,7 @@ public class Player_tutorial : MonoBehaviour
 
     private void Player_life_reset()
     {
-        Attempts_Counter.attempts = 1;
+        Attempts_Counter_tr.attempts = 1;
     }
 
 
