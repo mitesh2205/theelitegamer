@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     private SpriteRenderer sr;
     private float movementX;
     [SerializeField]
-    public static float moveForce = 15f;
+    public static float moveForce = 16f;
     [SerializeField]
     private float jumpForce = 12f;
     private Transform playerTransform;
@@ -268,7 +268,7 @@ public class Player : MonoBehaviour
             boostTime += Time.deltaTime;
             if (boostTime >= 4)
             {
-                moveForce = 15f;
+                moveForce = 16f;
                 boostTime = 0;
                 bosting = false;
             }
@@ -1209,6 +1209,11 @@ public class Player : MonoBehaviour
                 playerTransform.position = new Vector2(133.3f, -15.6f);
                 d.IncreaseTeleporterUsed();
             }
+            if(collision.gameObject.CompareTag("Gate4"))
+            {
+                playerTransform.position = new Vector2(105.751f, 28.0f);
+                d.IncreaseTeleporterUsed();
+            }
         }
         catch (Exception e)
         {
@@ -1571,6 +1576,7 @@ public class Player : MonoBehaviour
         Time.timeScale = 0;
         // GameObject panelObject = GameObject.Find("Panel");
         // Panel panel = panelObject.GetComponent<Panel>();
+        myBody.velocity = Vector2.zero;
         print("Death");
         play_again_panel.SetActive(true);
         Attempts_Counter.attempts = 5;
