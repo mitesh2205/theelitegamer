@@ -29,6 +29,7 @@ public class message_bullet : MonoBehaviour
             Debug.Log("hit collision");
             // set the text to active for 5 seconds
             text.SetActive(true);
+            Weapon.allowed_shots = 3;
             Invoke("Deactivate", 3);
         }
     }
@@ -39,6 +40,7 @@ public class message_bullet : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("hit trigger");
+            Weapon.allowed_shots = 3;
             // set the text to active for 5 seconds
             text.SetActive(true);
             Invoke("Deactivate", 3);

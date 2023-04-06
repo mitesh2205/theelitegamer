@@ -1209,9 +1209,19 @@ public class Player : MonoBehaviour
                 playerTransform.position = new Vector2(133.3f, -15.6f);
                 d.IncreaseTeleporterUsed();
             }
-            if(collision.gameObject.CompareTag("Gate4"))
+            if (collision.gameObject.CompareTag("Gate4"))
             {
                 playerTransform.position = new Vector2(105.751f, 28.0f);
+                d.IncreaseTeleporterUsed();
+            }
+            if (collision.gameObject.CompareTag("ap_level_gate1"))
+            {
+                playerTransform.position = new Vector2(128.12f, 70.819f);
+                d.IncreaseTeleporterUsed();
+            }
+            if (collision.gameObject.CompareTag("ap_level_gate2"))
+            {
+                playerTransform.position = new Vector2(-44.1961f, 121.6182f);
                 d.IncreaseTeleporterUsed();
             }
         }
