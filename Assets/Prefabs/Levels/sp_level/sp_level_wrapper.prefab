@@ -2753,6 +2753,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7919930382734730630, guid: 6e46fd568fd60ee4ca4322f2a3939370, type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 7919930383417532067, guid: 6e46fd568fd60ee4ca4322f2a3939370, type: 3}
       propertyPath: m_Color.b
       value: 0.6666667
@@ -15046,6 +15050,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0.78
       objectReference: {fileID: 0}
+    - target: {fileID: 8088252372620336357, guid: 47e9c124611ca8d45b119a17b12121aa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -11.33
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47e9c124611ca8d45b119a17b12121aa, type: 3}
 --- !u!4 &9047419187938430517 stripped
@@ -16256,6 +16264,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6981426956513227745}
     m_Modifications:
+    - target: {fileID: 1562276963584119692, guid: 4f5e417aed4684f51bc091c4048c2dd3, type: 3}
+      propertyPath: field of view
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 1562276963584119728, guid: 4f5e417aed4684f51bc091c4048c2dd3, type: 3}
       propertyPath: m_RootOrder
       value: 10
