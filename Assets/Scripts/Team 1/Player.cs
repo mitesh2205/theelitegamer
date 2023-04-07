@@ -1214,6 +1214,48 @@ public class Player : MonoBehaviour
                 playerTransform.position = new Vector2(105.751f, 28.0f);
                 d.IncreaseTeleporterUsed();
             }
+
+            // sp_level
+            if (collision.gameObject.CompareTag("sp_tel_8"))
+            {
+                playerTransform.position = new Vector2(206.6f, -15.4f);
+                d.IncreaseTeleporterUsed();
+            }
+            if (collision.gameObject.CompareTag("sp_tel_7"))
+            {
+                playerTransform.position = new Vector2(117.2f, -83.6f);
+                d.IncreaseTeleporterUsed();
+            }
+            if (collision.gameObject.CompareTag("sp_tel_6"))
+            {
+                playerTransform.position = new Vector2(26.3f, -35.9f);
+                d.IncreaseTeleporterUsed();
+            }
+            if (collision.gameObject.CompareTag("sp_tel_5"))
+            {
+                playerTransform.position = new Vector2(125.86f, -35.2f);
+                d.IncreaseTeleporterUsed();
+            }
+            if (collision.gameObject.CompareTag("sp_tel_4"))
+            {
+                playerTransform.position = new Vector2(117.3f, 52.6f);
+                d.IncreaseTeleporterUsed();
+            }
+            if (collision.gameObject.CompareTag("sp_tel_3"))
+            {
+                playerTransform.position = new Vector2(68.2f, -2.7f);
+                d.IncreaseTeleporterUsed();
+            }
+            if (collision.gameObject.CompareTag("sp_tel_2"))
+            {
+                playerTransform.position = new Vector2(139.5f, -2.7f);
+                d.IncreaseTeleporterUsed();
+            }
+            if (collision.gameObject.CompareTag("sp_tel_1"))
+            {
+                playerTransform.position = new Vector2(93.9f, 53.1f);
+                d.IncreaseTeleporterUsed();
+            }
         }
         catch (Exception e)
         {
