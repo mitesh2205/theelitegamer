@@ -113,7 +113,7 @@ public class Player : MonoBehaviour
 
     public static bool checkpointReached = false;
     private Animator anim;
-
+    public Vector2 gate2;
     public int attemps_record = 5;
 
     private float boostTime;
@@ -1173,12 +1173,16 @@ public class Player : MonoBehaviour
 
             print("flagss");
         }
+         if (collision.gameObject.CompareTag("blue_block") || collision.gameObject.CompareTag("red_block")  )
+        {
+            
+        }
         try
         {
             if (collision.gameObject.CompareTag("Gate1"))
             {
                 // below is the code to move the player to the next x,y position. set the x,y to the position you want the player to move to.
-                playerTransform.position = new Vector2(142.1f, 30.72f); // updated 
+                playerTransform.position = gate2; // updated 
                 d.IncreaseTeleporterUsed();
             }
             // if (collision.gameObject.CompareTag("Gate1"))
