@@ -934,6 +934,17 @@ public class Player : MonoBehaviour
             collision.gameObject.SetActive(false);
         }
 
+        if (collision.gameObject.CompareTag("FlyingMonster"))
+        {
+            Debug.Log("Decrease health by flying monster");
+            d.IncreaseDeathByFlyingMonster();
+            decrease_attempts();
+            // death_option();
+
+            // reset_player_position();
+        }
+    
+
     }
 
     // slope behaviour not intended.
