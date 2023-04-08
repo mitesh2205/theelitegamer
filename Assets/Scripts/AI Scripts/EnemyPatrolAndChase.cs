@@ -8,12 +8,15 @@ public class EnemyPatrolAndChase : MonoBehaviour
     public Transform[] waypoints;
     public float speed = 2f;
     public float radarDistance = 5f;
-    public float maxChaseSpeed = 15f;
+    public float maxChaseSpeed = 18f;
 
     private int currentWaypoint = 0;
     private bool isChasing = false;
     public Transform chaseTarget;
     private AIPath aiPath;
+
+    private float lastMoveDirection;
+
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +24,8 @@ public class EnemyPatrolAndChase : MonoBehaviour
 
         aiPath = GetComponent<AIPath>();
         aiPath.destination = waypoints[currentWaypoint].position;
+        lastMoveDirection = Mathf.Sign(aiPath.velocity.x);
+
     }
 
     // Update is called once per frame
@@ -79,6 +84,23 @@ public class EnemyPatrolAndChase : MonoBehaviour
     private void Chase(){
         // Chase the target
         float distanceToPlayer = Vector2.Distance(transform.position, chaseTarget.position);
+
+        float moveHorizontal = aiPath.velocity.x;
+        float currentMoveDirection = Mathf.Sign(moveHorizontal);
+
+        if (currentMoveDirection != lastMoveDirection) {
+            if (aiPath.desiredVelocity.x >= 0)
+            {
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            }
+            else if (aiPath.desiredVelocity.x < 0)
+            {
+                transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            } 
+            lastMoveDirection = currentMoveDirection;
+
+        }
+        
 
         // Calculate the chase speed based on the distance
         float chaseSpeed = Mathf.Lerp(0, maxChaseSpeed, distanceToPlayer / radarDistance);
