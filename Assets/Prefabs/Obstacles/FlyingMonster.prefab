@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 1546146053}
   - component: {fileID: 1070449757664114067}
   - component: {fileID: 6653727841451532726}
+  - component: {fileID: 14906982745752578}
   m_Layer: 0
   m_Name: MonsterBody
   m_TagString: FlyingMonster
@@ -239,7 +240,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: f7155fac0d464a04796941cd3fbbfaac, type: 3}
   m_Color: {r: 0.9622642, g: 0.92141336, b: 0.92141336, a: 1}
   m_FlipX: 0
@@ -401,9 +402,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0006904588, y: -0.00000022293219}
+  m_Offset: {x: -0.0029201456, y: 0.044705816}
   serializedVersion: 2
-  m_Radius: 0.19591253
+  m_Radius: 0.16462682
 --- !u!114 &6653727841451532726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -416,3 +417,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea33ad230adba4b088ab3222793b2b16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &14906982745752578
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4499001374448790656}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

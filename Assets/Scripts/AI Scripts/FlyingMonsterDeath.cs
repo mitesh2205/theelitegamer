@@ -18,7 +18,7 @@ public class FlyingMonsterDeath : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Collision detected");
+        Debug.Log("Collision detected " + collision.gameObject.tag);
         if (collision.gameObject.tag == "bullet")
         {
             Debug.Log("enemy is dead");
@@ -26,4 +26,15 @@ public class FlyingMonsterDeath : MonoBehaviour
             Destroy(transform.parent.gameObject);
         }
     }
+
+    // void OnTriggerEnter2D(Collider2D collision)
+    // {
+    //     Debug.Log("Trigger detected " + collision.gameObject.tag);
+    //     if (collision.gameObject.tag == "bullet")
+    //     {
+    //         Debug.Log("enemy is dead");
+    //         Destroy(collision.gameObject);
+    //         Destroy(transform.parent.gameObject);
+    //     }
+    // }
 }
