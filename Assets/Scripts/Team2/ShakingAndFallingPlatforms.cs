@@ -30,7 +30,7 @@ public class ShakingAndFallingPlatforms : MonoBehaviour
         {
             fallingTimer += Time.deltaTime;
 
-            if (fallingTimer >= 2f)
+            if (fallingTimer >= 3f)
             {
                 isFalling = false;
                 Destroy(gameObject, 1f);
