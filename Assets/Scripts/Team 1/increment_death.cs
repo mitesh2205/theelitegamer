@@ -15,6 +15,7 @@ public class increment_death : MonoBehaviour
     public int death_by_enemy = 0;
     public int death_by_spear = 0;
     public int death_by_crusher = 0;
+    public int death_by_flying_monster = 0;
     public int death_by_explosive = 0;
     public int death_by_saw = 0;
     public int time_to_complete_level = 0;
@@ -74,6 +75,11 @@ public class increment_death : MonoBehaviour
     public void IncreaseDeathByCrusher()
     {
         death_by_crusher++;
+    }
+
+    public void IncreaseDeathByFlyingMonster()
+    {
+        death_by_flying_monster++;
     }
 
     public void IncreaseDeathByExplosive()
@@ -224,6 +230,7 @@ public class increment_death : MonoBehaviour
         death_by_crusher = 0;
         death_by_explosive = 0;
         death_by_saw = 0;
+        death_by_flying_monster = 0;
         time_to_complete_level = 0;
         death_by_puzzle = 0;
         level = 0;
