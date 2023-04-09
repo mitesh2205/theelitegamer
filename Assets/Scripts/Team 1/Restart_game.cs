@@ -49,4 +49,25 @@ public class Restart_game : MonoBehaviour
         SceneManager.LoadScene(7);
     }
 
+    public void level_6()
+    {
+        SceneManager.LoadScene(8);
+    }
+
+    public void level_7()
+    {
+        SceneManager.LoadScene(9);
+    }
+
+    public void level_8()
+    {
+        SceneManager.LoadScene(10);
+    }
+
+    public void level_9()
+    {
+        SceneManager.LoadScene(11);
+    }
+
+
 }
