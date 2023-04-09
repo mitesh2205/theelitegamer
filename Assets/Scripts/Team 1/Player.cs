@@ -1254,6 +1254,7 @@ public class Player : MonoBehaviour
             if (collision.gameObject.CompareTag("sp_tel_1"))
             {
                 playerTransform.position = new Vector2(93.9f, 53.1f);
+            }
             if (collision.gameObject.CompareTag("ap_level_gate1"))
             {
                 playerTransform.position = new Vector2(128.12f, 70.819f);
@@ -1264,6 +1265,7 @@ public class Player : MonoBehaviour
                 playerTransform.position = new Vector2(-44.1961f, 121.6182f);
                 d.IncreaseTeleporterUsed();
             }
+            
         }
         catch (Exception e)
         {
