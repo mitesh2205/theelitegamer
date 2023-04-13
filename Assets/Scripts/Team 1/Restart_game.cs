@@ -15,6 +15,8 @@ public class Restart_game : MonoBehaviour
         Time.timeScale = 1;
         d.ResetDeath();
         isPaused = false;
+        Timer.green_safe = true;
+        Timer.blue_safe = false;
         
     }
 
@@ -28,6 +30,8 @@ public class Restart_game : MonoBehaviour
         d.ResetDeath();
         Time.timeScale = 1;
         isPaused = false;
+        Timer.green_safe = true;
+        Timer.blue_safe = false;
         // Attempts_Counter.attemps=5;
     }
 
@@ -48,6 +52,7 @@ public class Restart_game : MonoBehaviour
     public void level_1()
     {
         SceneManager.LoadScene(3);
+        Debug.Log("values"+ Timer.danger_time+ Timer.green_safe+ Timer.blue_safe);
     }
 
     public void level_2()

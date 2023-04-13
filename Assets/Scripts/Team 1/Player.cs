@@ -1556,6 +1556,8 @@ public class Player : MonoBehaviour
             Movement.stopit = true;
             Movement.push_force = true;
             Movement.isJetpacking = false;
+            blink_blue = false;
+            blink_green = false;
             d.IncreaseDeath();
             d.IncreaseIsLevelCompleted();
             d.IncreaseTimeToCompleteLevel((int)Time.time - time_start);
@@ -1827,6 +1829,7 @@ public class Player : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
     }
 
 
@@ -1839,6 +1842,11 @@ public class Player : MonoBehaviour
         player_set_color_green();
         reset_level_timer = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Timer.danger_time = true;
+        Timer.green_safe = true;
+        Timer.blue_safe = false;
+        blink_blue = false;
+        blink_green = false;
     }
 
     // make player sprite green
