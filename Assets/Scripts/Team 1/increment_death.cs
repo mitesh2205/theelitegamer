@@ -258,5 +258,6 @@ public class increment_death : MonoBehaviour
         Movement.jetpackDuration = 1.5f;
         Movement.elapsedTime = 0f;
         Weapon.allowed_shots = 500;
+        Movement.push_force = true;
     }
 }

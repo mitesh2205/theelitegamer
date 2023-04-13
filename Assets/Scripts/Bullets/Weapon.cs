@@ -21,11 +21,21 @@ public class Weapon : MonoBehaviour
             // audioSource.PlayOneShot(StartSound);
             Shoot();
             allowed_shots--;
+            // yield return new WaitForSeconds(1.5f);
+            // Destroy(this.bulletPrefab);
         }
     }
 
     void Shoot()
     {
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+
+        // shoot after 2 seconds delay
+        // StartCoroutine(ShootDelay());
+        // yield return new WaitForSeconds(1.5f);
+        // Destroy(this.bulletPrefab);
+        // StartCoroutine(ShootDestroy());
     }
+
+
 }

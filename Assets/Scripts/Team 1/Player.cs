@@ -686,6 +686,10 @@ public class Player : MonoBehaviour
             timeElapsed = 0f;
             is_unsafe_platform = true;
         }
+        if(collision.gameObject.CompareTag("enemy")){
+            d.IncreaseDeathByEnemy();
+            d.IncreaseDeathLocationOfPlayer(playerTransform.position.x, playerTransform.position.y);
+        }
 
     }
 
@@ -737,6 +741,7 @@ public class Player : MonoBehaviour
         }
 
     }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

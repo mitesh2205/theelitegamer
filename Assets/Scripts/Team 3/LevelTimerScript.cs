@@ -33,12 +33,12 @@ public class LevelTimerScript : MonoBehaviour
         {
             timerFlashTime += Time.deltaTime;
             timerFlashTime2 += Time.deltaTime;
-            if (timerFlashTime<=3f)
+            if (timerFlashTime<=0.5f)
             {
                 timerText.color = Color.red;
                 // Switch = true;
             }
-            else if(timerFlashTime2<=6f)
+            else if(timerFlashTime2<=1f)
             {
                 timerText.color = Color.yellow;
                 // Switch = false;

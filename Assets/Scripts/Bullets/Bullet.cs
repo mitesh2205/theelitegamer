@@ -10,8 +10,13 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         rb.velocity = transform.right * speed;
-    }
 
+    }
+    // destroy bullet after 2 seconds
+    void Update()
+    {
+        Destroy(gameObject, 3f);
+    }
     // void OnTriggerEnter2D(Collider2D hitInfo)
     // {
     //     Destroy(gameObject);
