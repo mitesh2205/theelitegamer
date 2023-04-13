@@ -9,7 +9,7 @@ public class Weapon : MonoBehaviour
     // public AudioClip StartSound;
     // private AudioSource audioSource;
 
-    public static int allowed_shots = 2;
+    public static int allowed_shots = 500;
     public Transform firePoint;
     public GameObject bulletPrefab;
     // Update is called once per frame

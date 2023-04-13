@@ -3790,6 +3790,10 @@ PrefabInstance:
       value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 7919930381872642681, guid: 6e46fd568fd60ee4ca4322f2a3939370, type: 3}
+      propertyPath: PausePanel
+      value: 
+      objectReference: {fileID: 5891148986450168719}
+    - target: {fileID: 7919930381872642681, guid: 6e46fd568fd60ee4ca4322f2a3939370, type: 3}
       propertyPath: levelTimer
       value: 
       objectReference: {fileID: 5363238145934342008}
@@ -11815,6 +11819,11 @@ RectTransform:
 --- !u!1 &5363238147433037897 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3785104683039571056, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+  m_PrefabInstance: {fileID: 9144954911747718201}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5891148986450168719 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3398239423071811510, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
   m_PrefabInstance: {fileID: 9144954911747718201}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &7439782060420462196 stripped

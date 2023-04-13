@@ -17100,6 +17100,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 3289296389899347104}
     m_Modifications:
     - target: {fileID: 7919930381872642681, guid: 6e46fd568fd60ee4ca4322f2a3939370, type: 3}
+      propertyPath: PausePanel
+      value: 
+      objectReference: {fileID: 5141402244930044238}
+    - target: {fileID: 7919930381872642681, guid: 6e46fd568fd60ee4ca4322f2a3939370, type: 3}
       propertyPath: levelTimer
       value: 
       objectReference: {fileID: 6698667381487435193}
@@ -18959,6 +18963,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+--- !u!1 &5141402244930044238 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3398239423071811510, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+  m_PrefabInstance: {fileID: 7525821577093445368}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6698667381487435193 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3785104684001397569, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}

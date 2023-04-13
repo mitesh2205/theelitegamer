@@ -9571,7 +9571,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6601965644555482971}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -50.7, y: -11.530439, z: -10}
+  m_LocalPosition: {x: -51.24, y: -12.37044, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13961,7 +13961,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9139479337868785221, guid: cc40c8ac6706f214dabcc966ef11ad10, type: 3}
       propertyPath: m_Size.x
-      value: 3.3897605
+      value: 2.330191
       objectReference: {fileID: 0}
     - target: {fileID: 9139479337868785221, guid: cc40c8ac6706f214dabcc966ef11ad10, type: 3}
       propertyPath: m_Size.y
@@ -13969,7 +13969,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9139479337868785221, guid: cc40c8ac6706f214dabcc966ef11ad10, type: 3}
       propertyPath: m_Offset.x
-      value: 0.5771072
+      value: 0.047322392
       objectReference: {fileID: 0}
     - target: {fileID: 9139479337868785221, guid: cc40c8ac6706f214dabcc966ef11ad10, type: 3}
       propertyPath: m_Offset.y
@@ -15316,6 +15316,10 @@ PrefabInstance:
       value: 0.086111315
       objectReference: {fileID: 0}
     - target: {fileID: 7919930381872642681, guid: 6e46fd568fd60ee4ca4322f2a3939370, type: 3}
+      propertyPath: PausePanel
+      value: 
+      objectReference: {fileID: 3826373653486141837}
+    - target: {fileID: 7919930381872642681, guid: 6e46fd568fd60ee4ca4322f2a3939370, type: 3}
       propertyPath: levelTimer
       value: 
       objectReference: {fileID: 3365771082094804346}
@@ -15345,11 +15349,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7919930381872642684, guid: 6e46fd568fd60ee4ca4322f2a3939370, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -50.7
+      value: -51.24
       objectReference: {fileID: 0}
     - target: {fileID: 7919930381872642684, guid: 6e46fd568fd60ee4ca4322f2a3939370, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -16.8
+      value: -17.64
       objectReference: {fileID: 0}
     - target: {fileID: 7919930381872642684, guid: 6e46fd568fd60ee4ca4322f2a3939370, type: 3}
       propertyPath: m_LocalPosition.z
@@ -17329,6 +17333,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6601965644692833264}
     m_Modifications:
+    - target: {fileID: 1007373610874822432, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 23.599976
+      objectReference: {fileID: 0}
+    - target: {fileID: 2998742191190215160, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 8.645264
+      objectReference: {fileID: 0}
+    - target: {fileID: 2998742191190215160, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 87.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3785104682983053918, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -17513,6 +17529,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7477883308825051806, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.0281067
+      objectReference: {fileID: 0}
     - target: {fileID: 8495364397752768523, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -17577,6 +17597,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &3826373653486141837 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3398239423071811510, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+  m_PrefabInstance: {fileID: 1887846418280412731}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1887846418295636627
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2690,6 +2690,10 @@ PrefabInstance:
       value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 7919930381872642681, guid: 6e46fd568fd60ee4ca4322f2a3939370, type: 3}
+      propertyPath: PausePanel
+      value: 
+      objectReference: {fileID: 6660909297303454890}
+    - target: {fileID: 7919930381872642681, guid: 6e46fd568fd60ee4ca4322f2a3939370, type: 3}
       propertyPath: levelTimer
       value: 
       objectReference: {fileID: 5179088791886952541}
@@ -15012,7 +15016,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8088252371160601806, guid: 47e9c124611ca8d45b119a17b12121aa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -90.31
+      value: -90.2
       objectReference: {fileID: 0}
     - target: {fileID: 8088252371160601806, guid: 47e9c124611ca8d45b119a17b12121aa, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15052,7 +15056,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8088252372620336357, guid: 47e9c124611ca8d45b119a17b12121aa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -11.33
+      value: -11.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47e9c124611ca8d45b119a17b12121aa, type: 3}
@@ -17380,6 +17384,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f4d430b56c3e431eb8accaf32044384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6660909297303454890 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3398239423071811510, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+  m_PrefabInstance: {fileID: 8311592635742745372}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7678275765585197393 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1861678070998551117, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
