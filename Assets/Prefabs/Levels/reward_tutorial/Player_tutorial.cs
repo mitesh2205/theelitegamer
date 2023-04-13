@@ -122,6 +122,7 @@ public class Player_tutorial : MonoBehaviour
     private Animator anim;
 
     public int attemps_record = 5;
+    public GameObject PausePanel;
 
     private enum PlayerState
     {
@@ -134,6 +135,16 @@ public class Player_tutorial : MonoBehaviour
     private void Awake()
     {
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Restart_game.PauseGame();
+        }
+        if(Restart_game.isPaused){
+            PausePanel.SetActive(true);
+        }
+        else{
+            PausePanel.SetActive(false);
+        }
         //Dhruvit's code start
 
         // myText.SetActive(true);

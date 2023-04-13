@@ -4004,6 +4004,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3785104684279405193, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
   m_PrefabInstance: {fileID: 4283861393189592728}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1466957408629631278 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3398239423071811510, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+  m_PrefabInstance: {fileID: 4283861393189592728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2496497681427567829 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1861678070998551117, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
@@ -4196,6 +4201,10 @@ PrefabInstance:
       propertyPath: TextBox1
       value: 
       objectReference: {fileID: 1149598343298587939}
+    - target: {fileID: 7919930381872642681, guid: 6e46fd568fd60ee4ca4322f2a3939370, type: 3}
+      propertyPath: PausePanel
+      value: 
+      objectReference: {fileID: 1466957408629631278}
     - target: {fileID: 7919930381872642681, guid: 6e46fd568fd60ee4ca4322f2a3939370, type: 3}
       propertyPath: levelTimerScript
       value: 
@@ -4996,7 +5005,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7734844826449541517, guid: 95b8d5030bfe8d940956bdc4a17c8290, type: 3}
       propertyPath: m_Distance
-      value: 6.1191635
+      value: 6.1191826
       objectReference: {fileID: 0}
     - target: {fileID: 7734844827127164592, guid: 95b8d5030bfe8d940956bdc4a17c8290, type: 3}
       propertyPath: m_ConnectedAnchor.y
@@ -5024,7 +5033,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7734844828326456526, guid: 95b8d5030bfe8d940956bdc4a17c8290, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: -0.00395976
+      value: -0.0027815609
       objectReference: {fileID: 0}
     - target: {fileID: 7734844828326456526, guid: 95b8d5030bfe8d940956bdc4a17c8290, type: 3}
       propertyPath: m_ConnectedAnchor.y
