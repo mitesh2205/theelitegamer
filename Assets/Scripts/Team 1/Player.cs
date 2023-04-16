@@ -201,14 +201,16 @@ public class Player : MonoBehaviour
         {
             Restart_game.PauseGame();
         }
-        if(Restart_game.isPaused){
+        if (Restart_game.isPaused)
+        {
             PausePanel.SetActive(true);
         }
-        else{
+        else
+        {
             PausePanel.SetActive(false);
         }
 
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             if (Time.time - lastCameraSwitchTime > cameraSwitchDelay)
             {
@@ -713,7 +715,8 @@ public class Player : MonoBehaviour
             timeElapsed = 0f;
             is_unsafe_platform = true;
         }
-        if(collision.gameObject.CompareTag("enemy")){
+        if (collision.gameObject.CompareTag("enemy"))
+        {
             d.IncreaseDeathByEnemy();
             d.IncreaseDeathLocationOfPlayer(playerTransform.position.x, playerTransform.position.y);
         }
@@ -1856,7 +1859,7 @@ public class Player : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        
+
     }
 
 
