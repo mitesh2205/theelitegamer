@@ -15,7 +15,7 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B) && allowed_shots > 0)
+        if (Input.GetKeyDown(KeyCode.H) && allowed_shots > 0)
         {
             // audioSource = GetComponent<AudioSource>();
             // audioSource.PlayOneShot(StartSound);
