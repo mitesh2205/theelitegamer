@@ -13890,8 +13890,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9157594475230564102}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -48.657055, y: 37.82, z: -0.0000000055879354}
-  m_LocalScale: {x: 12, y: 1.3875, z: 1}
+  m_LocalPosition: {x: -49.8451, y: 37.82, z: -0.0000000055879354}
+  m_LocalScale: {x: 13.056001, y: 1.3875, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 725081104198512268}
@@ -19024,8 +19024,12 @@ PrefabInstance:
       value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 9022688038473219436, guid: 07aca4bace69e5a42977dd503e9cc2b8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 12.4512005
+      objectReference: {fileID: 0}
+    - target: {fileID: 9022688038473219436, guid: 07aca4bace69e5a42977dd503e9cc2b8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 607.2753
+      value: 607.7833
       objectReference: {fileID: 0}
     - target: {fileID: 9022688038473219436, guid: 07aca4bace69e5a42977dd503e9cc2b8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -20001,6 +20005,18 @@ PrefabInstance:
     - target: {fileID: 3785104683140924869, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785104683565947345, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1.5357361
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785104683565947345, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.73664856
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785104684018742484, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.09000015
       objectReference: {fileID: 0}
     - target: {fileID: 3785104684018742484, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
       propertyPath: m_AnchoredPosition.y
