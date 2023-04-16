@@ -8,6 +8,10 @@ using System;
 using Newtonsoft.Json;
 public class Player : MonoBehaviour
 {
+    public Camera secondCamera;
+    public Camera mainCamera;
+    public float cameraSwitchDelay = 0.5f;
+    private float lastCameraSwitchTime;
     private Rigidbody2D myBody;
     private SpriteRenderer sr;
     private float movementX;
@@ -103,6 +107,7 @@ public class Player : MonoBehaviour
 
     public static bool checkpointReached = false;
     private Animator anim;
+    private bool isCameraEnabled = false;
 
     public int attemps_record = 5;
 
@@ -202,6 +207,28 @@ public class Player : MonoBehaviour
         else{
             PausePanel.SetActive(false);
         }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            if (Time.time - lastCameraSwitchTime > cameraSwitchDelay)
+            {
+                if (isCameraEnabled)
+                {
+                    secondCamera.enabled = false;
+                    mainCamera.enabled = true;
+                    isCameraEnabled = false;
+                }
+                else
+                {
+                    secondCamera.enabled = true;
+                    mainCamera.enabled = false;
+                    isCameraEnabled = true;
+                }
+                lastCameraSwitchTime = Time.time;
+            }
+        }
+
+
         if (hotReload)
         {
             hotReload = false;
@@ -947,7 +974,7 @@ public class Player : MonoBehaviour
 
             // reset_player_position();
         }
-    
+
 
     }
 
@@ -1280,7 +1307,7 @@ public class Player : MonoBehaviour
                 playerTransform.position = new Vector2(-44.1961f, 121.6182f);
                 d.IncreaseTeleporterUsed();
             }
-            
+
         }
         catch (Exception e)
         {
