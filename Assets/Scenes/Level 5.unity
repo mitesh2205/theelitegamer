@@ -1090,11 +1090,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1562276963584119692, guid: 4f5e417aed4684f51bc091c4048c2dd3, type: 3}
       propertyPath: field of view
-      value: 170.4
+      value: 171
       objectReference: {fileID: 0}
     - target: {fileID: 1562276963584119692, guid: 4f5e417aed4684f51bc091c4048c2dd3, type: 3}
       propertyPath: m_FocalLength
-      value: 1.0076685
+      value: 0.94442034
       objectReference: {fileID: 0}
     - target: {fileID: 1562276963584119692, guid: 4f5e417aed4684f51bc091c4048c2dd3, type: 3}
       propertyPath: m_projectionMatrixMode
@@ -1106,7 +1106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1562276963584119728, guid: 4f5e417aed4684f51bc091c4048c2dd3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.6
+      value: -22.7
       objectReference: {fileID: 0}
     - target: {fileID: 1562276963584119728, guid: 4f5e417aed4684f51bc091c4048c2dd3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4702,15 +4702,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5992269844005862024, guid: 36c48471e80f64f48bcb4745dad0f16c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.3573437
+      value: 3.6538825
       objectReference: {fileID: 0}
     - target: {fileID: 5992269844005862024, guid: 36c48471e80f64f48bcb4745dad0f16c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 56.4
+      value: 60.8
       objectReference: {fileID: 0}
     - target: {fileID: 5992269844005862024, guid: 36c48471e80f64f48bcb4745dad0f16c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -63.4
+      value: -61.4
       objectReference: {fileID: 0}
     - target: {fileID: 5992269844005862024, guid: 36c48471e80f64f48bcb4745dad0f16c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7708,7 +7708,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: You can shoot the monster by bullet (B key).
+  m_Text: You can shoot the monster by bullet (H key).
 --- !u!222 &2008118816707405646
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9271,15 +9271,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5992269844005862024, guid: 36c48471e80f64f48bcb4745dad0f16c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.3573437
+      value: 3.889617
       objectReference: {fileID: 0}
     - target: {fileID: 5992269844005862024, guid: 36c48471e80f64f48bcb4745dad0f16c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14
+      value: -9.1
       objectReference: {fileID: 0}
     - target: {fileID: 5992269844005862024, guid: 36c48471e80f64f48bcb4745dad0f16c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -43.5
+      value: -41.3
       objectReference: {fileID: 0}
     - target: {fileID: 5992269844005862024, guid: 36c48471e80f64f48bcb4745dad0f16c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11145,6 +11145,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4695191325533744532}
     m_Modifications:
+    - target: {fileID: 3785104682931154906, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 6.4572754
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785104682931154906, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 7.779114
+      objectReference: {fileID: 0}
     - target: {fileID: 3785104683140924869, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -11156,6 +11164,10 @@ PrefabInstance:
     - target: {fileID: 3785104684001397569, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
       propertyPath: timer
       value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785104684018742484, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3785104684279405193, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
       propertyPath: m_Pivot.x
@@ -11247,11 +11259,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5894073937839471429, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.099998474
+      value: 0.1000061
       objectReference: {fileID: 0}
     - target: {fileID: 5894073937839471429, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.20000076
+      value: 0.19999695
       objectReference: {fileID: 0}
     - target: {fileID: 8458984389215037240, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
       propertyPath: m_AnchoredPosition.x
