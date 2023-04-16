@@ -17441,6 +17441,38 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 23.599976
       objectReference: {fileID: 0}
+    - target: {fileID: 1709613678228979391, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 55.10782
+      objectReference: {fileID: 0}
+    - target: {fileID: 1709613678228979391, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 19.029
+      objectReference: {fileID: 0}
+    - target: {fileID: 1709613678228979391, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 4.853943
+      objectReference: {fileID: 0}
+    - target: {fileID: 1709613678228979391, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.4434996
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963906811102002759, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963906811102002759, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+      propertyPath: m_margin.z
+      value: -0.3516922
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963906811102002759, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1963906811102002759, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 2998742191190215160, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 8.645264
@@ -17663,7 +17695,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5894073937839471429, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.31000137
+      value: 0.30999756
       objectReference: {fileID: 0}
     - target: {fileID: 7477883308825051806, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -17679,6 +17711,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+--- !u!114 &104647695681751164 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1963906811102002759, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+  m_PrefabInstance: {fileID: 1887846418280412731}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &280621786760494198 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1861678070998551117, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
@@ -17720,17 +17763,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3365771082355605541 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3785104683724338718, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
-  m_PrefabInstance: {fileID: 1887846418280412731}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3826373653486141837 stripped
@@ -21626,7 +21658,7 @@ PrefabInstance:
     - target: {fileID: 7824638060236202855, guid: 2a776c9e7ebfd5641aae1ae3603aa501, type: 3}
       propertyPath: timerText
       value: 
-      objectReference: {fileID: 3365771082355605541}
+      objectReference: {fileID: 104647695681751164}
     - target: {fileID: 7824638060236202855, guid: 2a776c9e7ebfd5641aae1ae3603aa501, type: 3}
       propertyPath: timerSlider
       value: 
@@ -21634,7 +21666,7 @@ PrefabInstance:
     - target: {fileID: 7824638060236202855, guid: 2a776c9e7ebfd5641aae1ae3603aa501, type: 3}
       propertyPath: countdownText
       value: 
-      objectReference: {fileID: 3365771082355605541}
+      objectReference: {fileID: 104647695681751164}
     - target: {fileID: 7824638060236202857, guid: 2a776c9e7ebfd5641aae1ae3603aa501, type: 3}
       propertyPath: m_Name
       value: Gameconsole

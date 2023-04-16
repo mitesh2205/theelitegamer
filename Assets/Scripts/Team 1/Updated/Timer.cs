@@ -2,20 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class Timer : MonoBehaviour
 {
     public Slider timerSlider;
-    public Text timerText;
+    // public Text timerText;
+    // TIMER TEXT TEXTMESHPROTEXTMESHUGUI
+    public TextMeshProUGUI timerText;
 
     // public static bool issafe;
 
     public float countdownTime;
     public static float timeleft;
     public static bool resetCounter = false;
-    public Text countdownText;
+    // public Text countdownText;
+    public TextMeshProUGUI countdownText;
     public static bool blue_safe = false;
     public static bool green_safe = true;
     public static bool danger_time = true;
+
     Color blueColor = new Color();
 
     void Start()
