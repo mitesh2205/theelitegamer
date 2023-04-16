@@ -25,18 +25,6 @@ public class Player : MonoBehaviour
 
 
 
-    //Dhruvit Code
-    // public GameObject myText;
-    // public GameObject myText2;
-    // public GameObject myText3;
-    // public GameObject myText4;
-    // public GameObject myText5;
-    // public GameObject myText6;
-    // public GameObject myText7;
-    // public GameObject myText8;
-    //Dhruvit Code End
-
-
     // private bool ispath_recorded;
 
     public GameObject play_again_panel;
@@ -77,6 +65,8 @@ public class Player : MonoBehaviour
     public float maxstaytime = 8f;
 
     public LevelTimerScript levelTimerScript;
+
+    public GameObject PausePanel;
 
     // hash set
     float safetimer = 0f;
@@ -167,7 +157,6 @@ public class Player : MonoBehaviour
         myBody.gravityScale = 1;
         print(myBody.gravityScale);
         anim = GetComponent<Animator>();
-
         // playerTransform.color = Color.green;
         // player_set_color_green();
         // print("gravity");
@@ -203,6 +192,16 @@ public class Player : MonoBehaviour
         // {
         //     reset_player_color_to_white();
         // }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Restart_game.PauseGame();
+        }
+        if(Restart_game.isPaused){
+            PausePanel.SetActive(true);
+        }
+        else{
+            PausePanel.SetActive(false);
+        }
         if (hotReload)
         {
             hotReload = false;
@@ -687,6 +686,10 @@ public class Player : MonoBehaviour
             timeElapsed = 0f;
             is_unsafe_platform = true;
         }
+        if(collision.gameObject.CompareTag("enemy")){
+            d.IncreaseDeathByEnemy();
+            d.IncreaseDeathLocationOfPlayer(playerTransform.position.x, playerTransform.position.y);
+        }
 
     }
 
@@ -738,6 +741,7 @@ public class Player : MonoBehaviour
         }
 
     }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -1552,6 +1556,8 @@ public class Player : MonoBehaviour
             Movement.stopit = true;
             Movement.push_force = true;
             Movement.isJetpacking = false;
+            blink_blue = false;
+            blink_green = false;
             d.IncreaseDeath();
             d.IncreaseIsLevelCompleted();
             d.IncreaseTimeToCompleteLevel((int)Time.time - time_start);
@@ -1823,6 +1829,7 @@ public class Player : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
     }
 
 
@@ -1835,6 +1842,11 @@ public class Player : MonoBehaviour
         player_set_color_green();
         reset_level_timer = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Timer.danger_time = true;
+        Timer.green_safe = true;
+        Timer.blue_safe = false;
+        blink_blue = false;
+        blink_green = false;
     }
 
     // make player sprite green

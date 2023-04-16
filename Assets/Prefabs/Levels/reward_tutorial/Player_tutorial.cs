@@ -122,6 +122,7 @@ public class Player_tutorial : MonoBehaviour
     private Animator anim;
 
     public int attemps_record = 5;
+    public GameObject PausePanel;
 
     private enum PlayerState
     {
@@ -134,6 +135,7 @@ public class Player_tutorial : MonoBehaviour
     private void Awake()
     {
 
+       
         //Dhruvit's code start
 
         // myText.SetActive(true);
@@ -197,6 +199,16 @@ public class Player_tutorial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+         if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Restart_game.PauseGame();
+        }
+        if(Restart_game.isPaused){
+            PausePanel.SetActive(true);
+        }
+        else{
+            PausePanel.SetActive(false);
+        }
         // if (!die_hint)
         // {
         //     reset_player_color_to_white();

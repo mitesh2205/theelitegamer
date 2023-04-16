@@ -257,5 +257,7 @@ public class increment_death : MonoBehaviour
         death_by_laser = 0;
         Movement.jetpackDuration = 1.5f;
         Movement.elapsedTime = 0f;
+        Weapon.allowed_shots = 500;
+        Movement.push_force = true;
     }
 }

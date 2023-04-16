@@ -15,6 +15,9 @@ public class LevelTimerScript : MonoBehaviour
     public LevelOverScreenScript LevelOverScreenScript;
     public static event Action onTimerOver;
     private TMPro.TextMeshProUGUI timerText;
+    private bool Switch = false;
+    private float timerFlashTime;
+    private float timerFlashTime2;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,11 +28,36 @@ public class LevelTimerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // flash timer when it's near 30 seconds
+        if (timer <= 30)
+        {
+            timerFlashTime += Time.deltaTime;
+            timerFlashTime2 += Time.deltaTime;
+            if (timerFlashTime<=0.5f)
+            {
+                timerText.color = Color.red;
+                // Switch = true;
+            }
+            else if(timerFlashTime2<=1f)
+            {
+                timerText.color = Color.yellow;
+                // Switch = false;
+            }
+            else{
+                timerFlashTime = 0;
+                timerFlashTime2 = 0;
+            }
+            // timerText.color = Color.red;
+        }
+        else
+        {
+            timerText.color = Color.yellow;
+        }
         if (timer > 0)
         {
             timer -= Time.deltaTime;
             //timerText.text = "Time Left: " + Mathf.Round(timer);
-            timerText.text = ":" + Mathf.Round(timer);
+            timerText.text = "" + Mathf.Round(timer);
         }
         if (timer <= 0)
         {

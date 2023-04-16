@@ -333,11 +333,14 @@ MonoBehaviour:
   flagss: 0
   maxstaytime: 8
   levelTimerScript: {fileID: 0}
+  PausePanel: {fileID: 0}
   was_last_green: 0
   was_last_blue: 0
   levelTimer1: {fileID: 0}
   levelTimer: {fileID: 0}
   attemps_record: 5
+  play_image: {fileID: 21300000, guid: 48143a013af84364e8f0df97f71498bd, type: 3}
+  pause_image: {fileID: 21300000, guid: 7473ced561dd0224f9af321b1b8fcc23, type: 3}
   URL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSfs4V6qSdWIIJw8WidhxIRurXeO2iNYbrobqBpdFobGjGESTQ/formResponse
 --- !u!114 &7919930381872642680
 MonoBehaviour:

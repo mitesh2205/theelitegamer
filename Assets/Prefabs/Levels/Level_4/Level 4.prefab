@@ -812,6 +812,10 @@ PrefabInstance:
       value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7919930381872642681, guid: 6e46fd568fd60ee4ca4322f2a3939370, type: 3}
+      propertyPath: PausePanel
+      value: 
+      objectReference: {fileID: 6057818685236168180}
+    - target: {fileID: 7919930381872642681, guid: 6e46fd568fd60ee4ca4322f2a3939370, type: 3}
       propertyPath: levelTimer
       value: 
       objectReference: {fileID: 5746080307195918595}
@@ -4114,6 +4118,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6057818685236168180 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3398239423071811510, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}
+  m_PrefabInstance: {fileID: 8879208678336868930}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7128999646186534927 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1861678070998551117, guid: 59fd5f1f6feeb434c93518992f993f50, type: 3}

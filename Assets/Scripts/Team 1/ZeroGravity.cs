@@ -16,7 +16,15 @@ public class ZeroGravity : MonoBehaviour
             rb.gravityScale = -1;
         }
     }
-
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Debug.Log("Player has entered the gravity zone");
+            rb = collision.gameObject.GetComponent<Rigidbody2D>();
+            rb.gravityScale = -1;
+        }
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")

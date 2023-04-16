@@ -5,11 +5,35 @@ using UnityEngine.SceneManagement;
 
 public class Restart_game : MonoBehaviour
 {
+    public static bool isPaused = false;
     public void Restart()
     {
         SceneManager.LoadScene(0);
+        Attempts_Counter.attempts=5;
+        increment_death d;
+        d = FindObjectOfType<increment_death>();
+        Time.timeScale = 1;
+        d.ResetDeath();
+        isPaused = false;
+        Timer.green_safe = true;
+        Timer.blue_safe = false;
+        
     }
 
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        // increment_death.ResetDeath();
+        Attempts_Counter.attempts=5;
+        increment_death d;
+        d = FindObjectOfType<increment_death>();
+        d.ResetDeath();
+        Time.timeScale = 1;
+        isPaused = false;
+        Timer.green_safe = true;
+        Timer.blue_safe = false;
+        // Attempts_Counter.attemps=5;
+    }
 
     public void Start_game()
     {
@@ -20,6 +44,21 @@ public class Restart_game : MonoBehaviour
     {
         SceneManager.LoadScene(4);
     }
+    // public void Tutorial_level_Reward()
+    // {
+    //     SceneManager.LoadScene(2);
+    // }
+
+    // public void level_1()
+    // {
+    //     SceneManager.LoadScene(3);
+    //     Debug.Log("values"+ Timer.danger_time+ Timer.green_safe+ Timer.blue_safe);
+    // }
+
+    // public void level_2()
+    // {
+    //     SceneManager.LoadScene(4);
+    // }
     public void Tutorial_level_Reward()
     {
         SceneManager.LoadScene(5);
@@ -88,5 +127,22 @@ public class Restart_game : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+    public static void PauseGame()
+    {
+        // check if game is already paused
+        if (Time.timeScale == 0)
+        {
+            // if game is paused, then unpause it
+            Time.timeScale = 1;
+            isPaused = false;
+        }
+        else
+        {
+            // if game is not paused, then pause it
+            Time.timeScale = 0;
+            isPaused = true;
+        }
+    }
+
 
 }
